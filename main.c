@@ -24,7 +24,8 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 void	run_read_side(t_pipex *pipex, int i)
 {
 	const int	*pipe = pipex->pipe_fd;
-	const int	*file = pipex->file_fd;
+	//const int	*file = pipex->file_fd;
+	int *const	file = pipex->file_fd;
 
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
@@ -39,7 +40,8 @@ void	run_read_side(t_pipex *pipex, int i)
 void	run_write_side(t_pipex *pipex, int i)
 {
 	const int	*pipe = pipex->pipe_fd;
-	const int	*file = pipex->file_fd;
+	//const int	*file = pipex->file_fd;
+	int *const	file = pipex->file_fd;
 
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
@@ -48,7 +50,7 @@ void	run_write_side(t_pipex *pipex, int i)
 		duplicate_to_standard_in_out(pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
 	}
-	close(pipex->pipe_fd[WRITE]);
-	close(pipex->pipe_fd[READ]);
+	close(pipe[WRITE]);
+	close(pipe[READ]);
 	wait_for_child_process(pipex, i);
 }
