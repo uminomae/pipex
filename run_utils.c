@@ -24,7 +24,7 @@ void	wait_for_child_process(t_pipex *pipex, int i)
 		exit_with_error("waitpid");
 }
 
-void	switch_to_standard_in_out(int input_source_file, int out_destination)
+void	duplicate_to_standard_in_out(int input_source_file, int out_destination)
 {
 	int	ret_in;
 	int	ret_out;

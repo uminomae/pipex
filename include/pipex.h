@@ -53,7 +53,7 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	exit_with_error(char *str);
 void	create_child_process(t_pipex *pipex, int i);
 void	wait_for_child_process(t_pipex *pipex, int i);
-void	switch_to_standard_in_out(int old_in_fd, int old_out_fd);
+void	duplicate_to_standard_in_out(int old_in_fd, int old_out_fd);
 //
 void	open_file(t_pipex *pipex, int in_out);
 void	execute_command_read(t_pipex *pipex);

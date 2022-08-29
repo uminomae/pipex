@@ -6,11 +6,11 @@ int	main(int argc, char **argv, char **env)
 
 	begin_pipex(&pipex, argc, argv, env);
 	run_read_side(&pipex, READ);
-	wait_for_child_process(&pipex, READ);
+	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);
-	close(pipex.pipe_fd[WRITE]);
-	close(pipex.pipe_fd[READ]);
-	wait_for_child_process(&pipex, WRITE);
+	//close(pipex.pipe_fd[WRITE]);
+	//close(pipex.pipe_fd[READ]);
+	//wait_for_child_process(&pipex, WRITE);
 	return (0);
 }
 
@@ -30,10 +30,10 @@ void	run_read_side(t_pipex *pipex, int i)
 	if (pipex->pid[i] == 0)
 	{
 		open_file(pipex, READ);
-		switch_to_standard_in_out(file[READ], pipe[WRITE]);
+		duplicate_to_standard_in_out(file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
 	}
-	//wait_for_child_process(pipex, READ);
+	wait_for_child_process(pipex, READ);
 }
 
 void	run_write_side(t_pipex *pipex, int i)
@@ -45,10 +45,10 @@ void	run_write_side(t_pipex *pipex, int i)
 	if (pipex->pid[i] == 0)
 	{
 		open_file(pipex, WRITE);
-		switch_to_standard_in_out(pipe[READ], file[WRITE]);
+		duplicate_to_standard_in_out(pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
 	}
-	//close(pipex->pipe_fd[WRITE]);
-	//close(pipex->pipe_fd[READ]);
-	//wait_for_child_process(pipex, WRITE);
+	close(pipex->pipe_fd[WRITE]);
+	close(pipex->pipe_fd[READ]);
+	wait_for_child_process(pipex, WRITE);
 }
