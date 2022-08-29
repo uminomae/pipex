@@ -29,11 +29,11 @@ void	run_read_side(t_pipex *pipex, int i)
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		open_file(pipex, READ);
+		open_file(pipex, i);
 		duplicate_to_standard_in_out(file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
 	}
-	wait_for_child_process(pipex, READ);
+	wait_for_child_process(pipex, i);
 }
 
 void	run_write_side(t_pipex *pipex, int i)
@@ -44,11 +44,11 @@ void	run_write_side(t_pipex *pipex, int i)
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		open_file(pipex, WRITE);
+		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
 	}
 	close(pipex->pipe_fd[WRITE]);
 	close(pipex->pipe_fd[READ]);
-	wait_for_child_process(pipex, WRITE);
+	wait_for_child_process(pipex, i);
 }

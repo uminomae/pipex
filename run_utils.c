@@ -3,7 +3,7 @@
 void	exit_with_error(char *str)
 {
 	perror(str);
-	exit(EXIT_FAILURE);
+	_exit(EXIT_FAILURE);
 }
 
 void	create_child_process(t_pipex *pipex, int i)
