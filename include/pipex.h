@@ -55,12 +55,13 @@ void	create_child_process(t_pipex *pipex, int i);
 void	wait_for_child_process(t_pipex *pipex, int i);
 void	switch_to_standard_in_out(int old_in_fd, int old_out_fd);
 //
-void	run_read_side_child_process(t_pipex *pipex);
-void	run_write_side_child_process(t_pipex *pipex);
+void	open_file(t_pipex *pipex, int in_out);
+void	execute_command_read(t_pipex *pipex);
+void	execute_command_write(t_pipex *pipex);
 //
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	run_read_side(t_pipex *pipex, int i);
 void	run_write_side(t_pipex *pipex, int i);
-
+void	run_child_process(t_pipex *pipex, int i, int read_fd, int out_fd);
 
 #endif

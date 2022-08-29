@@ -1,13 +1,20 @@
 #include "pipex.h"
 
-void	run_read_side_child_process(t_pipex *pipex)
+void	open_file(t_pipex *pipex, int in_out)
 {
 	char *const	*argv = (char *const *)pipex->argv;
-	const int	*pipe = pipex->pipe_fd;
 
-	close(pipe[READ]);
-	pipex->file_fd[READ] = open(argv[1], O_RDONLY, 0);
-	switch_to_standard_in_out(pipex->file_fd[READ], pipe[WRITE]);
+	close(pipex->pipe_fd[in_out]);
+	if (in_out == READ)
+		pipex->file_fd[READ] = open(argv[1], O_RDONLY, 0);
+	else if (in_out == WRITE)
+		pipex->file_fd[WRITE] = open(argv[4], O_WRONLY | \
+			O_CREAT | O_TRUNC, 0777);
+}
+
+void	execute_command_read(t_pipex *pipex)
+{
+	char *const	*argv = (char *const *)pipex->argv;
 
 	//これから作るとこ。とりあえずテスト用argv1
 	GET_AVG_READ;
@@ -16,14 +23,9 @@ void	run_read_side_child_process(t_pipex *pipex)
 	exit(EXIT_SUCCESS);
 }
 
-void	run_write_side_child_process(t_pipex *pipex)
+void	execute_command_write(t_pipex *pipex)
 {
 	char *const	*argv = (char *const *)pipex->argv;
-	const int	*pipe = pipex->pipe_fd;
-
-	close(pipe[WRITE]);
-	pipex->file_fd[WRITE] = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	switch_to_standard_in_out(pipe[READ], pipex->file_fd[WRITE]);
 	
 	//これから作るとこ。とりあえずテスト用argv1
 	GET_AVG_WRITE;

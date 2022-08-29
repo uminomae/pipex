@@ -17,24 +17,24 @@ void	create_child_process(t_pipex *pipex, int i)
 
 void	wait_for_child_process(t_pipex *pipex, int i)
 {
-	pid_t	ret;
+	pid_t	ret_pid;
 
-	ret = waitpid(pipex->pid[i], &pipex->status[i], 0);
-	if (ret == -1)
+	ret_pid = waitpid(pipex->pid[i], &pipex->status[i], 0);
+	if (ret_pid == -1)
 		exit_with_error("waitpid");
 }
 
-void	switch_to_standard_in_out(int old_in_fd, int old_out_fd)
+void	switch_to_standard_in_out(int input_source_file, int out_destination)
 {
 	int	ret_in;
 	int	ret_out;
 
-	ret_in = dup2(old_in_fd, READ);
-	close(old_in_fd);
+	ret_in = dup2(input_source_file, STANDARD_INPUT);
+	close(input_source_file);
 	if (ret_in == -1)
 		exit_with_error("dup2");
-	ret_out = dup2(old_out_fd, WRITE);
-	close(old_out_fd);
+	ret_out = dup2(out_destination, STANDARD_OUTPUT);
+	close(out_destination);
 	if (ret_out == -1)
 		exit_with_error("dup2");
 }
