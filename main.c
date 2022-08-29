@@ -8,8 +8,8 @@ int	main(int argc, char **argv, char **env)
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);
-	//close(pipex.pipe_fd[WRITE]);
-	//close(pipex.pipe_fd[READ]);
+	//close_file_descriptor(pipex.pipe_fd[WRITE]);
+	//close_file_descriptor(pipex.pipe_fd[READ]);
 	//wait_for_child_process(&pipex, WRITE);
 	return (0);
 }
@@ -50,7 +50,7 @@ void	run_write_side(t_pipex *pipex, int i)
 		duplicate_to_standard_in_out(pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
 	}
-	close(pipe[WRITE]);
-	close(pipe[READ]);
+	close_file_descriptor(pipe[WRITE]);
+	close_file_descriptor(pipe[READ]);
 	wait_for_child_process(pipex, i);
 }

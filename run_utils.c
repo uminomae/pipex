@@ -6,6 +6,16 @@ void	exit_with_error(char *str)
 	_exit(EXIT_FAILURE);
 }
 
+int	close_file_descriptor(int fd)
+{
+	int	ret;
+
+	ret = close(fd);
+	if (ret == -1)
+		exit_with_error("close");
+	return (ret);
+}
+
 void	create_child_process(t_pipex *pipex, int i)
 {
 	pid_t* const pid = pipex->pid;
@@ -15,6 +25,7 @@ void	create_child_process(t_pipex *pipex, int i)
 		exit_with_error("fork");
 }
 
+//statusが分かりづらい。なんの？
 void	wait_for_child_process(t_pipex *pipex, int i)
 {
 	pid_t	ret_pid;
@@ -30,11 +41,11 @@ void	duplicate_to_standard_in_out(int input_source_file, int out_destination)
 	int	ret_out;
 
 	ret_in = dup2(input_source_file, STANDARD_INPUT);
-	close(input_source_file);
+	close_file_descriptor(input_source_file);
 	if (ret_in == -1)
 		exit_with_error("dup2");
 	ret_out = dup2(out_destination, STANDARD_OUTPUT);
-	close(out_destination);
+	close_file_descriptor(out_destination);
 	if (ret_out == -1)
 		exit_with_error("dup2");
 }
