@@ -57,6 +57,10 @@ void	switch_to_standard_in_out(int old_in_fd, int old_out_fd);
 //
 void	run_read_side_child_process(t_pipex *pipex);
 void	run_write_side_child_process(t_pipex *pipex);
-//void	parent_process(t_pipex *pipex);
+//
+void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
+void	run_read_side(t_pipex *pipex, int i);
+void	run_write_side(t_pipex *pipex, int i);
+
 
 #endif

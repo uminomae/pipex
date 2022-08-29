@@ -18,12 +18,11 @@ void	run_read_side_child_process(t_pipex *pipex)
 
 void	run_write_side_child_process(t_pipex *pipex)
 {
-	const int	*pipe = pipex->pipe_fd;
 	char *const	*argv = (char *const *)pipex->argv;
+	const int	*pipe = pipex->pipe_fd;
 
 	close(pipe[WRITE]);
-	//OPEN関数を調べる
-	pipex->file_fd[WRITE] = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	pipex->file_fd[WRITE] = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	switch_to_standard_in_out(pipe[READ], pipex->file_fd[WRITE]);
 	
 	//これから作るとこ。とりあえずテスト用argv1
