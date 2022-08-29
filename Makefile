@@ -5,6 +5,7 @@ CFLAGS		:= -Wall -Wextra -Werror -O3
 DFLAGS		:= -MMD -MP
 #MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
 SRCS		:= 	main.c \
+				begin.c \
 				run.c \
 
 LIBFT		= $(LIBDIR)libft.a

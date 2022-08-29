@@ -8,13 +8,14 @@
 
 typedef struct	s_pipex
 {
-	pid_t	pid;
+	pid_t	pid[2];
 	int		argc;
 	char	**argv;
 	char	**env;
 	int		pipe_fd[2];
-	int		file_fd[2];
-	int		status;
+	//int		file_fd[2];
+
+	int		status[2];
 } t_pipex;
 
 # define ERR_CODE_1 1
@@ -33,8 +34,15 @@ typedef struct	s_pipex
 /* open-only flags */
 //#define O_RDONLY        0x0000          /* open for reading only */
 
-//void	run_pipe(char **argv, char **env, t_pipex *pipex);
-void	child_process(char **argv, char **env, int *pipe_fd);
-void	parent_process(char **argv, char **env, int *pipe_fd);
+//begin()
+void	create_pipe_fd(t_pipex *pipex);
+void	init_struct(t_pipex *pipex,int argc, char **argv, char **env);
+void	check_for_valid_value(int argc);
+//
+void	exit_with_error(char *str);
+//
+void	run_read_side_child_process(t_pipex *pipex);
+void	run_write_side_child_process(t_pipex *pipex);
+//void	parent_process(t_pipex *pipex);
 
 #endif

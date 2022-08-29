@@ -6,52 +6,47 @@ void	exit_with_error(char *str)
 	exit(EXIT_FAILURE);
 }
 
-void	check_for_valid_value(int argc)
+void	create_child_process(t_pipex *pipex, int i)
 {
-	if (argc == 5)
-		return ;
-	else
-		exit_with_error();
-}
+	pid_t* const pid = pipex->pid;
 
-void	init_struct(t_pipex *pipex,int argc, char **argv, char **env)
-{
-	pipex->argc = argc;
-	pipex->argv = argv;
-	pipex->env = env;
-}
-
-void	create_child_process(t_pipex *pipex)
-{
-	int status;
-
-	status = pipe(pipex->pipe_fd);
-	if (status == -1)
-		exit_with_error("pipe");
-	pipex->pid = fork();
-	if (pipex->pid == -1)
+	pid[i] = fork();
+	if (pid[i] == -1)
 		exit_with_error("fork");
 }
 
-void run_pipe(char **argv, char **env, t_pipex *pipex)
+void	wait_for_child_process(t_pipex *pipex, int i)
 {
-	if (pipex->pid == 0)
-		child_process(argv, env, pipex->pipe_fd);
-	waitpid(pipex->pid, NULL, 0);
-	parent_process(argv, env, pipex->pipe_fd);
+	pid_t	ret;
+
+	ret = waitpid(pipex->pid[i], &pipex->status[i], 0);
+	if (ret == -1)
+		exit_with_error("waitpid");
+}
+
+void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
+{
+	check_for_valid_value(argc);
+	init_struct(pipex, argc, argv, env);
+	create_pipe_fd(pipex);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex pipex;
 
-	check_for_valid_value(argc);
-	init_struct(&pipex, argc, argv, env);
-	create_child_process(&pipex);
-	run_pipe(argv, env, &pipex);
+	begin_pipex(&pipex, argc, argv, env);
 
-	//(void)argv;
-	//(void)argc;
-	//(void)env;
+	create_child_process(&pipex, READ);
+	if (pipex.pid[READ] == 0)
+		run_read_side_child_process(&pipex);
+	wait_for_child_process(&pipex, READ);
+	//printf("main()-----\n");
+	create_child_process(&pipex, WRITE);
+	if (pipex.pid[WRITE] == 0)
+		run_write_side_child_process(&pipex);
+	close(pipex.pipe_fd[WRITE]);
+	wait_for_child_process(&pipex, WRITE);
+	close(pipex.pipe_fd[READ]);
+	return (0);
 }
-
