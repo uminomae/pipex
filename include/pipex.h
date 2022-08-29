@@ -13,7 +13,7 @@ typedef struct	s_pipex
 	char	**argv;
 	char	**env;
 	int		pipe_fd[2];
-	//int		file_fd[2];
+	int		file_fd[2];
 
 	int		status[2];
 } t_pipex;
@@ -23,6 +23,16 @@ typedef struct	s_pipex
 # define WRITE 1
 # define STANDARD_INPUT 0
 # define STANDARD_OUTPUT 1
+
+# define GET_AVG_READ	char *argv1_test[3];\
+	argv1_test[0] = "/usr/bin/grep";\
+	argv1_test[1] = "a1";\
+	argv1_test[2] = NULL;\
+
+# define GET_AVG_WRITE	char *argv1_test[3];\
+	argv1_test[0] = "/bin/cat";\
+	argv1_test[1] = NULL;\
+	argv1_test[2] = NULL;\
 
 /*
  * File status flags: these are used by open(2), fcntl(2).
@@ -43,6 +53,7 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	exit_with_error(char *str);
 void	create_child_process(t_pipex *pipex, int i);
 void	wait_for_child_process(t_pipex *pipex, int i);
+void	switch_to_standard_in_out(int old_in_fd, int old_out_fd);
 //
 void	run_read_side_child_process(t_pipex *pipex);
 void	run_write_side_child_process(t_pipex *pipex);
