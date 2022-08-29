@@ -7,6 +7,7 @@ DFLAGS		:= -MMD -MP
 SRCS		:= 	main.c \
 				begin.c \
 				run.c \
+				run_utils.c \
 
 LIBFT		= $(LIBDIR)libft.a
 INCLUDE		= -I$(INCDIR)

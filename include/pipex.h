@@ -38,8 +38,11 @@ typedef struct	s_pipex
 void	create_pipe_fd(t_pipex *pipex);
 void	init_struct(t_pipex *pipex,int argc, char **argv, char **env);
 void	check_for_valid_value(int argc);
+void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 //
 void	exit_with_error(char *str);
+void	create_child_process(t_pipex *pipex, int i);
+void	wait_for_child_process(t_pipex *pipex, int i);
 //
 void	run_read_side_child_process(t_pipex *pipex);
 void	run_write_side_child_process(t_pipex *pipex);

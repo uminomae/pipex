@@ -1,5 +1,12 @@
 #include "pipex.h"
 
+void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
+{
+	check_for_valid_value(argc);
+	init_struct(pipex, argc, argv, env);
+	create_pipe_fd(pipex);
+}
+
 void	check_for_valid_value(int argc)
 {
 	if (argc == 5)
