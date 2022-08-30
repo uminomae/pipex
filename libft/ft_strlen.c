@@ -3,44 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa </var/mail/hioikawa>              +#+  +:+       +#+        */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:00:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/03/02 07:02:35 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/08/31 01:08:25 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_strlen_s(const char *s)
-{
-	size_t	len;
+//static size_t	ft_strlen_s(const char *s)
+//{
+//	size_t	len;
 
-	len = 0;
-	if (s == NULL)
-		return (0);
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
+//	len = 0;
+//	if (s == NULL)
+//		return (0);
+//	while (s[len] != '\0')
+//		len++;
+//	return (len);
+//}
 
-size_t	ft_strlen(const char *s)
-{
-	return (ft_strlen_s(s));
-}
-/*
+//size_t	ft_strlen(const char *s)
+//{
+//	return (ft_strlen_s(s));
+//}
+
 size_t	ft_strlen(const char *s)
 {
 	size_t  len;
 
-	if (s == NULL)
-		return (0);
 	len = 0;
 	while (s[len] != '\0')
 		len++;
 	return (len);
 }
-*/
+
 /*
 int main()
 {

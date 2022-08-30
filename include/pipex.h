@@ -52,6 +52,7 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	exit_with_error(char *str);
 int		close_file_descriptor(int fd);
 void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
+void	safe_free(char **malloc_ptr);
 //
 void	create_child_process(t_pipex *pipex, int i);
 void	open_file(t_pipex *pipex, int in_out);
@@ -61,9 +62,11 @@ void	wait_for_child_process(t_pipex *pipex, int i);
 //
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**get_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
+char	**add_slash(char **list_of_directry);
 char	**make_virtual_argv_from_real_argv(char *command_from_argv);
-char	*make_absolute_path(char **list_of_directry, char *command_name);
+char	**make_absolute_path(char **list_of_directry_full, char *command_name);
 char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv);
+size_t	get_accessible_path(char **list_absolute_path);
 //
 void	execute_command_read(t_pipex *pipex);
 void	execute_command_write(t_pipex *pipex);

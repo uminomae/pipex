@@ -32,3 +32,9 @@ void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
 	perror(str);
 	_exit(EXIT_FAILURE);
 }
+
+void	safe_free(char **malloc_ptr)
+{
+	free(*malloc_ptr);
+	*malloc_ptr = NULL;
+}

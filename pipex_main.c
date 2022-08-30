@@ -1,29 +1,10 @@
 #include "pipex.h"
 
-//void	test_print()
-//{
-//	// test split
-//	size_t	j;
-//	for (j=0; list_of_directry[j] != NULL; j++)
-//		printf("%s\n", list_of_directry[j]);
-//	//
-
-//	// test strrchr
-//	printf("%s\n", command_name);
-//	printf("%s\n", get_virtual_argv);
-//	//
-//}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex pipex;
 
 	begin_pipex(&pipex, argc, argv, env);
-	
-	// test
-	//get_virtual_argv(&pipex, argv[2]);
-	//
-
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);
@@ -37,7 +18,7 @@ int	main(int argc, char **argv, char **env)
 
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
-	//check_for_valid_value(argc);
+	check_for_valid_value(argc);
 	init_struct(pipex, argc, argv, env);
 	create_pipe_fd(pipex);
 }
@@ -52,19 +33,16 @@ void	run_read_side(t_pipex *pipex, int i)
 	{
 		close_file_descriptor(pipe[i]);
 		open_file(pipex, i);
+
+		//char **virtual_argv = 
+		//get_virtual_argv(pipex, pipex->argv[2]);
+		//printf("%s", virtual_argv[0]);
+
 		duplicate_to_standard_in_out(file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
-		printf("aaaaaa\n");
 		close_file_descriptor(file[i]);
 	}
 	wait_for_child_process(pipex, i);
-
-	//int idx = 0;
-	//while (pipex->virtual_argv[idx] != NULL)
-	//{
-	//	printf("%s\n",pipex->virtual_argv[idx]);
-	//	idx++;
-	//}
 }
 
 void	run_write_side(t_pipex *pipex, int i)
