@@ -14,6 +14,7 @@ typedef struct	s_pipex
 	char	**env;
 	int		pipe_fd[2];
 	int		file_fd[2];
+	char	**virtual_argv;
 } t_pipex;
 
 # define ERR_CODE_1 1

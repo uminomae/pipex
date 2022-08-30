@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	begin_pipex(&pipex, argc, argv, env);
 	
 	// test
-	get_virtual_argv(&pipex, argv[2]);
+	//get_virtual_argv(&pipex, argv[2]);
 	//
 
 	run_read_side(&pipex, READ);
@@ -30,12 +30,14 @@ int	main(int argc, char **argv, char **env)
 	//close_file_descriptor(pipex.pipe_fd[WRITE]);
 	//close_file_descriptor(pipex.pipe_fd[READ]);
 	//wait_for_child_process(&pipex, WRITE);
+
+
 	return (0);
 }
 
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
-	check_for_valid_value(argc);
+	//check_for_valid_value(argc);
 	init_struct(pipex, argc, argv, env);
 	create_pipe_fd(pipex);
 }
@@ -52,9 +54,17 @@ void	run_read_side(t_pipex *pipex, int i)
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
+		printf("aaaaaa\n");
 		close_file_descriptor(file[i]);
 	}
 	wait_for_child_process(pipex, i);
+
+	//int idx = 0;
+	//while (pipex->virtual_argv[idx] != NULL)
+	//{
+	//	printf("%s\n",pipex->virtual_argv[idx]);
+	//	idx++;
+	//}
 }
 
 void	run_write_side(t_pipex *pipex, int i)
