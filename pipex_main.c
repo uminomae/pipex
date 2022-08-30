@@ -14,7 +14,7 @@ void	test_print()
 }
 
 
-char	*get_path_name(char **list_of_directry, char *command_name);
+char	*make_path_name(char **list_of_directry, char *command_name);
 
 int	test_execute(t_pipex *pipex)
 {
@@ -27,7 +27,7 @@ int	test_execute(t_pipex *pipex)
 	list_of_directry = get_list_of_directry_from_path_line(pipex, i);
 	//free split
 	command_name = get_command_name_from_argv(pipex);
-	path_name = get_path_name(list_of_directry, command_name);
+	path_name = make_path_name(list_of_directry, command_name);
 
 	// test split
 	size_t	j;
