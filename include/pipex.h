@@ -14,8 +14,6 @@ typedef struct	s_pipex
 	char	**env;
 	int		pipe_fd[2];
 	int		file_fd[2];
-
-	//int		child_status[2];
 } t_pipex;
 
 # define ERR_CODE_1 1
@@ -51,6 +49,7 @@ void	check_for_valid_value(int argc);
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 //
 void	exit_with_error(char *str);
+void	close_pipe_and_exit(t_pipex *pipex, char *str);
 //
 void	create_child_process(t_pipex *pipex, int i);
 void	wait_for_child_process(t_pipex *pipex, int i);
