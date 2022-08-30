@@ -17,21 +17,54 @@ size_t	get_path_line_from_env(t_pipex *pipex)
 char	**get_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 {
 	size_t	trim_len;
-	char	**list_of_directry;
+	char	**list;
 	
-	list_of_directry = NULL;
-	list_of_directry = ft_split(pipex->env[path_index], ':');
+	list = NULL;
+	list = ft_split(pipex->env[path_index], ':');
 	trim_len =ft_strlen("PATH=");
-	list_of_directry[0] = list_of_directry[0] + trim_len;
-	return (list_of_directry);
+	list[0] = list[0] + trim_len;
+	return (list);
 }
 
+char	*get_command_name_from_argv(t_pipex *pipex)
+{
+	char *basename;
+
+	if (pipex->argv[2] == NULL)
+	//free()
+		exit_with_error("argv");
+	basename = NULL;
+	basename = ft_strrchr(pipex->argv[2], '/');
+	if (basename == NULL)
+		basename = pipex->argv[2];
+	return (basename);
+}
+
+char	*get_path_name(char **list_of_directry, char *command_name)
+{
+	size_t	i;
+	char	*path_name;
+
+	i = 0;
+	while (list_of_directry[i] != NULL)
+	{
+		path_name = ft_strjoin(list_of_directry[i], command_name);
+		if (access(path_name, R_OK) == 0)
+			return (path_name);
+		i++;
+	}
+	exit_with_error("arccess");
+	return (NULL);
+}
 
 void	execute_command_read(t_pipex *pipex)
 {
 	char *const	*argv = (char *const *)pipex->argv;
 
+	//char	*path_name;
 
+	//if (access(path_name ,R_OK) = -1)
+	//	exit_with_error("arccess");
 	//これから作るとこ。とりあえずテスト用argv1
 	GET_AVG_READ;
 

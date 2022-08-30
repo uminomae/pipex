@@ -1,44 +1,45 @@
 #include "pipex.h"
 
-int		test_env(t_pipex *pipex);
-
-char	*get_command_name_from_argv(t_pipex *pipex)
+void	test_print()
 {
-	char *command_name;
-
-	if (pipex->argv[2] == NULL)
-		exit_with_error("argv");
-	command_name = NULL;
-	command_name = ft_strrchr(pipex->argv[2], '/');
-	if (command_name == NULL)
-		exit_with_error("argv");
-	else
-		command_name = command_name + 1;
-	
-	
-	
-	return (command_name);
-}
-
-
-int	test_env(t_pipex *pipex)
-{
-	size_t	i;
-	char	**list_dir;
-	char	*command_name;
-
-	i = get_path_line_from_env(pipex);
-	list_dir = get_list_of_directry_from_path_line(pipex, i);
-	command_name = get_command_name_from_argv(pipex);
-
 	// test split
 	//size_t	j;
 	//for (j=0; list_dir[j] != NULL; j++)
 	//	printf("%s\n", list_dir[j]);
 	//
+
+	// test strrchr
+	//printf("%s\n", name);
+	//
+}
+
+
+char	*get_path_name(char **list_of_directry, char *command_name);
+
+int	test_execute(t_pipex *pipex)
+{
+	size_t	i;
+	char	**list_of_directry;
+	char	*command_name;
+	char	*path_name;
+
+	i = get_path_line_from_env(pipex);
+	list_of_directry = get_list_of_directry_from_path_line(pipex, i);
+	//free split
+	command_name = get_command_name_from_argv(pipex);
+	path_name = get_path_name(list_of_directry, command_name);
+
+	// test split
+	size_t	j;
+	for (j=0; list_of_directry[j] != NULL; j++)
+		printf("%s\n", list_of_directry[j]);
+	//
+
 	// test strrchr
 	printf("%s\n", command_name);
+	printf("%s\n", path_name);
 	//
+
 	return (0);
 }
 
@@ -47,7 +48,10 @@ int	main(int argc, char **argv, char **env)
 	t_pipex pipex;
 
 	begin_pipex(&pipex, argc, argv, env);
-	test_env(&pipex);
+	
+	// test
+	test_execute(&pipex);
+	//
 
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
