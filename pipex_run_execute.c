@@ -54,7 +54,8 @@ char	*make_absolute_path(char **list_of_directry, char *command_name)
 			return (path_name);
 		i++;
 	}
-	exit_with_error("arccess");
+	// command not foundにする方法は？
+	exit_with_error("access");
 	return (NULL);
 }
 
@@ -70,18 +71,6 @@ char	*get_absolute_path(t_pipex *pipex, char *command_from_argv)
 	//free split
 	command_name = get_command_name_from_argv(command_from_argv);
 	get_absolute_path = make_absolute_path(list_of_directry, command_name);
-
-	// test split
-	//size_t	j;
-	//for (j=0; list_of_directry[j] != NULL; j++)
-	//	printf("%s\n", list_of_directry[j]);
-	//
-
-	// test strrchr
-	//printf("%s\n", command_name);
-	//printf("%s\n", get_absolute_path);
-	//
-
 	return (get_absolute_path);
 }
 
@@ -96,7 +85,6 @@ void	execute_command_read(t_pipex *pipex)
 	GET_AVG_READ;
 
 	execve(path_name, argv1_test, pipex->env);
-	//execve(argv[2], argv1_test, pipex->env);
 	exit(EXIT_SUCCESS);
 }
 
@@ -106,11 +94,12 @@ void	execute_command_write(t_pipex *pipex)
 	char		*path_name;
 
 	path_name = get_absolute_path(pipex, argv[3]);
+
+	// readでcommandが見つからない場合、"/"が入っている様子の本家挙動
 	//これから作るとこ。とりあえずテスト用argv1
 	GET_AVG_WRITE;
 
 	execve(path_name, argv1_test, pipex->env);
-	//execve(argv[3], argv1_test, pipex->env);
 	exit(EXIT_SUCCESS);
 }
 
