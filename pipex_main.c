@@ -1,47 +1,18 @@
 #include "pipex.h"
 
-void	test_print()
-{
-	// test split
-	//size_t	j;
-	//for (j=0; list_dir[j] != NULL; j++)
-	//	printf("%s\n", list_dir[j]);
-	//
+//void	test_print()
+//{
+//	// test split
+//	size_t	j;
+//	for (j=0; list_of_directry[j] != NULL; j++)
+//		printf("%s\n", list_of_directry[j]);
+//	//
 
-	// test strrchr
-	//printf("%s\n", name);
-	//
-}
-
-
-char	*make_absolute_path(char **list_of_directry, char *command_name);
-
-char	*get_absolute_path(t_pipex *pipex)
-{
-	size_t	i;
-	char	**list_of_directry;
-	char	*command_name;
-	char	*get_absolute_path;
-
-	i = get_path_line_from_env(pipex);
-	list_of_directry = get_list_of_directry_from_path_line(pipex, i);
-	//free split
-	command_name = get_command_name_from_argv(pipex);
-	get_absolute_path = make_absolute_path(list_of_directry, command_name);
-
-	// test split
-	size_t	j;
-	for (j=0; list_of_directry[j] != NULL; j++)
-		printf("%s\n", list_of_directry[j]);
-	//
-
-	// test strrchr
-	printf("%s\n", command_name);
-	printf("%s\n", get_absolute_path);
-	//
-
-	return (get_absolute_path);
-}
+//	// test strrchr
+//	printf("%s\n", command_name);
+//	printf("%s\n", get_absolute_path);
+//	//
+//}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -50,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	begin_pipex(&pipex, argc, argv, env);
 	
 	// test
-	get_absolute_path(&pipex);
+	get_absolute_path(&pipex, argv[2]);
 	//
 
 	run_read_side(&pipex, READ);
@@ -64,7 +35,7 @@ int	main(int argc, char **argv, char **env)
 
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
-	//check_for_valid_value(argc);
+	check_for_valid_value(argc);
 	init_struct(pipex, argc, argv, env);
 	create_pipe_fd(pipex);
 }
