@@ -2,27 +2,26 @@
 
 char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
 {
-	size_t	path_line;
-	char	**temp_devided_list;
-	char	**list_of_directry;
-	char	**virtual_argv;
-	char	**list_absolute_path_of_command;
-	size_t	index;
-	void	*tmp;
+	size_t		path_line;
+	size_t		index;
+	void		*tmp;
+	t_v_argv	*v_argv;
+	
+	v_argv = &pipex->v_argv;
 
 	path_line = get_path_line_from_env(pipex);
-	temp_devided_list = split_list_of_directry_from_path_line(pipex, path_line);
-	list_of_directry = make_complete_path_of_directory(temp_devided_list);
-	virtual_argv = make_virtual_argv_from_real_argv(command_from_argv);
-	list_absolute_path_of_command = make_absolute_path_of_command(list_of_directry, virtual_argv[0]);
+	v_argv->temp_devided_list = split_list_of_directry_from_path_line(pipex, path_line);
+	v_argv->list_of_directry = make_complete_path_of_directory(v_argv->temp_devided_list);
+	v_argv->virtual_argv = make_virtual_argv_from_real_argv(command_from_argv);
+	v_argv->list_absolute_path_of_command = make_absolute_path_of_command(v_argv->list_of_directry, v_argv->virtual_argv[0]);
 	//malloc strjoin
 	//malloc strjoin
 	//malloc split
-	index = get_index_accessible_path(list_absolute_path_of_command);
-	tmp = virtual_argv[0];
-	virtual_argv[0] = ft_strdup(list_absolute_path_of_command[index]);
+	index = get_index_accessible_path(v_argv->list_absolute_path_of_command);
+	tmp = v_argv->virtual_argv[0];
+	v_argv->virtual_argv[0] = ft_strdup(v_argv->list_absolute_path_of_command[index]);
 	free(tmp);
-	return (virtual_argv);
+	return (v_argv->virtual_argv);
 }
 
 size_t	get_path_line_from_env(t_pipex *pipex)
@@ -64,16 +63,13 @@ char	**make_complete_path_of_directory(char **temp_devided_list)
 	size_t	len;
 
 	list_of_directry = NULL;
-	//len = ft_strlen(*temp_devided_list);
 	len = count_ptr(temp_devided_list);
 	list_of_directry = malloc(sizeof(char *) * len);
-	//list_of_directry = malloc(sizeof(char *) * (len + 1));
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
 		list_of_directry[i] = ft_strjoin(temp_devided_list[i], "/");
 		safe_free(&temp_devided_list[i]);
-		//free(temp_devided_list[i]);
 		i++;
 	}
 	list_of_directry[i] = NULL;
@@ -102,7 +98,6 @@ char	**make_absolute_path_of_command(char **list_of_directry, char *command_name
 	size_t	len;
 
 	list_absolute_path_of_command = NULL;
-	//len = ft_strlen(*list_of_directry);
 	len = count_ptr(list_of_directry);
 	list_absolute_path_of_command = malloc(sizeof(char *) * len);
 	i = 0;

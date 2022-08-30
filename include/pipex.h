@@ -6,15 +6,27 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
+
+typedef struct	s_v_argv
+{
+	size_t	path_line;
+	char	**temp_devided_list;
+	char	**list_of_directry;
+	char	**virtual_argv;
+	char	**list_absolute_path_of_command;
+} t_v_argv;
+
+
 typedef struct	s_pipex
 {
-	pid_t	pid[2];
-	int		argc;
-	char	**argv;
-	char	**env;
-	int		pipe_fd[2];
-	int		file_fd[2];
-	char	**virtual_argv;
+	pid_t					pid[2];
+	int						argc;
+	char					**argv;
+	char					**env;
+	int						pipe_fd[2];
+	int						file_fd[2];
+	//char	**virtual_argv;
+	struct s_v_argv	v_argv;
 } t_pipex;
 
 # define ERR_CODE_1 1
