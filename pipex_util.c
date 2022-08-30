@@ -38,3 +38,16 @@ void	safe_free(char **malloc_ptr)
 	free(*malloc_ptr);
 	*malloc_ptr = NULL;
 }
+
+size_t	count_ptr(char **list)
+{
+	size_t i;
+
+	i = 0;
+	while (list[i] != NULL)
+	{
+		i++;
+	}
+	i++;
+	return (i);
+}

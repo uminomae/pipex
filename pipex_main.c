@@ -12,7 +12,7 @@ int	main(int argc, char **argv, char **env)
 	//close_file_descriptor(pipex.pipe_fd[READ]);
 	//wait_for_child_process(&pipex, WRITE);
 
-
+	system("leaks -q pipex");
 	return (0);
 }
 
