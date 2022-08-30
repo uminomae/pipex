@@ -49,7 +49,6 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 	trim_len = ft_strlen("PATH=");
 	void *tmp;
 	tmp = list[0];
-	//list[0] = list[0] + trim_len;
 	//freeできない書き方してる
 	list[0] = ft_substr(list[0] + trim_len, 0 ,ft_strlen(list[0]));
 	free(tmp);

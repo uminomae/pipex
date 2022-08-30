@@ -9,7 +9,6 @@
 
 typedef struct	s_v_argv
 {
-	size_t	path_line;
 	char	**temp_devided_list;
 	char	**list_of_directry;
 	char	**virtual_argv;
@@ -34,16 +33,6 @@ typedef struct	s_pipex
 # define WRITE 1
 # define STANDARD_INPUT 0
 # define STANDARD_OUTPUT 1
-
-//# define GET_AVG_READ	char *argv1_test[3];\
-//	argv1_test[0] = "/usr/bin/grep";\
-//	argv1_test[1] = "a1";\
-//	argv1_test[2] = NULL;\
-
-//# define GET_AVG_WRITE	char *argv1_test[3];\
-//	argv1_test[0] = "/bin/cat";\
-//	argv1_test[1] = NULL;\
-//	argv1_test[2] = NULL;\
 
 /*
  * File status flags: these are used by open(2), fcntl(2).
@@ -88,5 +77,11 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	run_read_side(t_pipex *pipex, int i);
 void	run_write_side(t_pipex *pipex, int i);
 void	run_child_process(t_pipex *pipex, int i, int read_fd, int out_fd);
+//
+void	free_list_absolute_path_of_command(t_v_argv *v);
+void	free_virtual_argv(t_v_argv *v);
+void	free_list_of_directry(t_v_argv *v);
+void	free_temp_devided_list(t_v_argv *v);
+
 
 #endif
