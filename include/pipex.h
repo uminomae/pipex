@@ -54,7 +54,7 @@ void	close_pipe_and_exit(t_pipex *pipex, char *str);
 void	create_child_process(t_pipex *pipex, int i);
 void	wait_for_child_process(t_pipex *pipex, int i);
 void	duplicate_to_standard_in_out(int old_in_fd, int old_out_fd);
-int		close_pipe_and_exit(int fd);
+int		close_file_descriptor(int fd);
 //
 void	open_file(t_pipex *pipex, int in_out);
 void	execute_command_read(t_pipex *pipex);
