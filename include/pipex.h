@@ -22,15 +22,15 @@ typedef struct	s_pipex
 # define STANDARD_INPUT 0
 # define STANDARD_OUTPUT 1
 
-# define GET_AVG_READ	char *argv1_test[3];\
-	argv1_test[0] = "/usr/bin/grep";\
-	argv1_test[1] = "a1";\
-	argv1_test[2] = NULL;\
+//# define GET_AVG_READ	char *argv1_test[3];\
+//	argv1_test[0] = "/usr/bin/grep";\
+//	argv1_test[1] = "a1";\
+//	argv1_test[2] = NULL;\
 
-# define GET_AVG_WRITE	char *argv1_test[3];\
-	argv1_test[0] = "/bin/cat";\
-	argv1_test[1] = NULL;\
-	argv1_test[2] = NULL;\
+//# define GET_AVG_WRITE	char *argv1_test[3];\
+//	argv1_test[0] = "/bin/cat";\
+//	argv1_test[1] = NULL;\
+//	argv1_test[2] = NULL;\
 
 /*
  * File status flags: these are used by open(2), fcntl(2).
@@ -60,9 +60,9 @@ void	wait_for_child_process(t_pipex *pipex, int i);
 //
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**get_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
-char	*get_command_name_from_argv(char *command_from_argv);
+char	**get_virtual_argv_from_real_argv(char *command_from_argv);
 char	*make_absolute_path(char **list_of_directry, char *command_name);
-char	*get_absolute_path(t_pipex *pipex, char *command_from_argv);
+char	**get_absolute_path(t_pipex *pipex, char *command_from_argv);
 //
 void	execute_command_read(t_pipex *pipex);
 void	execute_command_write(t_pipex *pipex);
