@@ -40,7 +40,7 @@ char	*get_command_name_from_argv(t_pipex *pipex)
 	return (basename);
 }
 
-char	*make_path_name(char **list_of_directry, char *command_name)
+char	*make_absolute_path(char **list_of_directry, char *command_name)
 {
 	size_t	i;
 	char	*path_name;

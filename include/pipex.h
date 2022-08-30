@@ -61,7 +61,7 @@ void	wait_for_child_process(t_pipex *pipex, int i);
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**get_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
 char	*get_command_name_from_argv(t_pipex *pipex);
-char	*make_path_name(char **list_of_directry, char *command_name);
+char	*make_absolute_path(char **list_of_directry, char *command_name);
 //
 void	execute_command_read(t_pipex *pipex);
 void	execute_command_write(t_pipex *pipex);

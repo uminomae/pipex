@@ -14,20 +14,20 @@ void	test_print()
 }
 
 
-char	*make_path_name(char **list_of_directry, char *command_name);
+char	*make_absolute_path(char **list_of_directry, char *command_name);
 
-int	test_execute(t_pipex *pipex)
+char	*get_absolute_path(t_pipex *pipex)
 {
 	size_t	i;
 	char	**list_of_directry;
 	char	*command_name;
-	char	*path_name;
+	char	*get_absolute_path;
 
 	i = get_path_line_from_env(pipex);
 	list_of_directry = get_list_of_directry_from_path_line(pipex, i);
 	//free split
 	command_name = get_command_name_from_argv(pipex);
-	path_name = make_path_name(list_of_directry, command_name);
+	get_absolute_path = make_absolute_path(list_of_directry, command_name);
 
 	// test split
 	size_t	j;
@@ -37,10 +37,10 @@ int	test_execute(t_pipex *pipex)
 
 	// test strrchr
 	printf("%s\n", command_name);
-	printf("%s\n", path_name);
+	printf("%s\n", get_absolute_path);
 	//
 
-	return (0);
+	return (get_absolute_path);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 	begin_pipex(&pipex, argc, argv, env);
 	
 	// test
-	test_execute(&pipex);
+	get_absolute_path(&pipex);
 	//
 
 	run_read_side(&pipex, READ);
