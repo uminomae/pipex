@@ -4,6 +4,14 @@ int	main(int argc, char **argv, char **env)
 {
 	t_pipex pipex;
 
+	char *path1;
+
+	path1 = ft_strnstr(*env, "PATH", ft_strlen(*env));
+	//ft_putchar_fd(*path1,1);
+	//ft_putstr_fd(*env, 1);
+	//ft_putendl_fd("", 1);
+	printf("%s\n", *env);
+
 	begin_pipex(&pipex, argc, argv, env);
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
@@ -16,7 +24,7 @@ int	main(int argc, char **argv, char **env)
 
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
-	check_for_valid_value(argc);
+	//check_for_valid_value(argc);
 	init_struct(pipex, argc, argv, env);
 	create_pipe_fd(pipex);
 }
@@ -24,15 +32,16 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 void	run_read_side(t_pipex *pipex, int i)
 {
 	const int	*pipe = pipex->pipe_fd;
-	//const int	*file = pipex->file_fd;
 	int *const	file = pipex->file_fd;
 
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
+		close_file_descriptor(pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
+		close_file_descriptor(file[i]);
 	}
 	wait_for_child_process(pipex, i);
 }
@@ -40,15 +49,16 @@ void	run_read_side(t_pipex *pipex, int i)
 void	run_write_side(t_pipex *pipex, int i)
 {
 	const int	*pipe = pipex->pipe_fd;
-	//const int	*file = pipex->file_fd;
 	int *const	file = pipex->file_fd;
 
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
+		close_file_descriptor(pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
+		close_file_descriptor(file[i]);
 	}
 	close_file_descriptor(pipe[WRITE]);
 	close_file_descriptor(pipe[READ]);

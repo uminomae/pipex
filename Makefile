@@ -4,10 +4,11 @@ RM			:= rm -f
 CFLAGS		:= -Wall -Wextra -Werror -O3
 DFLAGS		:= -MMD -MP
 #MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
-SRCS		:= 	main.c \
-				begin.c \
-				run.c \
-				run_utils.c \
+SRCS		:= 	pipex_main.c \
+				pipex_begin.c \
+				pipex_run.c \
+				pipex_run_execute.c \
+				pipex_util.c \
 
 LIBFT		= $(LIBDIR)libft.a
 INCLUDE		= -I$(INCDIR)
