@@ -1,19 +1,23 @@
 #include "pipex.h"
 
-void	exit_with_error(char *str)
+void	exit_with_error(t_pipex *pipex, char *str)
 {
+	free_list_absolute_path_of_command(&pipex->v_argv);
+	free_virtual_argv(&pipex->v_argv);
+	free_list_of_directry(&pipex->v_argv);
+	free_temp_devided_list(&pipex->v_argv);
 	perror(str);
 	_exit(EXIT_FAILURE);
 }
 
 //pipeを閉じているのか、fileを閉じているのか共通化すると分かりづらい
-int	close_file_descriptor(int fd)
+int	close_file_descriptor(t_pipex *pipex, int fd)
 {
 	int	ret;
 
 	ret = close(fd);
 	if (ret == -1)
-		exit_with_error("close");
+		exit_with_error(pipex, "close");
 	return (ret);
 }
 
@@ -27,8 +31,8 @@ int	close_file_descriptor(int fd)
 // エラー時どうする？
 void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
 {
-	close_file_descriptor(pipex->pipe_fd[WRITE]);
-	close_file_descriptor(pipex->pipe_fd[READ]);
+	close_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
+	close_file_descriptor(pipex, pipex->pipe_fd[READ]);
 	perror(str);
 	_exit(EXIT_FAILURE);
 }

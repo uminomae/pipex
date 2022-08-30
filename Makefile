@@ -10,6 +10,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_run_execute.c \
 				pipex_run_get_path.c \
 				pipex_util.c \
+				pipex_free.c \
 
 LIBFT		= $(LIBDIR)libft.a
 INCLUDE		= -I$(INCDIR)

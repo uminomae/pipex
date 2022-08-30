@@ -31,16 +31,16 @@ void	run_read_side(t_pipex *pipex, int i)
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		close_file_descriptor(pipe[i]);
+		close_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
 
 		//char **virtual_argv = 
 		//get_virtual_argv(pipex, pipex->argv[2]);
 		//printf("%s", virtual_argv[0]);
 
-		duplicate_to_standard_in_out(file[READ], pipe[WRITE]);
+		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
-		close_file_descriptor(file[i]);
+		close_file_descriptor(pipex, file[i]);
 	}
 	wait_for_child_process(pipex, i);
 }
@@ -53,13 +53,13 @@ void	run_write_side(t_pipex *pipex, int i)
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		close_file_descriptor(pipe[i]);
+		close_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
-		duplicate_to_standard_in_out(pipe[READ], file[WRITE]);
+		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
-		close_file_descriptor(file[i]);
+		close_file_descriptor(pipex, file[i]);
 	}
-	close_file_descriptor(pipe[WRITE]);
-	close_file_descriptor(pipe[READ]);
+	close_file_descriptor(pipex, pipe[WRITE]);
+	close_file_descriptor(pipex, pipe[READ]);
 	wait_for_child_process(pipex, i);
 }

@@ -13,11 +13,11 @@ char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
 	//malloc split
 	v->list_of_directry = make_complete_path_of_directory(v->temp_devided_list);
 	//malloc strjoin
-	v->virtual_argv = make_virtual_argv_from_real_argv(command_from_argv);
+	v->virtual_argv = make_virtual_argv_from_real_argv(pipex, command_from_argv);
 	//malloc split
 	v->list_absolute_path_of_command = make_absolute_path_of_command(v->list_of_directry, v->virtual_argv[0]);
 	//malloc strjoin
-	index = get_index_accessible_path(v->list_absolute_path_of_command);
+	index = get_index_accessible_path(pipex, v->list_absolute_path_of_command);
 	tmp = v->virtual_argv[0];
 	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
@@ -78,13 +78,13 @@ char	**make_complete_path_of_directory(char **temp_devided_list)
 	return (list_of_directry);
 }
 
-char	**make_virtual_argv_from_real_argv(char *command_from_argv)
+char	**make_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv)
 {
 	char **virtual_argv;
 
 	if (command_from_argv == NULL)
 	//free()
-		exit_with_error("argv");
+		exit_with_error(pipex, "argv");
 	virtual_argv = ft_split(command_from_argv, ' ');
 	return (virtual_argv);
 }
@@ -113,7 +113,7 @@ char	**make_absolute_path_of_command(char **list_of_directry, char *command_name
 	return (list_absolute_path_of_command);
 }
 
-size_t	get_index_accessible_path(char **list_absolute_path_of_command)
+size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_command)
 {
 	size_t	i;
 	i=0;
@@ -124,6 +124,6 @@ size_t	get_index_accessible_path(char **list_absolute_path_of_command)
 		i++;
 	}
 // command not foundにする方法は？
-	exit_with_error("access");
+	exit_with_error(pipex, "access");
 	return (-1);
 }

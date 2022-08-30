@@ -18,12 +18,12 @@ typedef struct	s_v_argv
 
 typedef struct	s_pipex
 {
-	pid_t					pid[2];
-	int						argc;
-	char					**argv;
-	char					**env;
-	int						pipe_fd[2];
-	int						file_fd[2];
+	pid_t			pid[2];
+	int				argc;
+	char			**argv;
+	char			**env;
+	int				pipe_fd[2];
+	int				file_fd[2];
 	//char	**virtual_argv;
 	struct s_v_argv	v_argv;
 } t_pipex;
@@ -50,25 +50,27 @@ void	init_struct(t_pipex *pipex,int argc, char **argv, char **env);
 void	check_for_valid_value(int argc);
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 //
-void	exit_with_error(char *str);
-int		close_file_descriptor(int fd);
+//void	exit_with_error(char *str);
+void	exit_with_error(t_pipex *pipex, char *str);
+//int		close_file_descriptor(int fd);
+int		close_file_descriptor(t_pipex *pipex, int fd);
 void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
 void	safe_free(char **malloc_ptr);
 size_t	count_ptr(char **list);
 //
 void	create_child_process(t_pipex *pipex, int i);
 void	open_file(t_pipex *pipex, int in_out);
-void	duplicate_to_standard_in_out(int old_in_fd, int old_out_fd);
+void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file_for_writing);
 //
 void	wait_for_child_process(t_pipex *pipex, int i);
 //
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
 char	**make_complete_path_of_directory(char **list_of_directry);
-char	**make_virtual_argv_from_real_argv(char *command_from_argv);
+char	**make_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv);
 char	**make_absolute_path_of_command(char **list_of_directry_full, char *command_name);
 char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv);
-size_t	get_index_accessible_path(char **list_absolute_path);
+size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_command);
 //
 void	execute_command_read(t_pipex *pipex);
 void	execute_command_write(t_pipex *pipex);

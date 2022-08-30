@@ -4,6 +4,7 @@ void	free_temp_devided_list(t_v_argv *v)
 {
 	size_t	i;
 
+	i = 0;
 	if (v->temp_devided_list == NULL)
 		return ;
 	while (v->temp_devided_list[i] != NULL)
@@ -18,6 +19,7 @@ void	free_list_of_directry(t_v_argv *v)
 {
 	size_t	i;
 
+	i = 0;
 	if (v->list_of_directry == NULL)
 		return ;
 	while (v->list_of_directry[i] != NULL)
@@ -32,6 +34,7 @@ void	free_virtual_argv(t_v_argv *v)
 {
 	size_t	i;
 
+	i = 0;
 	if (v->virtual_argv == NULL)
 		return ;
 	while (v->virtual_argv[i] != NULL)
@@ -46,6 +49,7 @@ void	free_list_absolute_path_of_command(t_v_argv *v)
 {
 	size_t	i;
 
+	i = 0;
 	if (v->list_absolute_path_of_command == NULL)
 		return ;
 	while (v->list_absolute_path_of_command[i] != NULL)
