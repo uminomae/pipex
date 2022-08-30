@@ -54,12 +54,6 @@ void	duplicate_to_standard_in_out(int file_for_reading, int file_for_writing)
 		exit_with_error("dup2");
 }
 
-
-
-
-
-
-
 //第３引数 = 0
 //プロセスグループ ID が、waitpid() が呼ばれた時点での
 //呼び出し元のプロセスのプロセスグループ ID と等しい子プロセスを待つ。
