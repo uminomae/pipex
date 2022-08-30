@@ -5,23 +5,23 @@ char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
 	size_t		path_line;
 	size_t		index;
 	void		*tmp;
-	t_v_argv	*v_argv;
+	t_v_argv	*v;
 	
-	v_argv = &pipex->v_argv;
-
+	v = &pipex->v_argv;
 	path_line = get_path_line_from_env(pipex);
-	v_argv->temp_devided_list = split_list_of_directry_from_path_line(pipex, path_line);
-	v_argv->list_of_directry = make_complete_path_of_directory(v_argv->temp_devided_list);
-	v_argv->virtual_argv = make_virtual_argv_from_real_argv(command_from_argv);
-	v_argv->list_absolute_path_of_command = make_absolute_path_of_command(v_argv->list_of_directry, v_argv->virtual_argv[0]);
-	//malloc strjoin
-	//malloc strjoin
+	v->temp_devided_list = split_list_of_directry_from_path_line(pipex, path_line);
 	//malloc split
-	index = get_index_accessible_path(v_argv->list_absolute_path_of_command);
-	tmp = v_argv->virtual_argv[0];
-	v_argv->virtual_argv[0] = ft_strdup(v_argv->list_absolute_path_of_command[index]);
+	v->list_of_directry = make_complete_path_of_directory(v->temp_devided_list);
+	//malloc strjoin
+	v->virtual_argv = make_virtual_argv_from_real_argv(command_from_argv);
+	//malloc split
+	v->list_absolute_path_of_command = make_absolute_path_of_command(v->list_of_directry, v->virtual_argv[0]);
+	//malloc strjoin
+	index = get_index_accessible_path(v->list_absolute_path_of_command);
+	tmp = v->virtual_argv[0];
+	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
-	return (v_argv->virtual_argv);
+	return (v->virtual_argv);
 }
 
 size_t	get_path_line_from_env(t_pipex *pipex)
@@ -86,7 +86,6 @@ char	**make_virtual_argv_from_real_argv(char *command_from_argv)
 	if (command_from_argv == NULL)
 	//free()
 		exit_with_error("argv");
-	virtual_argv = NULL;
 	virtual_argv = ft_split(command_from_argv, ' ');
 	return (virtual_argv);
 }
