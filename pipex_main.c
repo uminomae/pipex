@@ -2,23 +2,43 @@
 
 int		test_env(t_pipex *pipex);
 
+char	*get_command_name_from_argv(t_pipex *pipex)
+{
+	char *command_name;
+
+	if (pipex->argv[2] == NULL)
+		exit_with_error("argv");
+	command_name = NULL;
+	command_name = ft_strrchr(pipex->argv[2], '/');
+	if (command_name == NULL)
+		exit_with_error("argv");
+	else
+		command_name = command_name + 1;
+	
+	
+	
+	return (command_name);
+}
+
 
 int	test_env(t_pipex *pipex)
 {
 	size_t	i;
 	char	**list_dir;
+	char	*command_name;
 
 	i = get_path_line_from_env(pipex);
 	list_dir = get_list_of_directry_from_path_line(pipex, i);
+	command_name = get_command_name_from_argv(pipex);
 
 	// test split
+	//size_t	j;
+	//for (j=0; list_dir[j] != NULL; j++)
+	//	printf("%s\n", list_dir[j]);
 	//
-	size_t	j;
-	for (j=0; list_dir[j] != NULL; j++)
-		printf("%s\n", list_dir[j]);
+	// test strrchr
+	printf("%s\n", command_name);
 	//
-	//
-
 	return (0);
 }
 
