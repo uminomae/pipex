@@ -10,7 +10,7 @@ void	create_child_process(t_pipex *pipex, int i)
 	//pid[i] = -1;
 	if (pid[i] == -1)
 	{
-		close_pipe_and_exit(pipex, "fork");
+		close_pipe_and_exit_with_error(pipex, "fork");
 
 		//close_file_descriptor(pipe[WRITE]);
 		//close_file_descriptor(pipe[READ]);

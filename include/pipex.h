@@ -49,14 +49,17 @@ void	check_for_valid_value(int argc);
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 //
 void	exit_with_error(char *str);
-void	close_pipe_and_exit(t_pipex *pipex, char *str);
+int		close_file_descriptor(int fd);
+void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
 //
 void	create_child_process(t_pipex *pipex, int i);
-void	wait_for_child_process(t_pipex *pipex, int i);
-void	duplicate_to_standard_in_out(int old_in_fd, int old_out_fd);
-int		close_file_descriptor(int fd);
-//
 void	open_file(t_pipex *pipex, int in_out);
+void	duplicate_to_standard_in_out(int old_in_fd, int old_out_fd);
+//
+void	wait_for_child_process(t_pipex *pipex, int i);
+//
+size_t	get_path_line_from_env(t_pipex *pipex);
+char	**get_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
 void	execute_command_read(t_pipex *pipex);
 void	execute_command_write(t_pipex *pipex);
 //

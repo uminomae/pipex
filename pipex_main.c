@@ -1,18 +1,34 @@
 #include "pipex.h"
 
+int		test_env(t_pipex *pipex);
+
+
+int	test_env(t_pipex *pipex)
+{
+	size_t	i;
+	char	**list_dir;
+
+	i = get_path_line_from_env(pipex);
+	list_dir = get_list_of_directry_from_path_line(pipex, i);
+
+	// test split
+	//
+	size_t	j;
+	for (j=0; list_dir[j] != NULL; j++)
+		printf("%s\n", list_dir[j]);
+	//
+	//
+
+	return (0);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex pipex;
 
-	char *path1;
-
-	path1 = ft_strnstr(*env, "PATH", ft_strlen(*env));
-	//ft_putchar_fd(*path1,1);
-	//ft_putstr_fd(*env, 1);
-	//ft_putendl_fd("", 1);
-	printf("%s\n", *env);
-
 	begin_pipex(&pipex, argc, argv, env);
+	test_env(&pipex);
+
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);

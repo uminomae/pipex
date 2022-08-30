@@ -25,7 +25,7 @@ int	close_file_descriptor(int fd)
 // open()したfdのcloseは、O_CLOEXECオプションで対応できる？
 // ※子プロセス内でopen()したfdは子プロセスの最後でclose
 // エラー時どうする？
-void	close_pipe_and_exit(t_pipex *pipex, char *str)
+void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
 {
 	close_file_descriptor(pipex->pipe_fd[WRITE]);
 	close_file_descriptor(pipex->pipe_fd[READ]);
