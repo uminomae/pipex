@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-char	**get_absolute_path(t_pipex *pipex, char *command_from_argv)
+char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
 {
 	size_t	path_line;
 	char	**list_of_directry;
@@ -10,7 +10,7 @@ char	**get_absolute_path(t_pipex *pipex, char *command_from_argv)
 	path_line = get_path_line_from_env(pipex);
 	list_of_directry = get_list_of_directry_from_path_line(pipex, path_line);
 	//malloc split
-	virtual_argv = get_virtual_argv_from_real_argv(command_from_argv);
+	virtual_argv = make_virtual_argv_from_real_argv(command_from_argv);
 	absolute_path = make_absolute_path(list_of_directry, virtual_argv[0]);
 	//malloc strjoin
 	virtual_argv[0] = absolute_path;
@@ -44,7 +44,7 @@ char	**get_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 	return (list);
 }
 
-char	**get_virtual_argv_from_real_argv(char *command_from_argv)
+char	**make_virtual_argv_from_real_argv(char *command_from_argv)
 {
 	char **virtual_argv;
 	char *name_and_option;

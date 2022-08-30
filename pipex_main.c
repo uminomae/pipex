@@ -10,7 +10,7 @@
 
 //	// test strrchr
 //	printf("%s\n", command_name);
-//	printf("%s\n", get_absolute_path);
+//	printf("%s\n", get_virtual_argv);
 //	//
 //}
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	begin_pipex(&pipex, argc, argv, env);
 	
 	// test
-	get_absolute_path(&pipex, argv[2]);
+	get_virtual_argv(&pipex, argv[2]);
 	//
 
 	run_read_side(&pipex, READ);
