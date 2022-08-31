@@ -9,9 +9,10 @@ int	main(int argc, char **argv, char **env)
 	run_read_side(&pipex, READ);
 	run_write_side(&pipex, WRITE);
 
+	system("leaks -q pipex");
+	
 	return (0);
 }
-	//system("leaks -q pipex");
 
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
