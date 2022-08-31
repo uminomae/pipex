@@ -4,7 +4,6 @@ char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
 {
 	size_t		path_line;
 	size_t		index;
-	void		*tmp;
 	t_v_argv	*v;
 	
 	v = &pipex->v_argv;
@@ -18,9 +17,10 @@ char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
 	v->list_absolute_path_of_command = make_absolute_path_of_command(v->list_of_directry, v->virtual_argv[0]);
 	//malloc strjoin
 	index = get_index_accessible_path(pipex, v->list_absolute_path_of_command);
-	tmp = v->virtual_argv[0];
+	//void		*tmp;
+	//tmp = v->virtual_argv[0];
 	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
-	free(tmp);
+	//free(tmp);
 	return (v->virtual_argv);
 }
 
@@ -47,11 +47,11 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 	list = ft_split(pipex->env[path_index], ':');
 	//malloc失敗時
 	trim_len = ft_strlen("PATH=");
-	void *tmp;
-	tmp = list[0];
+	//void *tmp;
+	//tmp = list[0];
 	//freeできない書き方してる
 	list[0] = ft_substr(list[0] + trim_len, 0 ,ft_strlen(list[0]));
-	free(tmp);
+	//free(tmp);
 	return (list);
 }
 
@@ -62,19 +62,19 @@ char	**make_complete_path_of_directory(char **temp_devided_list)
 	size_t	len;
 
 	list_of_directry = NULL;
-	len = count_ptr(temp_devided_list);
+	len = count_pointer(temp_devided_list);
 	list_of_directry = malloc(sizeof(char *) * len);
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
 		list_of_directry[i] = ft_strjoin(temp_devided_list[i], "/");
-		safe_free(&temp_devided_list[i]);
+		//safe_free(&temp_devided_list[i]);
 		i++;
 	}
 	list_of_directry[i] = NULL;
-	safe_free(&temp_devided_list[i]);
-	free(temp_devided_list);
-	temp_devided_list = NULL;
+	//safe_free(&temp_devided_list[i]);
+	//free(temp_devided_list);
+	//temp_devided_list = NULL;
 	return (list_of_directry);
 }
 
@@ -96,20 +96,20 @@ char	**make_absolute_path_of_command(char **list_of_directry, char *command_name
 	size_t	len;
 
 	list_absolute_path_of_command = NULL;
-	len = count_ptr(list_of_directry);
+	len = count_pointer(list_of_directry);
 	list_absolute_path_of_command = malloc(sizeof(char *) * len);
 	i = 0;
 	while (list_of_directry[i] != NULL)
 	{
 		list_absolute_path_of_command[i] = ft_strjoin(list_of_directry[i], command_name);
-		safe_free(&list_of_directry[i]);
+		//safe_free(&list_of_directry[i]);
 		//malloc失敗時、splitも
 		i++;
 	}
 	list_absolute_path_of_command[i] = NULL;
-	safe_free(&list_of_directry[i]);
-	free(list_of_directry);
-	list_of_directry = NULL;
+	//safe_free(&list_of_directry[i]);
+	//free(list_of_directry);
+	//list_of_directry = NULL;
 	return (list_absolute_path_of_command);
 }
 

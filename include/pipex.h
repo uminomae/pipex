@@ -56,7 +56,7 @@ void	exit_with_error(t_pipex *pipex, char *str);
 int		close_file_descriptor(t_pipex *pipex, int fd);
 void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
 void	safe_free(char **malloc_ptr);
-size_t	count_ptr(char **list);
+size_t	count_pointer(char **list);
 //
 void	create_child_process(t_pipex *pipex, int i);
 void	open_file(t_pipex *pipex, int in_out);

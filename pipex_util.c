@@ -4,10 +4,10 @@
 void	exit_with_error(t_pipex *pipex, char *str)
 {
 	(void)pipex;
-	//free_list_absolute_path_of_command(&pipex->v_argv);
-	//free_virtual_argv(&pipex->v_argv);
-	//free_list_of_directry(&pipex->v_argv);
-	//free_temp_devided_list(&pipex->v_argv);
+	free_list_absolute_path_of_command(&pipex->v_argv);
+	free_virtual_argv(&pipex->v_argv);
+	free_list_of_directry(&pipex->v_argv);
+	free_temp_devided_list(&pipex->v_argv);
 	perror(str);
 	_exit(EXIT_FAILURE);
 }
@@ -45,7 +45,7 @@ void	safe_free(char **malloc_ptr)
 	*malloc_ptr = NULL;
 }
 
-size_t	count_ptr(char **list)
+size_t	count_pointer(char **list)
 {
 	size_t i;
 
