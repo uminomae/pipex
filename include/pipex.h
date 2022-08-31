@@ -6,7 +6,10 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-
+// temp_devided_list : path line of env by split() 
+// list_of_directry : add slash
+// virtual_argv : argv for execve()
+// list_absolute_path_of_command : fullpath including basename
 typedef struct	s_v_argv
 {
 	char	**temp_devided_list;
@@ -15,6 +18,10 @@ typedef struct	s_v_argv
 	char	**list_absolute_path_of_command;
 } t_v_argv;
 
+// pid : process ID
+// env : same as printenv
+// pipe_fd : arg of pipe() 
+// file_fd : for open(), write()
 typedef struct	s_pipex
 {
 	pid_t			pid[2];
