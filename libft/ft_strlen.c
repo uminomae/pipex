@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:00:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/08/31 01:08:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/01 00:49:01 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t  len;
+	size_t	len;
 
 	len = 0;
 	while (s[len] != '\0')

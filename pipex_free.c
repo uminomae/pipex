@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_free.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
+/*   Updated: 2022/09/01 00:58:19 by hioikawa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	safe_free(char **malloc_ptr)
@@ -73,4 +85,3 @@ void	free_list_absolute_path_of_command(t_v_argv *v)
 	free(v->list_absolute_path_of_command[i]);
 	free(v->list_absolute_path_of_command);
 }
-

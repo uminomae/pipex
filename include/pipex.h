@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
+/*   Updated: 2022/09/01 01:05:02 by hioikawa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -10,20 +22,20 @@
 // list_of_directry : add slash
 // virtual_argv : argv for execve()
 // list_absolute_path_of_command : fullpath including basename
-typedef struct	s_v_argv
+typedef struct s_v_argv
 {
 	char	**temp_devided_list;
 	char	**list_of_directry;
 	char	**virtual_argv;
 	char	**list_absolute_path_of_command;
 	char	*command_name;
-} t_v_argv;
+}	t_v_argv;
 
 // pid : process ID
 // env : same as printenv
 // pipe_fd : arg of pipe() 
 // file_fd : for open(), write()
-typedef struct	s_pipex
+typedef struct s_pipex
 {
 	pid_t			pid[2];
 	int				argc;
@@ -32,7 +44,7 @@ typedef struct	s_pipex
 	int				pipe_fd[2];
 	int				file_fd[2];
 	struct s_v_argv	v_argv;
-} t_pipex;
+}	t_pipex;
 
 # define READ 0
 # define WRITE 1
@@ -55,15 +67,14 @@ typedef struct	s_pipex
 ///* Read, write, execute/search by others */
 //#define S_IROTH         0000004         /* [XSI] R for other */
 
-
 //main
-void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
+void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 void	create_pipe_fd(t_pipex *pipex);
 void	run_read_side(t_pipex *pipex, int i);
 void	run_write_side(t_pipex *pipex, int i);
 //begin
 void	check_for_valid_value(int argc);
-void	init_struct(t_pipex *pipex,int argc, char **argv, char **env);
+void	init_struct(t_pipex *pipex, int argc, char **argv, char **env);
 //close
 int		close_unused_file_descriptor(t_pipex *pipex, int fd);
 void	close_both_pipe(t_pipex *pipex);
@@ -80,23 +91,28 @@ void	free_temp_devided_list(t_v_argv *v);
 //run
 void	create_child_process_by_fork_func(t_pipex *pipex, int i);
 void	open_file(t_pipex *pipex, int in_out);
-void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file_for_writing);
+void	duplicate_to_standard_in_out(\
+			t_pipex *pipex, int file_for_reading, int file_for_writing);
 void	wait_pid_for_child_process(t_pipex *pipex, int i);
 //get path
 size_t	get_path_line_from_env(t_pipex *pipex);
-char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
+char	**split_list_of_directry_from_path_line(\
+			t_pipex *pipex, size_t path_index);
 char	**join_slash_path_of_directry(t_pipex *pipex, char **list_of_directry);
 size_t	count_pointer_including_null(char **list);
 //make v_argv
-char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv);
-char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, char **list_of_directry, char *command_name);
-size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_command);
-char	**switch_first_argv_to_absolute_path(t_pipex *pipex, t_v_argv *v, size_t index);
+char	**split_virtual_argv_from_real_argv(\
+			t_pipex *pipex, char *command_from_argv);
+char	**join_file_and_directry_name_to_get_absolute_path(\
+			t_pipex *pipex, char **list_of_directry, char *command_name);
+size_t	get_index_accessible_path(\
+			t_pipex *pipex, char **list_absolute_path_of_command);
+char	**switch_first_argv_to_absolute_path(\
+			t_pipex *pipex, t_v_argv *v, size_t index);
 //execute
 void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
-char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, char *command_from_argv);
+char	**make_virtual_argv(\
+			t_pipex *pipex, t_v_argv *v, char *command_from_argv);
 void	execute_command(t_pipex *pipex, char *argv);
-
-
 
 #endif

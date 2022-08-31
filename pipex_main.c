@@ -1,20 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
+/*   Updated: 2022/09/01 00:59:13 by hioikawa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 int	main(int argc, char **argv, char **env)
 {
-	t_pipex pipex;
+	t_pipex	pipex;
 
 	begin_pipex(&pipex, argc, argv, env);
 	create_pipe_fd(&pipex);
 	run_read_side(&pipex, READ);
 	run_write_side(&pipex, WRITE);
-
-	system("leaks -q pipex");
-
 	return (0);
 }
 
-void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
+void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env)
 {
 	check_for_valid_value(argc);
 	init_struct(pipex, argc, argv, env);
@@ -22,7 +31,7 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 
 void	create_pipe_fd(t_pipex *pipex)
 {
-	int ret;
+	int	ret;
 
 	ret = pipe(pipex->pipe_fd);
 	if (ret == -1)

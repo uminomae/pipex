@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_begin.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
+/*   Updated: 2022/09/01 00:50:24 by hioikawa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	check_for_valid_value(int argc)
@@ -11,7 +23,7 @@ void	check_for_valid_value(int argc)
 	}
 }
 
-void	init_struct(t_pipex *pipex,int argc, char **argv, char **env)
+void	init_struct(t_pipex *pipex, int argc, char **argv, char **env)
 {
 	pipex->argc = argc;
 	pipex->argv = argv;
