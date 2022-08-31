@@ -48,7 +48,7 @@ void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file
 	ret_out = dup2(file_for_writing, STANDARD_OUTPUT);
 	close_unused_file_descriptor(pipex, file_for_writing);
 	// TODO err check OK leaks 単独ならエラー出ない
-	ret_out = -1;
+	//ret_out = -1;
 	if (ret_out == -1)
 		exit_with_error_child_process(pipex, "dup2");
 }
