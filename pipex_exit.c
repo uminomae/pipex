@@ -9,7 +9,7 @@ void set_free_together(t_pipex *pipex)
 	free_temp_devided_list(&pipex->v_argv);
 }
 
-void	exit_successfully_child_process()
+void	exit_successfully_child_process(t_pipex *pipex)
 {
 	set_free_together(pipex);
 	_exit(EXIT_FAILURE);

@@ -9,7 +9,7 @@ void	execute_command(t_pipex *pipex, char *command_from_argv)
 	get_path_from_env_and_make_list(pipex, v);
 	virtual_argv = make_virtual_argv(pipex, v, command_from_argv);
 	execve(virtual_argv[0], virtual_argv, pipex->env);
-	_exit(EXIT_SUCCESS);
+	//_exit(EXIT_SUCCESS);
 }
 
 //Get the path from the environment variable and make a list
