@@ -10,7 +10,7 @@ void	create_child_process_by_fork_func(t_pipex *pipex, int i)
 	if (pid[i] == -1)
 	{
 		close_both_pipe(pipex);
-		exit_with_error(pipex, "fork");
+		exit_with_error_child_process(pipex, "fork");
 	}
 }
 
@@ -30,7 +30,7 @@ void	open_file(t_pipex *pipex, int in_out)
 	// TODO err
 	//file[READ] = -1;
 	if (file[READ] == -1 | file[WRITE] == -1)
-		exit_with_error(pipex, "open");
+		exit_with_error_child_process(pipex, "open");
 }
 
 void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file_for_writing)
@@ -42,12 +42,12 @@ void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file
 	close_unused_file_descriptor(pipex, file_for_reading);
 	// TODO err
 	if (ret_in == -1)
-		exit_with_error(pipex, "dup2");
+		exit_with_error_child_process(pipex, "dup2");
 	ret_out = dup2(file_for_writing, STANDARD_OUTPUT);
 	close_unused_file_descriptor(pipex, file_for_writing);
 	// TODO err
 	if (ret_out == -1)
-		exit_with_error(pipex, "dup2");
+		exit_with_error_child_process(pipex, "dup2");
 }
 
 //第３引数 == 0
@@ -61,5 +61,5 @@ void	wait_pid_for_child_process(t_pipex *pipex, int i)
 	ret_pid = waitpid(pipex->pid[i], &child_status, 0);
 	// TODO err
 	if (ret_pid == -1)
-		exit_with_error(pipex, "waitpid");
+		exit_with_error_child_process(pipex, "waitpid");
 }

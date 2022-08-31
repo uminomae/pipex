@@ -10,7 +10,7 @@ int	main(int argc, char **argv, char **env)
 	run_write_side(&pipex, WRITE);
 
 	system("leaks -q pipex");
-	
+
 	return (0);
 }
 
@@ -26,7 +26,7 @@ void	create_pipe_fd(t_pipex *pipex)
 
 	ret = pipe(pipex->pipe_fd);
 	if (ret == -1)
-		exit_with_error(pipex, "pipe");
+		exit_with_error_child_process(pipex, "pipe");
 }
 
 void	run_read_side(t_pipex *pipex, int i)

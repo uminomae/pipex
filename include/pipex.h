@@ -64,7 +64,7 @@ void	init_struct(t_pipex *pipex,int argc, char **argv, char **env);
 int		close_unused_file_descriptor(t_pipex *pipex, int fd);
 void	close_both_pipe(t_pipex *pipex);
 //exit
-void	exit_with_error(t_pipex *pipex, char *str);
+void	exit_with_error_child_process(t_pipex *pipex, char *str);
 // free
 void	safe_free(char **malloc_ptr);
 void	free_list_absolute_path_of_command(t_v_argv *v);

@@ -17,20 +17,20 @@ size_t	get_path_line_from_env(t_pipex *pipex)
 char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 {
 	size_t	trim_len;
-	char	**list;
+	char	**temp_devided_list;
 	void *tmp;
 	
-	list = NULL;
-	list = ft_split(pipex->env[path_index], ':');
+	//temp_devided_list = NULL;
+	temp_devided_list = ft_split(pipex->env[path_index], ':');
 	// TODO err check OK
-	//list = NULL;
-	if (list == NULL)
-		exit_with_error(pipex, "ft_split");
+	//temp_devided_list = NULL;
+	if (temp_devided_list == NULL)
+		exit_with_error_child_process(pipex, "ft_split");
 	trim_len = ft_strlen("PATH=");
-	tmp = list[0];
-	list[0] = ft_substr(list[0] + trim_len, 0 ,ft_strlen(list[0]));
+	tmp = temp_devided_list[0];
+	temp_devided_list[0] = ft_substr(temp_devided_list[0] + trim_len, 0 ,ft_strlen(temp_devided_list[0]));
 	free(tmp);
-	return (list);
+	return (temp_devided_list);
 }
 
 char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
@@ -45,22 +45,23 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	// TODO err check OK
 	//list_of_directry = NULL;
 	if (list_of_directry == NULL)
-		exit_with_error(pipex, "malloc");
+		exit_with_error_child_process(pipex, "malloc");
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
 		list_of_directry[i] = ft_strjoin(temp_devided_list[i], "/");
 		// TODO err check OK
-		//list_of_directry = NULL;
+		list_of_directry = NULL;
 		if (list_of_directry == NULL)
-			exit_with_error(pipex, "ft_strjoin");
-		safe_free(&temp_devided_list[i]);
+			exit_with_error_child_process(pipex, "ft_strjoin");
+		//safe_free(&temp_devided_list[i]);
 		i++;
 	}
 	list_of_directry[i] = NULL;
-	safe_free(&temp_devided_list[i]);
-	free(temp_devided_list);
-	temp_devided_list = NULL;
+	//safe_free(&temp_devided_list[i]);
+	//exitでエラー出る
+	//free(temp_devided_list);
+	//temp_devided_list = NULL;
 	return (list_of_directry);
 }
 

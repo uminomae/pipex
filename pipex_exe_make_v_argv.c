@@ -7,12 +7,12 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv
 	// TODO err check OK
 	//command_from_argv = NULL;
 	if (command_from_argv == NULL)
-		exit_with_error(pipex, "argv");
+		exit_with_error_child_process(pipex, "argv");
 	virtual_argv = ft_split(command_from_argv, ' ');
 	// TODO err check OK
 	//virtual_argv = NULL;
 	if (virtual_argv == NULL)
-		exit_with_error(pipex, "ft_split");
+		exit_with_error_child_process(pipex, "ft_split");
 	return (virtual_argv);
 }
 
@@ -29,17 +29,18 @@ char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, char **l
 	while (list_of_directry[i] != NULL)
 	{
 		list_absolute_path_of_command[i] = ft_strjoin(list_of_directry[i], command_name);
-		safe_free(&list_of_directry[i]);
+		//safe_free(&list_of_directry[i]);
 		// TODO err check OK
 		//list_absolute_path_of_command = NULL;
 		if (list_absolute_path_of_command == NULL)
-			exit_with_error(pipex, "ft_strjoin");
+			exit_with_error_child_process(pipex, "ft_strjoin");
 		i++;
 	}
 	list_absolute_path_of_command[i] = NULL;
-	safe_free(&list_of_directry[i]);
-	free(list_of_directry);
-	list_of_directry = NULL;
+	//safe_free(&list_of_directry[i]);
+	//exit時にエラー出る
+	//free(list_of_directry);
+	//list_of_directry = NULL;
 	return (list_absolute_path_of_command);
 }
 
@@ -48,8 +49,8 @@ size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_co
 	size_t	i;
 
 	i = 0;
-	// TODO err check 
-	list_absolute_path_of_command[i] = NULL;
+	// TODO err check OK
+	//list_absolute_path_of_command[i] = NULL;
 	while (list_absolute_path_of_command[i] != NULL)
 	{
 		if (access(list_absolute_path_of_command[i], R_OK) == 0)
@@ -57,7 +58,7 @@ size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_co
 		i++;
 	}
 	// command not foundにする方法は？
-	exit_with_error(pipex, "access");
+	exit_with_error_child_process(pipex, "access");
 	return (-1);
 }
 
