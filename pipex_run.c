@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-void	create_child_process(t_pipex *pipex, int i)
+void	create_child_process_by_fork_func(t_pipex *pipex, int i)
 {
 	pid_t* const pid = pipex->pid;
 	//const int	*pipe = pipex->pipe_fd;
@@ -53,7 +53,7 @@ void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file
 //第３引数 = 0
 //プロセスグループ ID が、waitpid() が呼ばれた時点での
 //呼び出し元のプロセスのプロセスグループ ID と等しい子プロセスを待つ。
-void	wait_for_child_process(t_pipex *pipex, int i)
+void	wait_pid_for_child_process(t_pipex *pipex, int i)
 {
 	pid_t	ret_pid;
 	int		child_status;

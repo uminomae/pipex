@@ -7,11 +7,7 @@ int	main(int argc, char **argv, char **env)
 	begin_pipex(&pipex, argc, argv, env);
 	create_pipe_fd(&pipex);
 	run_read_side(&pipex, READ);
-	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);
-	//close_unused_file_descriptor(pipex.pipe_fd[WRITE]);
-	//close_unused_file_descriptor(pipex.pipe_fd[READ]);
-	//wait_for_child_process(&pipex, WRITE);
 
 	return (0);
 }
@@ -23,12 +19,21 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 	init_struct(pipex, argc, argv, env);
 }
 
+void	create_pipe_fd(t_pipex *pipex)
+{
+	int ret;
+
+	ret = pipe(pipex->pipe_fd);
+	if (ret == -1)
+		exit_with_error(pipex, "pipe");
+}
+
 void	run_read_side(t_pipex *pipex, int i)
 {
 	const int	*pipe = pipex->pipe_fd;
 	int *const	file = pipex->file_fd;
 
-	create_child_process(pipex, i);
+	create_child_process_by_fork_func(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
 		close_unused_file_descriptor(pipex, pipe[i]);
@@ -37,7 +42,7 @@ void	run_read_side(t_pipex *pipex, int i)
 		execute_command_read(pipex);
 		close_unused_file_descriptor(pipex, file[i]);
 	}
-	wait_for_child_process(pipex, i);
+	wait_pid_for_child_process(pipex, i);
 }
 
 void	run_write_side(t_pipex *pipex, int i)
@@ -45,7 +50,7 @@ void	run_write_side(t_pipex *pipex, int i)
 	const int	*pipe = pipex->pipe_fd;
 	int *const	file = pipex->file_fd;
 
-	create_child_process(pipex, i);
+	create_child_process_by_fork_func(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
 		close_unused_file_descriptor(pipex, pipe[i]);
@@ -55,5 +60,5 @@ void	run_write_side(t_pipex *pipex, int i)
 		close_unused_file_descriptor(pipex, file[i]);
 	}
 	close_both_pipe(pipex);
-	wait_for_child_process(pipex, i);
+	wait_pid_for_child_process(pipex, i);
 }

@@ -37,7 +37,7 @@ void	close_both_pipe(t_pipex *pipex)
 	close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
 }
 
-size_t	count_pointer(char **list)
+size_t	count_pointer_including_null(char **list)
 {
 	size_t count;
 

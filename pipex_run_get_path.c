@@ -62,7 +62,7 @@ char	**make_complete_path_of_directory(char **temp_devided_list)
 	size_t	len;
 
 	list_of_directry = NULL;
-	len = count_pointer(temp_devided_list);
+	len = count_pointer_including_null(temp_devided_list);
 	list_of_directry = malloc(sizeof(char *) * len);
 	i = 0;
 	while (temp_devided_list[i] != NULL)
@@ -96,7 +96,7 @@ char	**make_absolute_path_of_command(char **list_of_directry, char *command_name
 	size_t	len;
 
 	list_absolute_path_of_command = NULL;
-	len = count_pointer(list_of_directry);
+	len = count_pointer_including_null(list_of_directry);
 	list_absolute_path_of_command = malloc(sizeof(char *) * len);
 	i = 0;
 	while (list_of_directry[i] != NULL)

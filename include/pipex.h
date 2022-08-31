@@ -15,7 +15,6 @@ typedef struct	s_v_argv
 	char	**list_absolute_path_of_command;
 } t_v_argv;
 
-
 typedef struct	s_pipex
 {
 	pid_t			pid[2];
@@ -28,7 +27,7 @@ typedef struct	s_pipex
 	struct s_v_argv	v_argv;
 } t_pipex;
 
-# define ERR_CODE_1 1
+//# define ERR_CODE_1 1
 # define READ 0
 # define WRITE 1
 # define STANDARD_INPUT 0
@@ -50,20 +49,17 @@ void	init_struct(t_pipex *pipex,int argc, char **argv, char **env);
 void	check_for_valid_value(int argc);
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 //
-//void	exit_with_error(char *str);
 void	exit_with_error(t_pipex *pipex, char *str);
-//int		close_unused_file_descriptor(int fd);
 int		close_unused_file_descriptor(t_pipex *pipex, int fd);
-//void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
 void	close_both_pipe(t_pipex *pipex);
 void	safe_free(char **malloc_ptr);
-size_t	count_pointer(char **list);
+size_t	count_pointer_including_null(char **list);
 //
-void	create_child_process(t_pipex *pipex, int i);
+void	create_child_process_by_fork_func(t_pipex *pipex, int i);
 void	open_file(t_pipex *pipex, int in_out);
 void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file_for_writing);
 //
-void	wait_for_child_process(t_pipex *pipex, int i);
+void	wait_pid_for_child_process(t_pipex *pipex, int i);
 //
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
