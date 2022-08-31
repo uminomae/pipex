@@ -8,11 +8,12 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv
 	//free()
 		exit_with_error(pipex, "argv");
 	virtual_argv = ft_split(command_from_argv, ' ');
+	// TODO err
 	//malloc失敗時
 	return (virtual_argv);
 }
 
-char	**join_basename_absolute_path(char **list_of_directry, char *command_name)
+char	**join_file_and_directory_name_to_get_absolute_path(char **list_of_directry, char *command_name)
 {
 	char	**list_absolute_path_of_command;
 	size_t	i;
@@ -26,6 +27,7 @@ char	**join_basename_absolute_path(char **list_of_directry, char *command_name)
 	{
 		list_absolute_path_of_command[i] = ft_strjoin(list_of_directry[i], command_name);
 		//safe_free(&list_of_directry[i]);
+		// TODO err
 		//malloc失敗時、splitも
 		i++;
 	}

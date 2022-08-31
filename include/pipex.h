@@ -83,7 +83,7 @@ char	**join_slash_path_of_directory(char **list_of_directry);
 size_t	count_pointer_including_null(char **list);
 //make v_argv
 char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv);
-char	**join_basename_absolute_path(char **list_of_directry_full, char *command_name);
+char	**join_file_and_directory_name_to_get_absolute_path(char **list_of_directry_full, char *command_name);
 size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(t_v_argv *v, size_t index);
 //execute

@@ -28,7 +28,7 @@ char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, char *command_from_argv)
 	size_t		index;
 
 	v->virtual_argv = split_virtual_argv_from_real_argv(pipex, command_from_argv);
-	v->list_absolute_path_of_command = join_basename_absolute_path(v->list_of_directry, v->virtual_argv[0]);
+	v->list_absolute_path_of_command = join_file_and_directory_name_to_get_absolute_path(v->list_of_directry, v->virtual_argv[0]);
 	index = get_index_accessible_path(pipex, v->list_absolute_path_of_command);
 	v->virtual_argv = switch_first_argv_to_absolute_path(v, index);
 	return (v->virtual_argv);
