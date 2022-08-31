@@ -13,7 +13,7 @@ void	exit_with_error(t_pipex *pipex, char *str)
 }
 
 //pipeを閉じているのか、fileを閉じているのか共通化すると分かりづらい
-int	close_file_descriptor(t_pipex *pipex, int fd)
+int	close_unused_file_descriptor(t_pipex *pipex, int fd)
 {
 	int	ret;
 
@@ -25,8 +25,8 @@ int	close_file_descriptor(t_pipex *pipex, int fd)
 
 void	close_both_pipe(t_pipex *pipex)
 {
-	close_file_descriptor(pipex, pipex->pipe_fd[READ]);
-	close_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
+	close_unused_file_descriptor(pipex, pipex->pipe_fd[READ]);
+	close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
 }
 
 
@@ -41,8 +41,8 @@ void	close_both_pipe(t_pipex *pipex)
 //void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
 //{
 //	close_pipe(pipex);
-//	//close_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
-//	//close_file_descriptor(pipex, pipex->pipe_fd[READ]);
+//	//close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
+//	//close_unused_file_descriptor(pipex, pipex->pipe_fd[READ]);
 //	perror(str);
 //	_exit(EXIT_FAILURE);
 //}

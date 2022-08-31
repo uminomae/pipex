@@ -41,11 +41,11 @@ void	duplicate_to_standard_in_out(t_pipex *pipex, int file_for_reading, int file
 	int	ret_out;
 
 	ret_in = dup2(file_for_reading, STANDARD_INPUT);
-	close_file_descriptor(pipex, file_for_reading);
+	close_unused_file_descriptor(pipex, file_for_reading);
 	if (ret_in == -1)
 		exit_with_error(pipex, "dup2");
 	ret_out = dup2(file_for_writing, STANDARD_OUTPUT);
-	close_file_descriptor(pipex, file_for_writing);
+	close_unused_file_descriptor(pipex, file_for_writing);
 	if (ret_out == -1)
 		exit_with_error(pipex, "dup2");
 }

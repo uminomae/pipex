@@ -8,13 +8,13 @@ int	main(int argc, char **argv, char **env)
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);
-	//close_file_descriptor(pipex.pipe_fd[WRITE]);
-	//close_file_descriptor(pipex.pipe_fd[READ]);
+	//close_unused_file_descriptor(pipex.pipe_fd[WRITE]);
+	//close_unused_file_descriptor(pipex.pipe_fd[READ]);
 	//wait_for_child_process(&pipex, WRITE);
 
-	//system("leaks -q pipex");
 	return (0);
 }
+	//system("leaks -q pipex");
 
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
@@ -31,11 +31,11 @@ void	run_read_side(t_pipex *pipex, int i)
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		close_file_descriptor(pipex, pipe[i]);
+		close_unused_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
-		close_file_descriptor(pipex, file[i]);
+		close_unused_file_descriptor(pipex, file[i]);
 	}
 	wait_for_child_process(pipex, i);
 }
@@ -48,13 +48,14 @@ void	run_write_side(t_pipex *pipex, int i)
 	create_child_process(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		close_file_descriptor(pipex, pipe[i]);
+		close_unused_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
 		execute_command_write(pipex);
-		close_file_descriptor(pipex, file[i]);
+		close_unused_file_descriptor(pipex, file[i]);
 	}
-	close_file_descriptor(pipex, pipe[WRITE]);
-	close_file_descriptor(pipex, pipe[READ]);
+	close_both_pipe(pipex);
+	//close_unused_file_descriptor(pipex, pipe[WRITE]);
+	//close_unused_file_descriptor(pipex, pipe[READ]);
 	wait_for_child_process(pipex, i);
 }
