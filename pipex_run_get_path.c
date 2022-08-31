@@ -40,6 +40,7 @@ char	**join_slash_path_of_directory(char **temp_devided_list)
 	list_of_directry = NULL;
 	len = count_pointer_including_null(temp_devided_list);
 	list_of_directry = malloc(sizeof(char *) * len);
+	//malloc失敗時
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
@@ -62,6 +63,7 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv
 	//free()
 		exit_with_error(pipex, "argv");
 	virtual_argv = ft_split(command_from_argv, ' ');
+	//malloc失敗時
 	return (virtual_argv);
 }
 
