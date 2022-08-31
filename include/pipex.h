@@ -39,19 +39,22 @@ typedef struct	s_pipex
 # define STANDARD_INPUT 0
 # define STANDARD_OUTPUT 1
 
-/*
- * File status flags: these are used by open(2), fcntl(2).
- * They are also used (indirectly) in the kernel file structure f_flags,
- * which is a superset of the open/fcntl flags.  Open flags and f_flags
- * are inter-convertible using OFLAGS(fflags) and FFLAGS(oflags).
- * Open/fcntl flags begin with O_; kernel-internal flags begin with F.
- */
-/* open-only flags */
+// <fcntl.h>
+///* open-only flags */
 //#define O_RDONLY        0x0000          /* open for reading only */
-//S_IRUSR	00400：所有者（owner）による読み取り（read）。
-//S_IWUSR	00200：所有者による書き込み（write）。
-//S_IRGRP	00040：グループ（group）による読み取り。
-//S_IROTH	00004：他人（others）による読み取り。
+//#define O_WRONLY        0x0001          /* open for writing only */
+//#define O_CLOEXEC       0x1000000       /* implicitly set FD_CLOEXEC */
+//#define O_CREAT         0x0200          /* create if nonexistant */
+//#define O_TRUNC         0x0400          /* truncate to zero length */
+///* File mode */
+///* Read, write, execute/search by owner */
+//#define S_IRUSR         0000400         /* [XSI] R for owner */
+//#define S_IWUSR         0000200         /* [XSI] W for owner */
+///* Read, write, execute/search by group */
+//#define S_IRGRP         0000040         /* [XSI] R for group */
+///* Read, write, execute/search by others */
+//#define S_IROTH         0000004         /* [XSI] R for other */
+
 
 //main
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);

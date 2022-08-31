@@ -20,7 +20,6 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 	char	**temp_devided_list;
 	void *tmp;
 	
-	//temp_devided_list = NULL;
 	temp_devided_list = ft_split(pipex->env[path_index], ':');
 	// TODO err check OK
 	//temp_devided_list = NULL;
