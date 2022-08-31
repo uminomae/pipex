@@ -23,6 +23,13 @@ int	close_file_descriptor(t_pipex *pipex, int fd)
 	return (ret);
 }
 
+void	close_both_pipe(t_pipex *pipex)
+{
+	close_file_descriptor(pipex, pipex->pipe_fd[READ]);
+	close_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
+}
+
+
 // pipe()後 && 子プロセスのifの前段階で使用。今のとこfork()失敗時のみ。
 //
 // エラーによるexit時のpipeのcloseは、fork()までのエラー
@@ -31,13 +38,14 @@ int	close_file_descriptor(t_pipex *pipex, int fd)
 // open()したfdのcloseは、O_CLOEXECオプションで対応できる？
 // ※子プロセス内でopen()したfdは子プロセスの最後でclose
 // エラー時どうする？
-void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
-{
-	close_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
-	close_file_descriptor(pipex, pipex->pipe_fd[READ]);
-	perror(str);
-	_exit(EXIT_FAILURE);
-}
+//void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
+//{
+//	close_pipe(pipex);
+//	//close_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
+//	//close_file_descriptor(pipex, pipex->pipe_fd[READ]);
+//	perror(str);
+//	_exit(EXIT_FAILURE);
+//}
 
 void	safe_free(char **malloc_ptr)
 {

@@ -33,11 +33,6 @@ void	run_read_side(t_pipex *pipex, int i)
 	{
 		close_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
-
-		//char **virtual_argv = 
-		//get_virtual_argv(pipex, pipex->argv[2]);
-		//printf("%s", virtual_argv[0]);
-
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
 		execute_command_read(pipex);
 		close_file_descriptor(pipex, file[i]);

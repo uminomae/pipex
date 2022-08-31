@@ -54,7 +54,8 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	exit_with_error(t_pipex *pipex, char *str);
 //int		close_file_descriptor(int fd);
 int		close_file_descriptor(t_pipex *pipex, int fd);
-void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
+//void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str);
+void	close_both_pipe(t_pipex *pipex);
 void	safe_free(char **malloc_ptr);
 size_t	count_pointer(char **list);
 //

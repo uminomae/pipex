@@ -4,17 +4,13 @@ void	create_child_process(t_pipex *pipex, int i)
 {
 	pid_t* const pid = pipex->pid;
 	//const int	*pipe = pipex->pipe_fd;
-	//pid_t* pid = pipex->pid;
 
 	pid[i] = fork();
 	//pid[i] = -1;
 	if (pid[i] == -1)
 	{
-		close_pipe_and_exit_with_error(pipex, "fork");
-
-		//close_file_descriptor(pipe[WRITE]);
-		//close_file_descriptor(pipe[READ]);
-		//exit_with_error(pipex, "fork");
+		close_both_pipe(pipex);
+		exit_with_error(pipex, "fork");
 	}
 }
 
@@ -22,7 +18,7 @@ void	create_child_process(t_pipex *pipex, int i)
 //S_IWUSR	00200：所有者による書き込み（write）。
 //S_IRGRP	00040：グループ（group）による読み取り。
 //S_IROTH	00004：他人（others）による読み取り。
-// chmod 644と同じ
+//file[WRITE] is likea a chmod 644
 void	open_file(t_pipex *pipex, int in_out)
 {
 	char *const	*argv = (char *const *)pipex->argv;
