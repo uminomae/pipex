@@ -23,13 +23,6 @@ int	close_unused_file_descriptor(t_pipex *pipex, int fd)
 	return (ret);
 }
 
-void	close_both_pipe(t_pipex *pipex)
-{
-	close_unused_file_descriptor(pipex, pipex->pipe_fd[READ]);
-	close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
-}
-
-
 // pipe()後 && 子プロセスのifの前段階で使用。今のとこfork()失敗時のみ。
 //
 // エラーによるexit時のpipeのcloseは、fork()までのエラー
@@ -38,30 +31,19 @@ void	close_both_pipe(t_pipex *pipex)
 // open()したfdのcloseは、O_CLOEXECオプションで対応できる？
 // ※子プロセス内でopen()したfdは子プロセスの最後でclose
 // エラー時どうする？
-//void	close_pipe_and_exit_with_error(t_pipex *pipex, char *str)
-//{
-//	close_pipe(pipex);
-//	//close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
-//	//close_unused_file_descriptor(pipex, pipex->pipe_fd[READ]);
-//	perror(str);
-//	_exit(EXIT_FAILURE);
-//}
-
-void	safe_free(char **malloc_ptr)
+void	close_both_pipe(t_pipex *pipex)
 {
-	free(*malloc_ptr);
-	*malloc_ptr = NULL;
+	close_unused_file_descriptor(pipex, pipex->pipe_fd[READ]);
+	close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
 }
 
 size_t	count_pointer(char **list)
 {
-	size_t i;
+	size_t count;
 
-	i = 0;
-	while (list[i] != NULL)
-	{
-		i++;
-	}
-	i++;
-	return (i);
+	count = 0;
+	while (list[count] != NULL)
+		count++;
+	count++;
+	return (count);
 }

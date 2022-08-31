@@ -1,5 +1,11 @@
 #include "pipex.h"
 
+void	safe_free(char **malloc_ptr)
+{
+	free(*malloc_ptr);
+	*malloc_ptr = NULL;
+}
+
 void	free_temp_devided_list(t_v_argv *v)
 {
 	size_t	i;

@@ -5,6 +5,7 @@ int	main(int argc, char **argv, char **env)
 	t_pipex pipex;
 
 	begin_pipex(&pipex, argc, argv, env);
+	create_pipe_fd(&pipex);
 	run_read_side(&pipex, READ);
 	//wait_for_child_process(&pipex, READ);
 	run_write_side(&pipex, WRITE);
@@ -20,7 +21,6 @@ void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env)
 {
 	check_for_valid_value(argc);
 	init_struct(pipex, argc, argv, env);
-	create_pipe_fd(pipex);
 }
 
 void	run_read_side(t_pipex *pipex, int i)
@@ -55,7 +55,5 @@ void	run_write_side(t_pipex *pipex, int i)
 		close_unused_file_descriptor(pipex, file[i]);
 	}
 	close_both_pipe(pipex);
-	//close_unused_file_descriptor(pipex, pipe[WRITE]);
-	//close_unused_file_descriptor(pipex, pipe[READ]);
 	wait_for_child_process(pipex, i);
 }
