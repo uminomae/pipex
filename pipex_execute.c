@@ -22,6 +22,7 @@ void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 	v->list_of_directry = join_slash_path_of_directory(v->temp_devided_list);
 }
 
+//Create an accessible absolute path from environment var and arg
 char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, char *command_from_argv)
 {
 	size_t		index;
@@ -32,26 +33,3 @@ char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, char *command_from_argv)
 	v->virtual_argv = switch_first_argv_to_absolute_path(v, index);
 	return (v->virtual_argv);
 }
-
-
-//void	execute_command_read(t_pipex *pipex)
-//{
-//	char *const	*argv = (char *const *)pipex->argv;
-//	char		**virtual_argv;
-
-//	virtual_argv = make_virtual_argv(pipex, argv[2]);
-//	execve(virtual_argv[0], virtual_argv, pipex->env);
-//	_exit(EXIT_SUCCESS);
-//}
-
-////共通化する
-//void	execute_command_write(t_pipex *pipex)
-//{
-//	char *const	*argv = (char *const *)pipex->argv;
-//	char		**virtual_argv;
-
-//	virtual_argv = make_virtual_argv(pipex, argv[3]);
-//	// readでcommandが見つからない場合、"/"が入っている様子の本家挙動
-//	execve(virtual_argv[0], virtual_argv, pipex->env);
-//	_exit(EXIT_SUCCESS);
-//}

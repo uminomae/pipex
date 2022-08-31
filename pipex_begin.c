@@ -21,12 +21,3 @@ void	init_struct(t_pipex *pipex,int argc, char **argv, char **env)
 	pipex->v_argv.temp_devided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;
 }
-
-//void	create_pipe_fd(t_pipex *pipex)
-//{
-//	int ret;
-
-//	ret = pipe(pipex->pipe_fd);
-//	if (ret == -1)
-//		exit_with_error(pipex, "pipe");
-//}

@@ -1,17 +1,5 @@
 #include "pipex.h"
 
-//exitとまとめてfreeとclosepipeを分ける。
-void	exit_with_error(t_pipex *pipex, char *str)
-{
-	(void)pipex;
-	free_list_absolute_path_of_command(&pipex->v_argv);
-	free_virtual_argv(&pipex->v_argv);
-	free_list_of_directry(&pipex->v_argv);
-	free_temp_devided_list(&pipex->v_argv);
-	perror(str);
-	_exit(EXIT_FAILURE);
-}
-
 //pipeを閉じているのか、fileを閉じているのか共通化すると分かりづらい
 int	close_unused_file_descriptor(t_pipex *pipex, int fd)
 {
@@ -35,15 +23,4 @@ void	close_both_pipe(t_pipex *pipex)
 {
 	close_unused_file_descriptor(pipex, pipex->pipe_fd[READ]);
 	close_unused_file_descriptor(pipex, pipex->pipe_fd[WRITE]);
-}
-
-size_t	count_pointer_including_null(char **list)
-{
-	size_t count;
-
-	count = 0;
-	while (list[count] != NULL)
-		count++;
-	count++;
-	return (count);
 }

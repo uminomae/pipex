@@ -6,11 +6,13 @@ DFLAGS		:= -MMD -MP
 #MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
 SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
-				pipex_run.c \
-				pipex_run_execute.c \
-				pipex_run_get_path.c \
-				pipex_util.c \
+				pipex_close.c \
+				pipex_exit.c \
 				pipex_free.c \
+				pipex_execute.c \
+				pipex_exe_get_path.c \
+				pipex_exe_make_v_argv.c \
+				pipex_run_syscall.c \
 
 LIBFT		= $(LIBDIR)libft.a
 INCLUDE		= -I$(INCDIR)
