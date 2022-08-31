@@ -66,11 +66,13 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
 char	**join_slash_path_of_directory(char **list_of_directry);
 char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv);
 char	**join_basename_absolute_path(char **list_of_directry_full, char *command_name);
-char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv);
+char	**switch_first_argv_to_absolute_path(t_v_argv *v, size_t index);
 size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_command);
 //
-void	execute_command_read(t_pipex *pipex);
-void	execute_command_write(t_pipex *pipex);
+char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv);
+//void	execute_command_read(t_pipex *pipex);
+//void	execute_command_write(t_pipex *pipex);
+void	execute_command(t_pipex *pipex, char *argv);
 //
 void	begin_pipex(t_pipex *pipex,int argc, char **argv, char **env);
 void	run_read_side(t_pipex *pipex, int i);

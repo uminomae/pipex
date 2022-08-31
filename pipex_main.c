@@ -39,7 +39,8 @@ void	run_read_side(t_pipex *pipex, int i)
 		close_unused_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
-		execute_command_read(pipex);
+		execute_command(pipex, pipex->argv[2]);
+		//execute_command_read(pipex);
 		close_unused_file_descriptor(pipex, file[i]);
 	}
 	wait_pid_for_child_process(pipex, i);
@@ -56,7 +57,8 @@ void	run_write_side(t_pipex *pipex, int i)
 		close_unused_file_descriptor(pipex, pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
-		execute_command_write(pipex);
+		execute_command(pipex, pipex->argv[3]);
+		//execute_command_write(pipex);
 		close_unused_file_descriptor(pipex, file[i]);
 	}
 	close_both_pipe(pipex);

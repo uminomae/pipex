@@ -103,3 +103,12 @@ size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_co
 	exit_with_error(pipex, "access");
 	return (-1);
 }
+
+char	**switch_first_argv_to_absolute_path(t_v_argv *v, size_t index)
+{
+	void		*tmp;
+	tmp = v->virtual_argv[0];
+	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
+	free(tmp);
+	return (v->virtual_argv);
+}
