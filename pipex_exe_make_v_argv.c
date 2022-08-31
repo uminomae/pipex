@@ -13,6 +13,7 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv
 	//virtual_argv = NULL;
 	if (virtual_argv == NULL)
 		exit_with_error_child_process(pipex, "ft_split");
+	pipex->v_argv.command_name = virtual_argv[0];
 	return (virtual_argv);
 }
 
@@ -57,19 +58,24 @@ size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_co
 			return (i);
 		i++;
 	}
-	// command not foundにする方法は？
-	exit_with_error_child_process(pipex, "access");
+	ft_putstr_fd(" command not found: ", 2);
+	ft_putendl_fd(pipex->v_argv.command_name, 2);
+	//exit_with_error_child_process(pipex, "access");
+	set_free_together(pipex);
+	_exit(EXIT_FAILURE);
 	return (-1);
 }
 
-char	**switch_first_argv_to_absolute_path(t_v_argv *v, size_t index)
+char	**switch_first_argv_to_absolute_path(t_pipex *pipex, t_v_argv *v, size_t index)
 {
 	void		*tmp;
 
 	tmp = v->virtual_argv[0];
 	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
-	// TODO
-	// malloc
+	// TODO err check OK
+	//v->virtual_argv[0] = NULL;
+	if (v->virtual_argv[0]  == NULL)
+		exit_with_error_child_process(pipex, "ft_split");
 	return (v->virtual_argv);
 }

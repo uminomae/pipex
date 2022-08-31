@@ -51,7 +51,7 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	{
 		list_of_directry[i] = ft_strjoin(temp_devided_list[i], "/");
 		// TODO err check OK
-		list_of_directry = NULL;
+		//list_of_directry = NULL;
 		if (list_of_directry == NULL)
 			exit_with_error_child_process(pipex, "ft_strjoin");
 		//safe_free(&temp_devided_list[i]);
