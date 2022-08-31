@@ -1,29 +1,5 @@
 #include "pipex.h"
 
-char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv)
-{
-	size_t		path_line;
-	size_t		index;
-	t_v_argv	*v;
-	
-	v = &pipex->v_argv;
-	path_line = get_path_line_from_env(pipex);
-	v->temp_devided_list = split_list_of_directry_from_path_line(pipex, path_line);
-	//malloc split
-	v->list_of_directry = make_complete_path_of_directory(v->temp_devided_list);
-	//malloc strjoin
-	v->virtual_argv = make_virtual_argv_from_real_argv(pipex, command_from_argv);
-	//malloc split
-	v->list_absolute_path_of_command = make_absolute_path_of_command(v->list_of_directry, v->virtual_argv[0]);
-	//malloc strjoin
-	index = get_index_accessible_path(pipex, v->list_absolute_path_of_command);
-	//void		*tmp;
-	//tmp = v->virtual_argv[0];
-	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
-	//free(tmp);
-	return (v->virtual_argv);
-}
-
 size_t	get_path_line_from_env(t_pipex *pipex)
 {
 	size_t i;
@@ -55,7 +31,7 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index)
 	return (list);
 }
 
-char	**make_complete_path_of_directory(char **temp_devided_list)
+char	**join_slash_path_of_directory(char **temp_devided_list)
 {
 	char	**list_of_directry;
 	size_t	i;
@@ -78,7 +54,7 @@ char	**make_complete_path_of_directory(char **temp_devided_list)
 	return (list_of_directry);
 }
 
-char	**make_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv)
+char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv)
 {
 	char **virtual_argv;
 
@@ -89,7 +65,7 @@ char	**make_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv)
 	return (virtual_argv);
 }
 
-char	**make_absolute_path_of_command(char **list_of_directry, char *command_name)
+char	**join_basename_absolute_path(char **list_of_directry, char *command_name)
 {
 	char	**list_absolute_path_of_command;
 	size_t	i;

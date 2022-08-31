@@ -63,9 +63,9 @@ void	wait_pid_for_child_process(t_pipex *pipex, int i);
 //
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**split_list_of_directry_from_path_line(t_pipex *pipex, size_t path_index);
-char	**make_complete_path_of_directory(char **list_of_directry);
-char	**make_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv);
-char	**make_absolute_path_of_command(char **list_of_directry_full, char *command_name);
+char	**join_slash_path_of_directory(char **list_of_directry);
+char	**split_virtual_argv_from_real_argv(t_pipex *pipex, char *command_from_argv);
+char	**join_basename_absolute_path(char **list_of_directry_full, char *command_name);
 char	**get_virtual_argv(t_pipex *pipex, char *command_from_argv);
 size_t	get_index_accessible_path(t_pipex *pipex, char **list_absolute_path_of_command);
 //
