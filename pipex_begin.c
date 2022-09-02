@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 15:40:45 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:47:47 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	validate_value(int argc)
 	else
 	{
 		//TODO func
-		perror("argc");
+		ft_putendl_fd("error : 5 arguments are required" , STDERR_FILENO);
+		//perror("argc");
 		exit(EXIT_FAILURE);
 	}
 }

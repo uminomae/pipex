@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 13:56:49 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:48:47 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	duplicate_to_standard_in_out(t_pipex *pipex, \
 	int	ret_in;
 	int	ret_out;
 
-	ret_in = dup2(file_for_reading, STANDARD_INPUT);
+	ret_in = dup2(file_for_reading, STDIN_FILENO);
 	close_unused_file_descriptor(pipex, file_for_reading);
 	if (ret_in == -1)
 		exit_with_error_child_process(pipex, "dup2");
-	ret_out = dup2(file_for_writing, STANDARD_OUTPUT);
+	ret_out = dup2(file_for_writing, STDOUT_FILENO);
 	close_unused_file_descriptor(pipex, file_for_writing);
 	if (ret_out == -1)
 		exit_with_error_child_process(pipex, "dup2");
