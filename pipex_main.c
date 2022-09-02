@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 02:51:41 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:53:22 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ static void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv)
 		exit_with_error(v_argv, "pipe()");
 }
 
-void	duplicate_and_execute(t_pipex *pipex, \
-					int fd_for_read, int fd_for_write, char *command_from_argv)
-{
-	duplicate_to_standard_in_out(&pipex->v_argv, \
-									fd_for_read, fd_for_write);
-	execute_command(pipex, command_from_argv);
-}
+//void	duplicate_and_execute(t_pipex *pipex, \
+//					int fd_for_read, int fd_for_write, char *command_from_argv)
+//{
+//	duplicate_to_standard_in_out(&pipex->v_argv, \
+//									fd_for_read, fd_for_write);
+//	execute_command(pipex, command_from_argv);
+//}
 
 static void	run_child(t_pipex *pipex, int in_out)
 {
