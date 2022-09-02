@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hioikawa </var/mail/hioikawa>              +#+  +:+       +#+         #
+#    By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/27 04:23:00 by hioikawa          #+#    #+#              #
-#    Updated: 2022/02/08 07:07:02 by hioikawa         ###   ########.fr        #
+#    Updated: 2022/09/02 16:42:09 by hioikawa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= libft.a
-CC			:= gcc
+CC			:= cc
 RM			:= rm -f
 CFLAGS		:= -Wall -Wextra -Werror
 SRCS		:= 	ft_isalpha.c \
@@ -48,8 +48,7 @@ SRCS		:= 	ft_isalpha.c \
 	ft_putstr_fd.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
-
-SRCS_B		:=	ft_lstnew.c \
+	ft_lstnew.c \
 	ft_lstadd_front.c \
 	ft_lstsize.c \
 	ft_lstlast.c \
@@ -59,13 +58,23 @@ SRCS_B		:=	ft_lstnew.c \
 	ft_lstiter.c \
 	ft_lstmap.c \
 
+#SRCS_B		:=	ft_lstnew.c \
+#	ft_lstadd_front.c \
+#	ft_lstsize.c \
+#	ft_lstlast.c \
+#	ft_lstadd_back.c \
+#	ft_lstdelone.c \
+#	ft_lstclear.c \
+#	ft_lstiter.c \
+#	ft_lstmap.c \
+
 OBJS	= $(SRCS:%.c=%.o)
 
-B_OBJS	= $(SRCS_B:%.c=%.o)
+#B_OBJS	= $(SRCS_B:%.c=%.o)
 
-ifdef WITH_BONUS
-	OBJS += $(B_OBJS)
-endif
+#ifdef WITH_BONUS
+#	OBJS += $(B_OBJS)
+#endif
 
 all:		$(NAME)
 
@@ -80,7 +89,8 @@ fclean:	clean
 
 re: fclean all
 
-bonus: 
-	make WITH_BONUS=1
+#bonus: 
+#	make WITH_BONUS=1
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
+#.PHONY: all clean fclean re bonus

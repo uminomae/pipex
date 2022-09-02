@@ -1,5 +1,5 @@
 NAME		:= pipex
-CC			:= gcc 
+CC			:= cc 
 RM			:= rm -f
 CFLAGS		:= -Wall -Wextra -Werror -O3
 DFLAGS		:= -MMD -MP
@@ -23,11 +23,11 @@ DEPENDS		= $(OBJECTS:.o=.d)
 OBJS		= $(SRCS:%.c=%.o)
 OBJECTS		= $(addprefix $(OBJDIR)/, $(OBJS))
 
-B_OBJS		= $(SRCS_B:%.c=%.o)
-B_OBJECTS   = $(addprefix $(OBJDIR)/, $(B_OBJS))
-ifdef WITH_BONUS
-	OBJS += $(B_OBJECTS)
-endif
+#B_OBJS		= $(SRCS_B:%.c=%.o)
+#B_OBJECTS   = $(addprefix $(OBJDIR)/, $(B_OBJS))
+#ifdef WITH_BONUS
+#	OBJS += $(B_OBJECTS)
+#endif
 
 INCDIR		= include/
 LIBDIR		= libft/
@@ -72,13 +72,14 @@ re: fclean all
 
 -include $(DEPENDS)
 
-bonus: 
-	make WITH_BONUS=1
+#bonus: 
+#	make WITH_BONUS=1
 
 debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
 debug: re
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
+#.PHONY: all clean fclean re bonus
 
 RED			=	"\033[31m"
 GREEN		=	"\033[32m"
