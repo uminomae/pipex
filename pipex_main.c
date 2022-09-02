@@ -6,14 +6,15 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:41:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:50:17 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
-static void	create_pipe_fd(t_pipex *pipex);
+//static void	create_pipe_fd(t_pipex *pipex);
+static void	create_pipe_fd(int pipe_fd[], t_v_argv *v_argv);
 static void	run_read_side(t_pipex *pipex, int i);
 static void	run_write_side(t_pipex *pipex, int i);
 
@@ -22,7 +23,8 @@ int	main(int argc, char **argv, char **env)
 	t_pipex	pipex;
 
 	begin_pipex(&pipex, argc, argv, env);
-	create_pipe_fd(&pipex);
+	create_pipe_fd(pipex.pipe_fd, &pipex.v_argv);
+	//create_pipe_fd(&pipex);
 	run_read_side(&pipex, READ);
 	run_write_side(&pipex, WRITE);
 	return (0);
@@ -34,13 +36,16 @@ static void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env)
 	init_struct(pipex, argv, env);
 }
 
-static void	create_pipe_fd(t_pipex *pipex)
+static void	create_pipe_fd(int pipe_fd[], t_v_argv *v_argv)
+//static void	create_pipe_fd(t_pipex *pipex)
 {
 	int	ret;
 
-	ret = pipe(pipex->pipe_fd);
+	ret = pipe(pipe_fd);
+	//ret = pipe(pipex->pipe_fd);
 	if (ret == -1)
-		exit_with_error(&pipex->v_argv, "pipe()");
+		exit_with_error(v_argv, "pipe()");
+		//exit_with_error(&pipex->v_argv, "pipe()");
 }
 
 static void	run_read_side(t_pipex *pipex, int i)
