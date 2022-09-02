@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 01:58:56 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:00:51 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,10 @@ static void	run_read_side(t_pipex *pipex, int i)
 	char *const	*argv = (char *const *)pipex->argv;
 	const int	*pipe = pipex->pipe_fd;
 	int *const	file_fd = pipex->file_fd;
-	pid_t	process_id;
+	pid_t		process_id;
 
 	process_id = create_child_process_by_fork_func(pipex);
-	//create_child_process_by_fork_func(pipex, i);
 	if (process_id == 0)
-	//if (pipex->pid[i] == 0)
 	{
 		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
 		open_files_on_purpose(&pipex->v_argv, argv, file_fd, i);
@@ -63,7 +61,6 @@ static void	run_read_side(t_pipex *pipex, int i)
 		exit_successfully(&pipex->v_argv);
 	}
 	wait_pid_for_child_process(&pipex->v_argv, process_id);
-	//wait_pid_for_child_process(pipex, i);
 }
 
 static void	run_write_side(t_pipex *pipex, int i)
@@ -73,8 +70,6 @@ static void	run_write_side(t_pipex *pipex, int i)
 	pid_t	process_id;
 
 	process_id = create_child_process_by_fork_func(pipex);
-	//create_child_process_by_fork_func(pipex, i);
-	//if (pipex->pid[i] == 0)
 	if (process_id == 0)
 	{
 		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
@@ -85,7 +80,5 @@ static void	run_write_side(t_pipex *pipex, int i)
 		exit_successfully(&pipex->v_argv);
 	}
 	close_both_pipe(&pipex->v_argv, pipex->pipe_fd);
-	wait_pid_for_child_process(&pipex->v_argv, process_id);
-	//wait_pid_for_child_process(pipex, i);
-	
+	wait_pid_for_child_process(&pipex->v_argv, process_id);	
 }
