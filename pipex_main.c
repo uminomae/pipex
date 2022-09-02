@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 02:00:51 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:21:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	run_read_side(t_pipex *pipex, int i)
 	{
 		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
 		open_files_on_purpose(&pipex->v_argv, argv, file_fd, i);
-		duplicate_to_standard_in_out(pipex, file_fd[READ], pipe[WRITE]);
+		duplicate_to_standard_in_out(&pipex->v_argv, file_fd[READ], pipe[WRITE]);
 		execute_command(pipex, argv[2]);
 		close_unused_file_descriptor(&pipex->v_argv, file_fd[i]);
 		exit_successfully(&pipex->v_argv);
@@ -74,7 +74,7 @@ static void	run_write_side(t_pipex *pipex, int i)
 	{
 		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
 		open_files_on_purpose(&pipex->v_argv, pipex->argv, file, i);
-		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
+		duplicate_to_standard_in_out(&pipex->v_argv, pipe[READ], file[WRITE]);
 		execute_command(pipex, pipex->argv[3]);
 		close_unused_file_descriptor(&pipex->v_argv, file[i]);
 		exit_successfully(&pipex->v_argv);
