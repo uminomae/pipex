@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 16:34:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:03:13 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	create_pipe_fd(t_pipex *pipex)
 
 	ret = pipe(pipex->pipe_fd);
 	if (ret == -1)
-		exit_with_error(pipex, "pipe");
+		exit_with_error(pipex, "pipe()");
 }
 
 void	run_read_side(t_pipex *pipex, int i)

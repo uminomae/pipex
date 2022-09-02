@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:50:49 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 16:34:39 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:03:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	close_unused_file_descriptor(t_pipex *pipex, int fd)
 
 	ret = close(fd);
 	if (ret == -1)
-		exit_with_error(pipex, "close");
+		exit_with_error(pipex, "close()");
 	return (ret);
 }
 
