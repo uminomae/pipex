@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_exit.c                                       :+:      :+:    :+:   */
+/*   pipexexit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -23,12 +23,12 @@ void	free_struct(t_pipex *pipex)
 void	exit_successfully_child_process(t_pipex *pipex)
 {
 	free_struct(pipex);
-	_exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	exit_with_error_child_process(t_pipex *pipex, char *str)
 {
 	free_struct(pipex);
 	perror(str);
-	_exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
