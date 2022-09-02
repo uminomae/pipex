@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 16:03:45 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:25:31 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	init_struct(t_pipex *pipex, char **argv, char **env);
 int		close_unused_file_descriptor(t_pipex *pipex, int fd);
 void	close_both_pipe(t_pipex *pipex);
 //exit
-void	exit_successfully_child_process(t_pipex *pipex);
+void	exit_successfully(t_pipex *pipex);
 void	exit_with_error_child_process(t_pipex *pipex, char *str);
 // free
 void	free_struct(t_pipex *pipex);
@@ -101,7 +101,8 @@ size_t	get_path_line_from_env(t_pipex *pipex);
 char	**split_list_of_directry_from_path_line(\
 			t_pipex *pipex, size_t path_index);
 char	**join_slash_path_of_directry(t_pipex *pipex, char **list_of_directry);
-size_t	count_pointer_including_null(char **list);
+size_t	scale_list_including_null(char **list);
+
 //make v_argv
 char	**split_virtual_argv_from_real_argv(\
 			t_pipex *pipex, char *command_from_argv);
