@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 16:12:44 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:35:33 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, \
 
 	temp_devided_list = ft_split(pipex->env[path_index], ':');
 	if (temp_devided_list == NULL)
-		exit_with_error_child_process(pipex, "ft_split");
+		exit_with_error(pipex, "ft_split");
 	trim_len = ft_strlen("PATH=");
 	tmp = temp_devided_list[0];
 	temp_devided_list[0] = ft_substr(temp_devided_list[0] + trim_len, 0, \
@@ -54,13 +54,13 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	list_size = scale_list_including_null(temp_devided_list);
 	list_of_directry = malloc(sizeof(char *) * list_size);
 	if (list_of_directry == NULL)
-		exit_with_error_child_process(pipex, "malloc");
+		exit_with_error(pipex, "malloc");
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
 		list_of_directry[i] = ft_strjoin(temp_devided_list[i], "/");
 		if (list_of_directry == NULL)
-			exit_with_error_child_process(pipex, "ft_strjoin");
+			exit_with_error(pipex, "ft_strjoin");
 		i++;
 	}
 	list_of_directry[i] = NULL;

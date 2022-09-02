@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 15:48:47 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:33:22 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_child_process_by_fork_func(t_pipex *pipex, int i)
 	if (pid[i] == -1)
 	{
 		close_both_pipe(pipex);
-		exit_with_error_child_process(pipex, "fork");
+		exit_with_error(pipex, "fork");
 	}
 }
 
@@ -37,7 +37,7 @@ void	open_file(t_pipex *pipex, int in_out)
 			open(argv[4], O_WRONLY | O_CLOEXEC | O_CREAT | O_TRUNC, \
 							S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (file[READ] == -1 | file[WRITE] == -1)
-		exit_with_error_child_process(pipex, "open");
+		exit_with_error(pipex, "open");
 }
 
 void	duplicate_to_standard_in_out(t_pipex *pipex, \
@@ -49,11 +49,11 @@ void	duplicate_to_standard_in_out(t_pipex *pipex, \
 	ret_in = dup2(file_for_reading, STDIN_FILENO);
 	close_unused_file_descriptor(pipex, file_for_reading);
 	if (ret_in == -1)
-		exit_with_error_child_process(pipex, "dup2");
+		exit_with_error(pipex, "dup2");
 	ret_out = dup2(file_for_writing, STDOUT_FILENO);
 	close_unused_file_descriptor(pipex, file_for_writing);
 	if (ret_out == -1)
-		exit_with_error_child_process(pipex, "dup2");
+		exit_with_error(pipex, "dup2");
 }
 
 void	wait_pid_for_child_process(t_pipex *pipex, int i)
@@ -63,5 +63,5 @@ void	wait_pid_for_child_process(t_pipex *pipex, int i)
 
 	ret_pid = waitpid(pipex->pid[i], &child_status, 0);
 	if (ret_pid == -1)
-		exit_with_error_child_process(pipex, "waitpid");
+		exit_with_error(pipex, "waitpid");
 }

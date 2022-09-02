@@ -26,7 +26,7 @@ void	exit_successfully(t_pipex *pipex)
 	exit(EXIT_FAILURE);
 }
 
-void	exit_with_error_child_process(t_pipex *pipex, char *str)
+void	exit_with_error(t_pipex *pipex, char *str)
 {
 	free_struct(pipex);
 	perror(str);
