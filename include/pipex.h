@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 03:05:45 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 03:34:48 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,14 @@ typedef struct s_pipex
 //begin
 void	validate_number_of_arguments(int argc);
 void	init_struct(t_pipex *pipex, char **argv, char **env);
-//close
+//close end
 void	close_unused_file_descriptor(t_v_argv *v_argv, int fd);
 void	close_both_pipe(t_v_argv *v_argv, int *pipe_fd);
-//end
 void	safe_free(char **malloc_ptr);
 void	exit_successfully(t_v_argv *v_argv);
 void	exit_with_error(t_v_argv *v_argv, char *str);
-// free
+//free struct
 void	free_struct(t_v_argv *v_argv);
-//void	free_list_absolute_path_of_command(t_v_argv *v);
-//void	free_virtual_argv(t_v_argv *v);
-//void	free_list_of_directry(t_v_argv *v);
-//void	free_temp_devided_list(t_v_argv *v);
 //run
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	duplicate_and_execute(t_pipex *pipex, \
@@ -88,13 +83,13 @@ void	open_files_on_purpose(t_v_argv *v_argv, char *const *argv, int *fd, int in_
 void	duplicate_to_standard_in_out(t_v_argv *v_argv, \
 							int fd_for_read, int fd_for_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
-//exe get path
+// exe
+void	execute_command(t_pipex *pipex, char *argv);
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**split_list_of_directry_from_path_line(\
 			t_pipex *pipex, size_t path_index);
 char	**join_slash_path_of_directry(t_pipex *pipex, char **list_of_directry);
 size_t	scale_list_including_null(char **list);
-//exe make v_argv
 char	**split_virtual_argv_from_real_argv(\
 			t_pipex *pipex, char *command_from_argv);
 char	**join_file_and_directry_name_to_get_absolute_path(\
@@ -102,7 +97,5 @@ char	**join_file_and_directry_name_to_get_absolute_path(\
 int		get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
-//execute
-void	execute_command(t_pipex *pipex, char *argv);
 
 #endif

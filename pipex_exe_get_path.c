@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:41:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 03:39:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, \
 	char	**temp_devided_list;
 	void	*tmp;
 
+	// rename split
 	temp_devided_list = ft_split(pipex->env[path_index], ':');
 	if (temp_devided_list == NULL)
 		exit_with_error(&pipex->v_argv, "ft_split()");
+	// rename trim
 	trim_len = ft_strlen("PATH=");
 	tmp = temp_devided_list[0];
 	temp_devided_list[0] = ft_substr(temp_devided_list[0] + trim_len, 0, \
@@ -50,7 +52,8 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	size_t	i;
 	size_t	list_size;
 
-	list_of_directry = NULL;
+	//list_of_directry = NULL;
+	// rename scale nad alloc
 	list_size = scale_list_including_null(temp_devided_list);
 	list_of_directry = malloc(sizeof(char *) * list_size);
 	if (list_of_directry == NULL)

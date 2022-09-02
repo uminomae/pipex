@@ -12,9 +12,8 @@ SRCS		:= 	pipex_main.c \
 				pipex_execute.c \
 				pipex_exe_get_path.c \
 				pipex_exe_make_v_argv.c \
-				pipex_close.c \
 				pipex_free_struct.c \
-				pipex_end.c \
+				pipex_close_end.c \
 
 LIBFT		= $(LIBDIR)libft.a
 INCLUDE		= -I$(INCDIR)
@@ -49,7 +48,7 @@ $(NAME): $(OBJECTS) $(LIBFT)
 	@echo $(GREEN)"----- $(NAME) $(CC) done-----"$(RESET)
 
 $(OBJDIR)/%.o: %.c
-	@echo $(SKYBLUE)-mkdir -p $(OBJDIR) $(RESET)
+	@echo $(SKYBLUE) -mkdir -p $(OBJDIR) $(RESET)
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDE) -c $< -o $@
 
 $(LIBFT): FORCE
