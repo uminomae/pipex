@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:50:49 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 02:03:56 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:05:50 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	close_unused_file_descriptor(t_v_argv *v_argv, int fd)
 	ret = close(fd);
 	if (ret == -1)
 		exit_with_error(v_argv, "close()");
-	//return (ret);
 }
 
 void	close_both_pipe(t_v_argv *v_argv, int *pipe_fd)
