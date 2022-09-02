@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:38:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:54:38 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ typedef struct s_pipex
 void	validate_number_of_arguments(int argc);
 void	init_struct(t_pipex *pipex, char **argv, char **env);
 //close
-int		close_unused_file_descriptor(t_pipex *pipex, int fd);
+//int		close_unused_file_descriptor(t_pipex *pipex, int fd);
+int	close_unused_file_descriptor(t_v_argv *v_argv, int fd);
 void	close_both_pipe(t_pipex *pipex);
 //exit
 //void	exit_successfully(t_pipex *pipex);

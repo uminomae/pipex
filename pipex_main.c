@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:50:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:55:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ static void	run_read_side(t_pipex *pipex, int i)
 	create_child_process_by_fork_func(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		close_unused_file_descriptor(pipex, pipe[i]);
+		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
 		execute_command(pipex, pipex->argv[2]);
-		close_unused_file_descriptor(pipex, file[i]);
+		close_unused_file_descriptor(&pipex->v_argv, file[i]);
 		exit_successfully(&pipex->v_argv);
 	}
 	wait_pid_for_child_process(pipex, i);
@@ -74,11 +74,11 @@ static void	run_write_side(t_pipex *pipex, int i)
 	create_child_process_by_fork_func(pipex, i);
 	if (pipex->pid[i] == 0)
 	{
-		close_unused_file_descriptor(pipex, pipe[i]);
+		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
 		open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
 		execute_command(pipex, pipex->argv[3]);
-		close_unused_file_descriptor(pipex, file[i]);
+		close_unused_file_descriptor(&pipex->v_argv, file[i]);
 		exit_successfully(&pipex->v_argv);
 	}
 	close_both_pipe(pipex);
