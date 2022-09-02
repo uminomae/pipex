@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 18:06:15 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:12:14 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex,	\
 	char	**virtual_argv;
 
 	if (command_from_argv == NULL)
-		//exit_with_error(pipex, "argv");
 		ft_putendl_fd("error : no command" , STDERR_FILENO);
 	virtual_argv = ft_split(command_from_argv, ' ');
 	if (virtual_argv == NULL)
@@ -61,7 +60,6 @@ int	get_index_accessible_path(char **list_absolute_path_of_command)
 			return (i);
 		i++;
 	}
-	//exit_with_error(pipex, "access()");
 	return (-1);
 }
 
