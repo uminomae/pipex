@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:16 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:41:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:30:11 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	execute_command(t_pipex *pipex, char *command_from_argv)
 	v = &pipex->v_argv;
 	get_path_from_env_and_make_list(pipex, v);
 	virtual_argv = make_virtual_argv(pipex, v, command_from_argv);
+	//TODO err 
 	//virtual_argv[0] = NULL;
 	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
 	if (ret == -1)

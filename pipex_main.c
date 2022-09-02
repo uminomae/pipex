@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 02:21:16 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:51:41 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 static void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv);
-static void	run_read_side(t_pipex *pipex, int i);
-static void	run_write_side(t_pipex *pipex, int i);
+static void	run_child(t_pipex *pipex, int in_out);
 
 int	main(int argc, char **argv, char **env)
 {
@@ -23,8 +22,8 @@ int	main(int argc, char **argv, char **env)
 
 	begin_pipex(&pipex, argc, argv, env);
 	create_pipe_fd(pipex.pipe_fd, &pipex.v_argv);
-	run_read_side(&pipex, READ);
-	run_write_side(&pipex, WRITE);
+	run_child(&pipex, READ);
+	run_child(&pipex, WRITE);
 	return (0);
 }
 
@@ -43,7 +42,15 @@ static void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv)
 		exit_with_error(v_argv, "pipe()");
 }
 
-static void	run_read_side(t_pipex *pipex, int i)
+void	duplicate_and_execute(t_pipex *pipex, \
+					int fd_for_read, int fd_for_write, char *command_from_argv)
+{
+	duplicate_to_standard_in_out(&pipex->v_argv, \
+									fd_for_read, fd_for_write);
+	execute_command(pipex, command_from_argv);
+}
+
+static void	run_child(t_pipex *pipex, int in_out)
 {
 	char *const	*argv = (char *const *)pipex->argv;
 	const int	*pipe = pipex->pipe_fd;
@@ -53,32 +60,16 @@ static void	run_read_side(t_pipex *pipex, int i)
 	process_id = create_child_process_by_fork_func(pipex);
 	if (process_id == 0)
 	{
-		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
-		open_files_on_purpose(&pipex->v_argv, argv, file_fd, i);
-		duplicate_to_standard_in_out(&pipex->v_argv, file_fd[READ], pipe[WRITE]);
-		execute_command(pipex, argv[2]);
-		close_unused_file_descriptor(&pipex->v_argv, file_fd[i]);
+		close_unused_file_descriptor(&pipex->v_argv, pipe[in_out]);
+		open_files_on_purpose(&pipex->v_argv, argv, file_fd, in_out);
+		if (in_out == READ)
+			duplicate_and_execute(pipex, file_fd[READ], pipe[WRITE],  argv[2]);
+		else if (in_out == WRITE)
+			duplicate_and_execute(pipex, pipe[READ], file_fd[WRITE],  argv[3]);
+		close_unused_file_descriptor(&pipex->v_argv, file_fd[in_out]);
 		exit_successfully(&pipex->v_argv);
 	}
+	if (in_out == WRITE)
+		close_both_pipe(&pipex->v_argv, pipex->pipe_fd);
 	wait_pid_for_child_process(&pipex->v_argv, process_id);
-}
-
-static void	run_write_side(t_pipex *pipex, int i)
-{
-	const int	*pipe = pipex->pipe_fd;
-	int *const	file = pipex->file_fd;
-	pid_t	process_id;
-
-	process_id = create_child_process_by_fork_func(pipex);
-	if (process_id == 0)
-	{
-		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
-		open_files_on_purpose(&pipex->v_argv, pipex->argv, file, i);
-		duplicate_to_standard_in_out(&pipex->v_argv, pipe[READ], file[WRITE]);
-		execute_command(pipex, pipex->argv[3]);
-		close_unused_file_descriptor(&pipex->v_argv, file[i]);
-		exit_successfully(&pipex->v_argv);
-	}
-	close_both_pipe(&pipex->v_argv, pipex->pipe_fd);
-	wait_pid_for_child_process(&pipex->v_argv, process_id);	
 }

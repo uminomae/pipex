@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 02:08:20 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 02:50:27 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	free_temp_devided_list(t_v_argv *v);
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	open_files_on_purpose(t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
 //void	duplicate_to_standard_in_out(\
-			//t_pipex *pipex, int file_for_reading, int file_for_writing);
+			//t_pipex *pipex, int fd_for_read, int fd_for_write);
 void	duplicate_to_standard_in_out(t_v_argv *v_argv, \
-							int file_for_reading, int file_for_writing);
+							int fd_for_read, int fd_for_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
 //exe get path
 size_t	get_path_line_from_env(t_pipex *pipex);
