@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 03:39:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 03:45:10 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
+		// rename join
 		list_of_directry[i] = ft_strjoin(temp_devided_list[i], "/");
 		if (list_of_directry == NULL)
 			exit_with_error(&pipex->v_argv, "ft_strjoin()");
