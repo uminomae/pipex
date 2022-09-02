@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:32:27 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:38:57 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ void	init_struct(t_pipex *pipex, char **argv, char **env);
 int		close_unused_file_descriptor(t_pipex *pipex, int fd);
 void	close_both_pipe(t_pipex *pipex);
 //exit
-void	exit_successfully(t_pipex *pipex);
-void	exit_with_error(t_pipex *pipex, char *str);
+//void	exit_successfully(t_pipex *pipex);
+void	exit_successfully(t_v_argv *v_argv);
+//void	exit_with_error(t_pipex *pipex, char *str);
+void	exit_with_error(t_v_argv *v_argv, char *str);
+
 // free
 void	safe_free(char **malloc_ptr);
 void	free_list_absolute_path_of_command(t_v_argv *v);

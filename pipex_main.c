@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 17:58:32 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:41:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	create_pipe_fd(t_pipex *pipex)
 
 	ret = pipe(pipex->pipe_fd);
 	if (ret == -1)
-		exit_with_error(pipex, "pipe()");
+		exit_with_error(&pipex->v_argv, "pipe()");
 }
 
 static void	run_read_side(t_pipex *pipex, int i)
@@ -56,7 +56,7 @@ static void	run_read_side(t_pipex *pipex, int i)
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
 		execute_command(pipex, pipex->argv[2]);
 		close_unused_file_descriptor(pipex, file[i]);
-		exit_successfully(pipex);
+		exit_successfully(&pipex->v_argv);
 	}
 	wait_pid_for_child_process(pipex, i);
 }
@@ -74,7 +74,7 @@ static void	run_write_side(t_pipex *pipex, int i)
 		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
 		execute_command(pipex, pipex->argv[3]);
 		close_unused_file_descriptor(pipex, file[i]);
-		exit_successfully(pipex);
+		exit_successfully(&pipex->v_argv);
 	}
 	close_both_pipe(pipex);
 	wait_pid_for_child_process(pipex, i);

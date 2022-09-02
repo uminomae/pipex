@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:16 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:26:05 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:41:11 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	execute_command(t_pipex *pipex, char *command_from_argv)
 	//virtual_argv[0] = NULL;
 	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
 	if (ret == -1)
-		exit_with_error(pipex, "execve()");
+		exit_with_error(&pipex->v_argv, "execve()");
 }
 
 //Get the path from the environment variable and make a list
@@ -56,7 +56,7 @@ static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
 						pipex, v->list_of_directry, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == -1)
-		exit_with_error(pipex, "access()");
+		exit_with_error(&pipex->v_argv, "access()");
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }

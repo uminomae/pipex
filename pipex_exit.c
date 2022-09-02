@@ -28,15 +28,16 @@ static void	free_struct(t_v_argv *v_argv)
 //	free_temp_devided_list(&pipex->v_argv);
 //}
 
-void	exit_successfully(t_pipex *pipex)
+void	exit_successfully(t_v_argv *v_argv)
+//void	exit_successfully(t_pipex *pipex)
 {
-	free_struct(&pipex->v_argv);
+	free_struct(v_argv);
 	exit(EXIT_FAILURE);
 }
 
-void	exit_with_error(t_pipex *pipex, char *str)
+void	exit_with_error(t_v_argv *v_argv, char *str)
 {
-	free_struct(&pipex->v_argv);
+	free_struct(v_argv);
 	perror(str);
 	exit(EXIT_FAILURE);
 }
