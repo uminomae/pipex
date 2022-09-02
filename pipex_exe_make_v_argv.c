@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/01 00:55:55 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:03:04 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ size_t	get_index_accessible_path(t_pipex *pipex, \
 	}
 	ft_putstr_fd(" command not found: ", 2);
 	ft_putendl_fd(pipex->v_argv.command_name, 2);
-	set_free_together(pipex);
+	free_struct(pipex);
 	_exit(EXIT_FAILURE);
 	return (-1);
 }

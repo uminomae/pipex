@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 15:55:46 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:03:45 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	close_both_pipe(t_pipex *pipex);
 void	exit_successfully_child_process(t_pipex *pipex);
 void	exit_with_error_child_process(t_pipex *pipex, char *str);
 // free
-void	set_free_together(t_pipex *pipex);
+void	free_struct(t_pipex *pipex);
 void	safe_free(char **malloc_ptr);
 void	free_list_absolute_path_of_command(t_v_argv *v);
 void	free_virtual_argv(t_v_argv *v);
