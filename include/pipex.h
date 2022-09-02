@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 00:56:58 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 01:57:43 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ void	validate_number_of_arguments(int argc);
 void	init_struct(t_pipex *pipex, char **argv, char **env);
 //close
 int		close_unused_file_descriptor(t_v_argv *v_argv, int fd);
-void	close_both_pipe(t_pipex *pipex);
+//void	close_both_pipe(t_pipex *pipex);
+
+void	close_both_pipe(t_v_argv *v_argv, int *pipe_fd);
 //exit
 void	exit_successfully(t_v_argv *v_argv);
 void	exit_with_error(t_v_argv *v_argv, char *str);
@@ -81,12 +83,15 @@ void	free_virtual_argv(t_v_argv *v);
 void	free_list_of_directry(t_v_argv *v);
 void	free_temp_devided_list(t_v_argv *v);
 //run
-void	create_child_process_by_fork_func(t_pipex *pipex, int i);
+//void	create_child_process_by_fork_func(t_pipex *pipex, int i);
+pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 //void	open_files_on_purpose(t_v_argv *v_argv, char **argv, int *fd, int in_out);
 void	open_files_on_purpose(t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
 void	duplicate_to_standard_in_out(\
 			t_pipex *pipex, int file_for_reading, int file_for_writing);
-void	wait_pid_for_child_process(t_pipex *pipex, int i);
+//void	wait_pid_for_child_process(t_pipex *pipex, int i);
+
+void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
 //exe get path
 size_t	get_path_line_from_env(t_pipex *pipex);
 char	**split_list_of_directry_from_path_line(\
