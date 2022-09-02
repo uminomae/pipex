@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/01 00:58:19 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:00:20 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void	free_list_absolute_path_of_command(t_v_argv *v)
 	}
 	free(v->list_absolute_path_of_command[i]);
 	free(v->list_absolute_path_of_command);
+	//v->list_absolute_path_of_command = NULL;
 }
