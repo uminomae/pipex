@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 17:53:21 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:06:15 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, \
 	return (list_absolute_path_of_command);
 }
 
-int	get_index_accessible_path(t_pipex *pipex, \
-									char **list_absolute_path_of_command)
+int	get_index_accessible_path(char **list_absolute_path_of_command)
 {
 	int	i;
 
@@ -62,11 +61,7 @@ int	get_index_accessible_path(t_pipex *pipex, \
 			return (i);
 		i++;
 	}
-	exit_with_error(pipex, "access()");
-	//ft_putstr_fd("access failed", STDERR_FILENO);
-	//ft_putendl_fd(pipex->v_argv.command_name, STDERR_FILENO);
-	//free_struct(pipex);
-	//exit(EXIT_FAILURE);
+	//exit_with_error(pipex, "access()");
 	return (-1);
 }
 

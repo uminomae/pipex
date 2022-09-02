@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:16 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/01 00:57:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:07:15 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
 							char *command_from_argv)
 {
-	size_t	index;
+	int	index;
 
 	v->virtual_argv = \
 			split_virtual_argv_from_real_argv(pipex, command_from_argv);
 	v->list_absolute_path_of_command = \
 					join_file_and_directry_name_to_get_absolute_path(\
 						pipex, v->list_of_directry, v->virtual_argv[0]);
-	index = get_index_accessible_path(pipex, v->list_absolute_path_of_command);
+	index = get_index_accessible_path(v->list_absolute_path_of_command);
+	if (index == -1)
+		exit_with_error(pipex, "access()");
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }

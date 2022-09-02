@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 17:03:08 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:06:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ typedef struct s_pipex
 //#define S_IROTH         0000004         /* [XSI] R for other */
 
 //main
-void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
-void	create_pipe_fd(t_pipex *pipex);
-void	run_read_side(t_pipex *pipex, int i);
-void	run_write_side(t_pipex *pipex, int i);
+//void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
+//void	create_pipe_fd(t_pipex *pipex);
+//void	run_read_side(t_pipex *pipex, int i);
+//void	run_write_side(t_pipex *pipex, int i);
 //begin
 //void	check_for_valid_value(int argc);
 void	validate_number_of_arguments(int argc);
@@ -84,7 +84,7 @@ void	close_both_pipe(t_pipex *pipex);
 void	exit_successfully(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str);
 // free
-void	free_struct(t_pipex *pipex);
+//void	free_struct(t_pipex *pipex);
 void	safe_free(char **malloc_ptr);
 void	free_list_absolute_path_of_command(t_v_argv *v);
 void	free_virtual_argv(t_v_argv *v);
@@ -108,8 +108,7 @@ char	**split_virtual_argv_from_real_argv(\
 			t_pipex *pipex, char *command_from_argv);
 char	**join_file_and_directry_name_to_get_absolute_path(\
 			t_pipex *pipex, char **list_of_directry, char *command_name);
-int	get_index_accessible_path(\
-			t_pipex *pipex, char **list_absolute_path_of_command);
+int	get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
 //execute

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 15:58:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:56:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@ void	validate_number_of_arguments(int argc)
 		return ;
 	else
 	{
-		//TODO func OK
 		ft_putendl_fd("error : 5 arguments are required" , STDERR_FILENO);
-		//perror("argc");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void	init_struct(t_pipex *pipex, char **argv, char **env)
 {
-	//pipex->argc = argc;
 	pipex->argv = argv;
 	pipex->env = env;
 	pipex->v_argv.list_absolute_path_of_command = NULL;
