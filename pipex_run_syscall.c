@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/01 01:00:06 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 13:56:49 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	create_child_process_by_fork_func(t_pipex *pipex, int i)
 	}
 }
 
-//file[WRITE] is likea a chmod 644
+//file[WRITE] is like a chmod 644
 void	open_file(t_pipex *pipex, int in_out)
 {
 	char *const	*argv = (char *const *)pipex->argv;
