@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 15:55:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:07:34 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	run_read_side(t_pipex *pipex, int i)
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
 		execute_command(pipex, pipex->argv[2]);
 		close_unused_file_descriptor(pipex, file[i]);
-		exit_successfully_child_process(pipex);
+		exit_successfully(pipex);
 	}
 	wait_pid_for_child_process(pipex, i);
 }
@@ -70,7 +70,7 @@ void	run_write_side(t_pipex *pipex, int i)
 		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
 		execute_command(pipex, pipex->argv[3]);
 		close_unused_file_descriptor(pipex, file[i]);
-		exit_successfully_child_process(pipex);
+		exit_successfully(pipex);
 	}
 	close_both_pipe(pipex);
 	wait_pid_for_child_process(pipex, i);

@@ -20,7 +20,7 @@ void	free_struct(t_pipex *pipex)
 	free_temp_devided_list(&pipex->v_argv);
 }
 
-void	exit_successfully_child_process(t_pipex *pipex)
+void	exit_successfully(t_pipex *pipex)
 {
 	free_struct(pipex);
 	exit(EXIT_FAILURE);
