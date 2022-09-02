@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 16:05:21 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:12:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, \
 	size_t	num;
 
 	list_absolute_path_of_command = NULL;
-	num = count_pointer_including_null(list_of_directry);
+	num = scale_list_including_null(list_of_directry);
 	list_absolute_path_of_command = malloc(sizeof(char *) * num);
 	i = 0;
 	while (list_of_directry[i] != NULL)

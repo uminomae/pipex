@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/01 00:53:55 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:12:44 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 {
 	char	**list_of_directry;
 	size_t	i;
-	size_t	len;
+	size_t	list_size;
 
 	list_of_directry = NULL;
-	len = count_pointer_including_null(temp_devided_list);
-	list_of_directry = malloc(sizeof(char *) * len);
+	list_size = scale_list_including_null(temp_devided_list);
+	list_of_directry = malloc(sizeof(char *) * list_size);
 	if (list_of_directry == NULL)
 		exit_with_error_child_process(pipex, "malloc");
 	i = 0;
@@ -67,7 +67,7 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	return (list_of_directry);
 }
 
-size_t	count_pointer_including_null(char **list)
+size_t	scale_list_including_null(char **list)
 {
 	size_t	count;
 
