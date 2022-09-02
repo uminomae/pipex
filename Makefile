@@ -8,6 +8,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
 				pipex_run.c \
 				pipex_run_dup.c \
+				pipex_run_open.c \
 				pipex_execute.c \
 				pipex_exe_get_path.c \
 				pipex_exe_make_v_argv.c \
@@ -43,11 +44,12 @@ endif
 
 
 $(NAME): $(OBJECTS) $(LIBFT)
+	@echo $(BLUE)"----- $(NAME) $(CC) start-----"$(RESET)
 	$(CC) -o $@ $^ $(CFLAGS) $(DFLAGS) $(INCLUDE) $(MFLAGS)
 	@echo $(GREEN)"----- $(NAME) $(CC) done-----"$(RESET)
 
 $(OBJDIR)/%.o: %.c
-	-mkdir -p $(OBJDIR)
+	@echo $(SKYBLUE)-mkdir -p $(OBJDIR) $(RESET)
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDE) -c $< -o $@
 
 $(LIBFT): FORCE
@@ -85,4 +87,7 @@ debug: re
 RED			=	"\033[31m"
 GREEN		=	"\033[32m"
 YELLOW		=	"\033[33m"
+BLUE		=	"\033[34m"
+PURPLE		=	"\033[35m"
+SKYBLUE		=	"\033[36m"
 RESET		=	"\033[0m"

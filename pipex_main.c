@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:55:16 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 00:55:27 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	create_pipe_fd(int pipe_fd[], t_v_argv *v_argv)
 
 static void	run_read_side(t_pipex *pipex, int i)
 {
+	char	*const	*argv = (char *const *)pipex->argv;
 	const int	*pipe = pipex->pipe_fd;
 	int *const	file = pipex->file_fd;
 
@@ -57,9 +58,11 @@ static void	run_read_side(t_pipex *pipex, int i)
 	if (pipex->pid[i] == 0)
 	{
 		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
-		open_file(pipex, i);
+		open_files_on_purpose(&pipex->v_argv, argv, file, i);
+		//open_file(pipex, i);
 		duplicate_to_standard_in_out(pipex, file[READ], pipe[WRITE]);
-		execute_command(pipex, pipex->argv[2]);
+		execute_command(pipex, argv[2]);
+		//execute_command(pipex, pipex->argv[2]);
 		close_unused_file_descriptor(&pipex->v_argv, file[i]);
 		exit_successfully(&pipex->v_argv);
 	}
@@ -75,7 +78,8 @@ static void	run_write_side(t_pipex *pipex, int i)
 	if (pipex->pid[i] == 0)
 	{
 		close_unused_file_descriptor(&pipex->v_argv, pipe[i]);
-		open_file(pipex, i);
+		open_files_on_purpose(&pipex->v_argv, pipex->argv, file, i);
+		//open_files_on_purpose(pipex, i);
 		duplicate_to_standard_in_out(pipex, pipe[READ], file[WRITE]);
 		execute_command(pipex, pipex->argv[3]);
 		close_unused_file_descriptor(&pipex->v_argv, file[i]);

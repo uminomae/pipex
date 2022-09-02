@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 23:54:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 00:56:58 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,10 @@ typedef struct s_pipex
 void	validate_number_of_arguments(int argc);
 void	init_struct(t_pipex *pipex, char **argv, char **env);
 //close
-//int		close_unused_file_descriptor(t_pipex *pipex, int fd);
-int	close_unused_file_descriptor(t_v_argv *v_argv, int fd);
+int		close_unused_file_descriptor(t_v_argv *v_argv, int fd);
 void	close_both_pipe(t_pipex *pipex);
 //exit
-//void	exit_successfully(t_pipex *pipex);
 void	exit_successfully(t_v_argv *v_argv);
-//void	exit_with_error(t_pipex *pipex, char *str);
 void	exit_with_error(t_v_argv *v_argv, char *str);
 
 // free
@@ -85,7 +82,8 @@ void	free_list_of_directry(t_v_argv *v);
 void	free_temp_devided_list(t_v_argv *v);
 //run
 void	create_child_process_by_fork_func(t_pipex *pipex, int i);
-void	open_file(t_pipex *pipex, int in_out);
+//void	open_files_on_purpose(t_v_argv *v_argv, char **argv, int *fd, int in_out);
+void	open_files_on_purpose(t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
 void	duplicate_to_standard_in_out(\
 			t_pipex *pipex, int file_for_reading, int file_for_writing);
 void	wait_pid_for_child_process(t_pipex *pipex, int i);
