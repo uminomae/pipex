@@ -12,6 +12,7 @@
 
 #include "pipex.h"
 
+//TODO
 static void	free_struct(t_pipex *pipex)
 {
 	free_list_absolute_path_of_command(&pipex->v_argv);

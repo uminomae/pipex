@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 18:06:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:28:52 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_v_argv
 typedef struct s_pipex
 {
 	pid_t			pid[2];
-	//int				argc;
 	char			**argv;
 	char			**env;
 	int				pipe_fd[2];
@@ -48,8 +47,8 @@ typedef struct s_pipex
 
 # define READ 0
 # define WRITE 1
-# define STANDARD_INPUT 0
-# define STANDARD_OUTPUT 1
+//# define STANDARD_INPUT 0
+//# define STANDARD_OUTPUT 1
 
 // <fcntl.h>
 ///* open-only flags */
@@ -67,16 +66,10 @@ typedef struct s_pipex
 ///* Read, write, execute/search by others */
 //#define S_IROTH         0000004         /* [XSI] R for other */
 
-//main
-//void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
-//void	create_pipe_fd(t_pipex *pipex);
-//void	run_read_side(t_pipex *pipex, int i);
-//void	run_write_side(t_pipex *pipex, int i);
 //begin
 //void	check_for_valid_value(int argc);
 void	validate_number_of_arguments(int argc);
 void	init_struct(t_pipex *pipex, char **argv, char **env);
-//void	init_struct(t_pipex *pipex, int argc, char **argv, char **env);
 //close
 int		close_unused_file_descriptor(t_pipex *pipex, int fd);
 void	close_both_pipe(t_pipex *pipex);
@@ -112,9 +105,6 @@ int	get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
 //execute
-void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
-char	**make_virtual_argv(\
-			t_pipex *pipex, t_v_argv *v, char *command_from_argv);
 void	execute_command(t_pipex *pipex, char *argv);
 
 #endif

@@ -6,11 +6,15 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:16 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/02 18:16:15 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:26:05 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
+static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
+								char *command_from_argv);
 
 void	execute_command(t_pipex *pipex, char *command_from_argv)
 {
@@ -28,7 +32,7 @@ void	execute_command(t_pipex *pipex, char *command_from_argv)
 }
 
 //Get the path from the environment variable and make a list
-void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
+static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 {
 	size_t		path_line;
 
@@ -40,7 +44,7 @@ void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 }
 
 //Create an accessible absolute path from environment var and arg
-char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
+static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
 							char *command_from_argv)
 {
 	int	index;
