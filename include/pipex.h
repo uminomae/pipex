@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:13:34 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:32:22 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
 //exe util
-char	**split_str(t_v_argv *v_argv,char *str, char at_that);
+char	**split_str(t_v_argv *v_argv, char *str, char at_that);
 void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size);
 char	*join_str(t_v_argv *v_argv, char *str, char *str_to_add);
 size_t	scale_list_including_null(char **list);

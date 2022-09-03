@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:22:14 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:30:31 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static void	run_child(t_pipex *pipex, int in_out)
 		close_unused_file_descriptor(&pipex->v_argv, pipe[in_out]);
 		open_files_on_purpose(&pipex->v_argv, argv, file_fd, in_out);
 		if (in_out == READ)
-			duplicate_and_execute(pipex, file_fd[READ], pipe[WRITE],  argv[2]);
+			duplicate_and_execute(pipex, file_fd[READ], pipe[WRITE], argv[2]);
 		else if (in_out == WRITE)
-			duplicate_and_execute(pipex, pipe[READ], file_fd[WRITE],  argv[3]);
+			duplicate_and_execute(pipex, pipe[READ], file_fd[WRITE], argv[3]);
 		close_unused_file_descriptor(&pipex->v_argv, file_fd[in_out]);
 		exit_successfully(&pipex->v_argv);
 	}
