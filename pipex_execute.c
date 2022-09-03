@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:16 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 02:30:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:21:00 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@ void	execute_command(t_pipex *pipex, char *command_from_argv)
 {
 	char		**virtual_argv;
 	t_v_argv	*v;
+	//size_t		path_line;
 	int			ret;
 
 	v = &pipex->v_argv;
 	get_path_from_env_and_make_list(pipex, v);
+	//path_line = get_path_line_from_env(pipex);
+	//v->temp_devided_list = \
+	//				split_list_of_directry_from_path_line(pipex, path_line);
+	//v->list_of_directry = \
+	//				join_slash_path_of_directry(pipex, v->temp_devided_list);
+
 	virtual_argv = make_virtual_argv(pipex, v, command_from_argv);
 	//TODO err 
 	//virtual_argv[0] = NULL;
@@ -37,7 +44,7 @@ static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 {
 	size_t		path_line;
 
-	path_line = get_path_line_from_env(pipex);
+	path_line = get_path_line_from_env(pipex->env, "PATH=", ft_strlen("PATH="));
 	v->temp_devided_list = \
 					split_list_of_directry_from_path_line(pipex, path_line);
 	v->list_of_directry = \
