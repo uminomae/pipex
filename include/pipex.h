@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:12:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:13:34 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ void	duplicate_and_execute(t_pipex *pipex, \
 				int fd_for_read, int fd_for_write, char *command_from_argv);
 void	open_files_on_purpose(\
 		t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
-//void	duplicate_to_standard_in_out(t_v_argv *v_argv, \
-//							int fd_for_read, int fd_for_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
 // exe
-//void	execute_command(t_pipex *pipex, char *argv);
 size_t	get_path_line_from_env(char **env, char *str, size_t len);
 char	**split_list_of_directry_from_path_line(\
 			t_pipex *pipex, size_t path_index);
@@ -97,9 +94,6 @@ char	**join_file_and_directry_name_to_get_absolute_path(\
 int		get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
-//void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
-//char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
-//							char *command_from_argv);
 //exe util
 char	**split_str(t_v_argv *v_argv,char *str, char at_that);
 void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size);
