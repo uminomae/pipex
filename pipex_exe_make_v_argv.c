@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 03:41:05 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:28:43 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, \
 	size_t	i;
 	size_t	num;
 
-	//list_absolute_path_of_command = NULL;
-	// rename scale nad alloc
 	num = scale_list_including_null(list_of_directry);
-	list_absolute_path_of_command = malloc(sizeof(char *) * num);
-	if (list_absolute_path_of_command == NULL)
-		exit_with_error(&pipex->v_argv, "malloc()");
+	list_absolute_path_of_command = \
+				malloc_and_check_for_null(&pipex->v_argv, sizeof(char *) * num);
+	//list_absolute_path_of_command = malloc(sizeof(char *) * num);
+	//if (list_absolute_path_of_command == NULL)
+	//	exit_with_error(&pipex->v_argv, "malloc()");
 	i = 0;
 	while (list_of_directry[i] != NULL)
 	{
