@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 22:49:24 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:56:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_v_argv
 	char	**list_of_directry;
 	char	**virtual_argv;
 	char	**list_absolute_path_of_command;
-	char	*command_name;
+	//char	*command_name;
 }	t_v_argv;
 
 // pid : process ID
