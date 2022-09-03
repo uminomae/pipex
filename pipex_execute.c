@@ -6,34 +6,34 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:16 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 22:50:36 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:05:00 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
-static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
-								char *command_from_argv);
+//static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
+//static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
+//								char *command_from_argv);
 
-void	execute_command(t_pipex *pipex, char *command_from_argv)
-{
-	char		**virtual_argv;
-	t_v_argv	*v;
-	int			ret;
+//void	execute_command(t_pipex *pipex, char *command_from_argv)
+//{
+//	char		**virtual_argv;
+//	t_v_argv	*v;
+//	int			ret;
 
-	v = &pipex->v_argv;
-	get_path_from_env_and_make_list(pipex, v);
-	virtual_argv = make_virtual_argv(pipex, v, command_from_argv);
-	//TODO err 
-	//virtual_argv[0] = NULL;
-	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
-	if (ret == -1)
-		exit_with_error(&pipex->v_argv, "execve()");
-}
+//	v = &pipex->v_argv;
+//	get_path_from_env_and_make_list(pipex, v);
+//	virtual_argv = make_virtual_argv(pipex, v, command_from_argv);
+//	//TODO err 
+//	//virtual_argv[0] = NULL;
+//	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
+//	if (ret == -1)
+//		exit_with_error(&pipex->v_argv, "execve()");
+//}
 
 //Get the path from the environment variable and make a list
-static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
+void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 {
 	size_t		path_line;
 
@@ -45,7 +45,7 @@ static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 }
 
 //Create an accessible absolute path from environment var and arg
-static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
+char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
 							char *command_from_argv)
 {
 	int	index;
