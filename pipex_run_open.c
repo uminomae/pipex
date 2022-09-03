@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:35:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:59:54 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	open_read_file(int *fd, char *argv);
 static void	open_write_file(int *fd, char *argv);
-
-
 
 //file[WRITE] is like a chmod 644
 	//TODO const
