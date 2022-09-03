@@ -13,6 +13,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_exe_get_path.c \
 				pipex_exe_split_list.c \
 				pipex_exe_make_v_argv.c \
+				pipex_exe_util.c \
 				pipex_free_struct.c \
 				pipex_close_end.c \
 
