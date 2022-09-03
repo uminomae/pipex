@@ -6,14 +6,14 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:30:49 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:16:33 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**split_virtual_argv_from_real_argv(t_pipex *pipex,	\
-											char *command_from_argv)
+char	**split_virtual_argv_from_real_argv(\
+									t_pipex *pipex,	char *command_from_argv)
 {
 	char	**virtual_argv;
 
@@ -23,8 +23,8 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex,	\
 	return (virtual_argv);
 }
 
-char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, \
-									char **list_of_directry, char *command_name)
+char	**join_file_and_directry_name_to_get_absolute_path(\
+				t_pipex *pipex, char **list_of_directry, char *command_name)
 {
 	char	**list_absolute_path_of_command;
 	size_t	i;
@@ -58,8 +58,8 @@ int	get_index_accessible_path(char **list_absolute_path_of_command)
 	return (-1);
 }
 
-char	**switch_first_argv_to_absolute_path(t_pipex *pipex, \
-												t_v_argv *v, size_t index)
+char	**switch_first_argv_to_absolute_path(\
+								t_pipex *pipex, t_v_argv *v, size_t index)
 {
 	void	*tmp;
 
@@ -67,6 +67,6 @@ char	**switch_first_argv_to_absolute_path(t_pipex *pipex, \
 	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
 	if (v->virtual_argv[0] == NULL)
-		exit_with_error(&pipex->v_argv, "ft_split()");
+		exit_with_error(&pipex->v_argv, "ft_strdup()");
 	return (v->virtual_argv);
 }

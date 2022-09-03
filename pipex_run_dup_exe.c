@@ -6,29 +6,29 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:29:31 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:18:03 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	duplicate_to_standard_in_out(t_v_argv *v_argv, \
-							int fd_for_read, int fd_for_write);
+static void	duplicate_to_standard_in_out(\
+			t_v_argv *v_argv, int fd_for_read, int fd_for_write);
 static void	duplicate_and_close(t_v_argv *v_argv, int file, int fd);
 static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
-static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
-										char *command_from_argv);
+static char	**make_virtual_argv(\
+				t_pipex *pipex, t_v_argv *v, char *command_from_argv);
 
 //TODO err 
 //virtual_argv[0] = NULL;
-void	duplicate_and_execute(t_pipex *pipex, \
-					int fd_for_read, int fd_for_write, char *command_from_argv)
+void	duplicate_and_execute(\
+	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv)
 {
 	char		**virtual_argv;
 	int			ret;
 
-	duplicate_to_standard_in_out(&pipex->v_argv, \
-									fd_for_read, fd_for_write);
+	duplicate_to_standard_in_out(\
+					&pipex->v_argv, fd_for_read, fd_for_write);
 	get_path_from_env_and_make_list(pipex, &pipex->v_argv);
 	virtual_argv = make_virtual_argv(pipex, &pipex->v_argv, command_from_argv);
 	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
@@ -36,8 +36,8 @@ void	duplicate_and_execute(t_pipex *pipex, \
 		exit_with_error(&pipex->v_argv, "execve()");
 }
 
-static void	duplicate_to_standard_in_out(t_v_argv *v_argv, \
-							int fd_for_read, int fd_for_write)
+static void	duplicate_to_standard_in_out(\
+			t_v_argv *v_argv, int fd_for_read, int fd_for_write)
 {
 	duplicate_and_close(v_argv, fd_for_read, STDIN_FILENO);
 	duplicate_and_close(v_argv, fd_for_write, STDOUT_FILENO);
@@ -66,8 +66,8 @@ static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 }
 
 //Create an accessible absolute path from environment var and arg
-static char	**make_virtual_argv(t_pipex *pipex, t_v_argv *v, \
-										char *command_from_argv)
+static char	**make_virtual_argv(\
+				t_pipex *pipex, t_v_argv *v, char *command_from_argv)
 {
 	int	index;
 

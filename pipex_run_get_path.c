@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:31:00 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:16:46 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ size_t	get_path_line_from_env(char **env, char *str, size_t len)
 	return (0);
 }
 
-char	**split_list_of_directry_from_path_line(t_pipex *pipex, \
-												size_t path_index)
+char	**split_list_of_directry_from_path_line(\
+					t_pipex *pipex, size_t path_index)
 {
 	char	**temp_devided_list;
 
