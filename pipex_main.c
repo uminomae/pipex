@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 03:32:48 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:32:44 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv)
 		exit_with_error(v_argv, "pipe()");
 }
 
+// in_outでなく、ファイルを読む側かファルに書く側か
 static void	run_child(t_pipex *pipex, int in_out)
 {
 	char *const	*argv = (char *const *)pipex->argv;

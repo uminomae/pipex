@@ -6,11 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 03:45:10 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:33:15 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+//static char	**ft_split_string_at_colon(t_v_argv *v_argv,char **env, size_t path_index);
+//static char	**trim_unnecessary_characters_at_the_beginning(char	**temp_devided_list);
 
 size_t	get_path_line_from_env(t_pipex *pipex)
 {
@@ -24,26 +26,6 @@ size_t	get_path_line_from_env(t_pipex *pipex)
 		i++;
 	}
 	return (0);
-}
-
-char	**split_list_of_directry_from_path_line(t_pipex *pipex, \
-												size_t path_index)
-{
-	size_t	trim_len;
-	char	**temp_devided_list;
-	void	*tmp;
-
-	// rename split
-	temp_devided_list = ft_split(pipex->env[path_index], ':');
-	if (temp_devided_list == NULL)
-		exit_with_error(&pipex->v_argv, "ft_split()");
-	// rename trim
-	trim_len = ft_strlen("PATH=");
-	tmp = temp_devided_list[0];
-	temp_devided_list[0] = ft_substr(temp_devided_list[0] + trim_len, 0, \
-										ft_strlen(temp_devided_list[0]));
-	free(tmp);
-	return (temp_devided_list);
 }
 
 char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
