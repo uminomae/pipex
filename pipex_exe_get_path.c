@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 22:34:02 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:52:51 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**split_list_of_directry_from_path_line(t_pipex *pipex, \
 	char	**temp_devided_list;
 
 	temp_devided_list = \
-		split_str(&pipex->v_argv, pipex->env, path_index);
+		split_str(&pipex->v_argv, pipex->env[path_index], ':');
 	temp_devided_list = \
 		trim_unnecessary_characters(temp_devided_list, "PATH=");
 	return (temp_devided_list);
@@ -69,7 +69,8 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
-		list_of_directry[i] = join_str(&pipex->v_argv, temp_devided_list[i], "/");
+		list_of_directry[i] = \
+					join_str(&pipex->v_argv, temp_devided_list[i], "/");
 		i++;
 	}
 	list_of_directry[i] = NULL;

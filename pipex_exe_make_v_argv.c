@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 22:28:43 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:52:35 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ char	**split_virtual_argv_from_real_argv(t_pipex *pipex,	\
 
 	if (command_from_argv == NULL)
 		ft_putendl_fd("error : no command" , STDERR_FILENO);
-	// rename split
-	virtual_argv = ft_split(command_from_argv, ' ');
-	if (virtual_argv == NULL)
-		exit_with_error(&pipex->v_argv, "ft_split()");
-	// rename get_commnad_name
-	pipex->v_argv.command_name = virtual_argv[0];
+
+	virtual_argv = split_str(&pipex->v_argv, command_from_argv, ' ');
+	// 最後に削除する。不要？
+	//pipex->v_argv.command_name = virtual_argv[0];
 	return (virtual_argv);
 }
 
@@ -38,17 +36,11 @@ char	**join_file_and_directry_name_to_get_absolute_path(t_pipex *pipex, \
 	num = scale_list_including_null(list_of_directry);
 	list_absolute_path_of_command = \
 				malloc_and_check_for_null(&pipex->v_argv, sizeof(char *) * num);
-	//list_absolute_path_of_command = malloc(sizeof(char *) * num);
-	//if (list_absolute_path_of_command == NULL)
-	//	exit_with_error(&pipex->v_argv, "malloc()");
 	i = 0;
 	while (list_of_directry[i] != NULL)
 	{
-		// rename join
 		list_absolute_path_of_command[i] = \
-								ft_strjoin(list_of_directry[i], command_name);
-		if (list_absolute_path_of_command == NULL)
-			exit_with_error(&pipex->v_argv, "ft_strjoin()");
+				join_str(&pipex->v_argv, list_of_directry[i], command_name);
 		i++;
 	}
 	list_absolute_path_of_command[i] = NULL;
