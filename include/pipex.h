@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:43:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 23:06:43 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,16 @@ typedef struct s_pipex
 # define ERR_NUM			-1
 # define READ 				0
 # define WRITE				1
-# define FIRST_CMD			2
-# define LAST_COMMAND		3
-# define REQUIRED_NUM		5
 # define FILE_FOR_READ		1
 # define GROUP_OF_CALLER	0
 # define CHILD_PROCESS		0
 # define ABS_PATH_CMD		0
 # define FIRST_LINE			0
+# define FIRST_CMD			2
+# define LAST_COMMAND		3
+# define REQUIRED_NUM		5
+
+# define SUBTRACT_ONE_BECAUSE_IDX_FROM_0		1
 
 # define CHAR_COLON			':'
 

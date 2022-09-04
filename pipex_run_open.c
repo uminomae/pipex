@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:45:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 23:06:43 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	open_files_on_purpose(\
 {
 	size_t	last_arg;
 
-	last_arg = pipex->argc - 1;
+	last_arg = pipex->argc - SUBTRACT_ONE_BECAUSE_IDX_FROM_0;
 	if (read_or_write == READ)
 		open_read_file(file_fd, argv[FILE_FOR_READ]);
 	else if (read_or_write == WRITE)
@@ -31,7 +31,7 @@ void	open_files_on_purpose(\
 
 static void	open_read_file(int *fd, char *argv)
 {
-	fd[READ] = open(argv, O_RDONLY | O_CLOEXEC, 0);
+	fd[READ] = open(argv, O_RDONLY | O_CLOEXEC);
 }
 
 //file[WRITE] is like a chmod 644 
