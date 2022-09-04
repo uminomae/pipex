@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:31:14 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 08:35:52 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	validate_number_of_arguments(int argc)
 	}
 }
 
-void	init_struct(t_pipex *pipex, char **argv, char **env)
+void	init_struct(t_pipex *pipex, int argc, char **argv, char **env)
 {
+	pipex->argc = argc;
 	pipex->argv = argv;
 	pipex->env = env;
 	pipex->v_argv.list_absolute_path_of_command = NULL;

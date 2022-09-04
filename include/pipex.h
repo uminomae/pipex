@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:32:22 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 08:50:13 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_v_argv
 typedef struct s_pipex
 {
 	pid_t			pid[2];
+	int				argc;
 	char			**argv;
 	char			**env;
 	int				pipe_fd[2];
@@ -65,10 +66,10 @@ typedef struct s_pipex
 
 //begin
 void	validate_number_of_arguments(int argc);
-void	init_struct(t_pipex *pipex, char **argv, char **env);
+void	init_struct(t_pipex *pipex, int argc, char **argv, char **env);
 //close end
+void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd);
 void	close_unused_file_descriptor(t_v_argv *v_argv, int fd);
-void	close_both_pipe(t_v_argv *v_argv, int *pipe_fd);
 void	safe_free(char **malloc_ptr);
 void	exit_successfully(t_v_argv *v_argv);
 void	exit_with_error(t_v_argv *v_argv, char *str);
