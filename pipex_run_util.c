@@ -6,18 +6,18 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:21:21 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/05 03:53:57 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 char	**split_str_and_check_for_null(\
-					t_v_argv *v_argv, char *str, char at_that)
+					t_v_argv *v_argv, char *str, char delimiter)
 {
 	char	**ret;
 
-	ret = ft_split(str, at_that);
+	ret = ft_split(str, delimiter);
 	if (ret == NULL)
 		exit_with_error(v_argv, ERR_MSG_SPLIT);
 	return (ret);
