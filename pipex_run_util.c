@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 09:08:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:10:34 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size)
 	return (ret);
 }
 
-char	*join_str(t_v_argv *v_argv, char *str, char *str_to_add)
+char	*join_str_and_also_check_for_null(t_v_argv *v_argv, char *str, char *str_to_add)
 {
 	char	*ret;
 

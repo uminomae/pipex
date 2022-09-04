@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 09:08:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:10:34 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**join_file_and_directry_name_to_get_absolute_path(\
 	while (list_of_directry[i] != NULL)
 	{
 		list_absolute_path_of_command[i] = \
-				join_str(&pipex->v_argv, list_of_directry[i], command_name);
+				join_str_and_also_check_for_null(&pipex->v_argv, list_of_directry[i], command_name);
 		i++;
 	}
 	list_absolute_path_of_command[i] = NULL;
