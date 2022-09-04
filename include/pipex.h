@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 09:14:50 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 11:54:26 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_pipex
 	int				pipe_fd[2];
 	int				file_fd[2];
 	struct s_v_argv	v_argv;
+	size_t			pipe_n;
 }	t_pipex;
 
 # define READ 0
@@ -79,8 +80,10 @@ void	free_struct(t_v_argv *v_argv);
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	duplicate_and_execute(\
 	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
+//void	open_files_on_purpose(\
+//		t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
 void	open_files_on_purpose(\
-		t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
+				t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
 // exe
 size_t	get_path_line_from_env(char **env, char *str, size_t len);

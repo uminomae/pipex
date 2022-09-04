@@ -4,7 +4,7 @@ RM			:= rm -f
 CFLAGS		:= -Wall -Wextra -Werror -O3
 DFLAGS		:= -MMD -MP
 #MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
-SRCS		:= 	pipex_main.c \
+SRCS		:= 	pipex_bonus_main.c \
 				pipex_begin.c \
 				pipex_run_create_wait.c \
 				pipex_run_dup_exe.c \
