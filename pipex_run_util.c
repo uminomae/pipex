@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/03 23:30:02 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:08:17 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**split_str(t_v_argv *v_argv, char *str, char at_that)
+char	**split_str_and_check_for_null(t_v_argv *v_argv, char *str, char at_that)
 {
 	char	**ret;
 

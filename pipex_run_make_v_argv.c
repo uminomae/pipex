@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 00:16:33 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:08:17 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**split_virtual_argv_from_real_argv(\
 
 	if (command_from_argv == NULL)
 		ft_putendl_fd("error : no command", STDERR_FILENO);
-	virtual_argv = split_str(&pipex->v_argv, command_from_argv, ' ');
+	virtual_argv = split_str_and_check_for_null(&pipex->v_argv, command_from_argv, ' ');
 	return (virtual_argv);
 }
 

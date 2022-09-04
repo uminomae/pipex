@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 08:50:13 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:08:17 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	exit_with_error(t_v_argv *v_argv, char *str);
 void	free_struct(t_v_argv *v_argv);
 //run
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
-void	duplicate_and_execute(t_pipex *pipex, \
-				int fd_for_read, int fd_for_write, char *command_from_argv);
+void	duplicate_and_execute(\
+	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
 void	open_files_on_purpose(\
 		t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
@@ -96,7 +96,7 @@ int		get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
 //exe util
-char	**split_str(t_v_argv *v_argv, char *str, char at_that);
+char	**split_str_and_check_for_null(t_v_argv *v_argv, char *str, char at_that);
 void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size);
 char	*join_str(t_v_argv *v_argv, char *str, char *str_to_add);
 size_t	scale_list_including_null(char **list);
