@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 09:12:14 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:13:10 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	**join_slash_path_of_directry(t_pipex *pipex, char **temp_devided_list)
 
 	list_size = scale_list_including_null(temp_devided_list);
 	list_of_directry = \
-		malloc_str_and_also_check_for_null(&pipex->v_argv, sizeof(char *) * list_size);
+		malloc_and_also_check_for_null(&pipex->v_argv, sizeof(char *) * list_size);
 	i = 0;
 	while (temp_devided_list[i] != NULL)
 	{
