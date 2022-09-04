@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:44:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 23:11:37 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ size_t	get_path_line_from_env(char **env, char *str, size_t len)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		if (ft_strncmp(env[i], str, len) == 0)
+		if (ft_strncmp(env[i], str, len) == SAME_STRING)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (NOT_FIND);
 }
 
 char	**split_list_of_directry_from_path_line(\
