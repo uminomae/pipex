@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 11:55:24 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:20:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static void	open_write_file(int *fd, char *argv);
 
 void	open_files_on_purpose(\
 				t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write)
-//void	open_files_on_purpose(\
-//				t_v_argv *v_argv, char *const *argv, int *file_fd, int read_or_write)
 {
 	if (read_or_write == READ)
 		open_read_file(file_fd, argv[1]);

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 11:54:26 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:16:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,12 @@ typedef struct s_pipex
 ///* Read, write, execute/search by others */
 //#define S_IROTH         0000004         /* [XSI] R for other */
 
+
+void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv);
+
+
 //begin
-void	validate_number_of_arguments(int argc);
-void	init_struct(t_pipex *pipex, int argc, char **argv, char **env);
+void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 //close end
 void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd);
 void	close_unused_file_descriptor(t_v_argv *v_argv, int fd);
@@ -77,15 +80,16 @@ void	exit_with_error(t_v_argv *v_argv, char *str);
 //free struct
 void	free_struct(t_v_argv *v_argv);
 //run
+void	run_child_to_file(t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
+void	run_child_to_pipe(t_pipex *pipex, char **argv, int *pipe, int *pipe_n_fd, int num);
+
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	duplicate_and_execute(\
 	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
-//void	open_files_on_purpose(\
-//		t_v_argv *v_argv, char *const *argv, int *fd, int in_out);
+
 void	open_files_on_purpose(\
 				t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
-// exe
 size_t	get_path_line_from_env(char **env, char *str, size_t len);
 char	**split_list_of_directry_from_path_line(\
 			t_pipex *pipex, size_t path_index);
@@ -98,7 +102,7 @@ char	**join_file_and_directry_name_to_get_absolute_path(\
 int		get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
-//exe util
+//util
 char	**split_str_and_check_for_null(t_v_argv *v_argv, char *str, char at_that);
 void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size);
 char	*join_str_and_check_for_null(t_v_argv *v_argv, char *str, char *str_to_add);

@@ -4,8 +4,9 @@ RM			:= rm -f
 CFLAGS		:= -Wall -Wextra -Werror -O3
 DFLAGS		:= -MMD -MP
 #MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
-SRCS		:= 	pipex_bonus_main.c \
+SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
+				pipex_run.c \
 				pipex_run_create_wait.c \
 				pipex_run_dup_exe.c \
 				pipex_run_open.c \
@@ -14,6 +15,8 @@ SRCS		:= 	pipex_bonus_main.c \
 				pipex_run_util.c \
 				pipex_free_struct.c \
 				pipex_close_end.c \
+
+B_SRCS	:= 
 
 LIBFT		= $(LIBDIR)libft.a
 INCLUDE		= -I$(INCDIR)
@@ -24,15 +27,15 @@ DEPENDS		= $(OBJECTS:.o=.d)
 OBJS		= $(SRCS:%.c=%.o)
 OBJECTS		= $(addprefix $(OBJDIR)/, $(OBJS))
 
-#B_OBJS		= $(SRCS_B:%.c=%.o)
-#B_OBJECTS   = $(addprefix $(OBJDIR)/, $(B_OBJS))
-#ifdef WITH_BONUS
-#	OBJS += $(B_OBJECTS)
-#endif
+B_OBJS		= $(B_SRCS:%.c=%.o)
+B_OBJECTS   = $(addprefix $(OBJDIR)/, $(B_OBJS))
+ifdef WITH_BONUS
+	OBJS += $(B_OBJECTS)
+endif
 
 INCDIR		= include/
 LIBDIR		= libft/
-OBJDIR		= obj/
+OBJDIR		= obj
 ifeq "$(strip $(OBJDIR))" ""
   OBJDIR	= .
 endif
@@ -74,14 +77,14 @@ re: fclean all
 
 -include $(DEPENDS)
 
-#bonus: 
-#	make WITH_BONUS=1
+bonus: 
+	make WITH_BONUS=1
 
 debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
 debug: re
 
-.PHONY: all clean fclean re
-#.PHONY: all clean fclean re bonus
+#.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 RED			=	"\033[31m"
 GREEN		=	"\033[32m"
