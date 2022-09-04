@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 13:36:07 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:39:50 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ size_t	run_multiple_pipes(t_pipex *pipex, int argc, char **argv)
 {
 	size_t	i;
 	int 	pipe_n[2];
-	size_t	multiple_pipes;
+	size_t	num_of_pipes;
 
-	multiple_pipes = (size_t)argc - 5;
+	num_of_pipes = (size_t)argc - 5;
 	i = 0;
-	while (i < multiple_pipes)
+	while (i < num_of_pipes)
 	{
 		create_pipe_fd(pipe_n, &pipex->v_argv);
 		run_child_to_pipe(pipex, argv, pipex->pipe_fd, pipe_n, i);
