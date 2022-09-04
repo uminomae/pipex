@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 13:48:55 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:16:45 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,33 @@ typedef struct s_pipex
 	size_t			pipe_n;
 }	t_pipex;
 
-# define READ 0
-# define WRITE 1
+# define ERR_NUM			-1
+# define READ 				0
+# define WRITE				1
+# define FIRST_CMD			2
+# define LAST_COMMAND		3
+# define REQUIRED_NUM		5
+# define FILE_FOR_READ		1
+
+# define CHAR_COLON			':'
+
+# define STR_SLASH			"/"
+# define WORD_FIND_PATH		"PATH="
+# define ERR_MSG_VALID		"error : 5 arguments are required"
+# define ERR_MSG_PIPE		"pipe()"
+# define ERR_MSG_CLOSE		"close()"
+# define ERR_MSG_FORK		"fork()"
+# define ERR_MSG_WAITPID	"waitpid()"
+# define ERR_MSG_EXCECVE	"execve()"
+# define ERR_MSG_DUP2		"dup2()"
+# define ERR_MSG_ACCESS		"access()"
+# define ERR_MSG_OPEN		"open()"
+# define ERR_MSG_NO_CMD		"error : no command()"
+# define ERR_MSG_STRDUP		"ft_strdup()"
+# define ERR_MSG_SPLIT		"ft_split()"
+# define ERR_MSG_MALLOC		"malloc()"
+# define ERR_MSG_STRJOIN	"ft_strjoin()"
+
 
 // <fcntl.h>
 ///* open-only flags */

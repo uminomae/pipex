@@ -17,8 +17,9 @@ void	close_unused_file_descriptor(t_v_argv *v_argv, int fd)
 	int	ret;
 
 	ret = close(fd);
-	if (ret == -1)
-		exit_with_error(v_argv, "close()");
+	if (ret == ERR_NUM)
+		exit_with_error(v_argv, ERR_MSG_CLOSE);
+		//exit_with_error(v_argv, "close()");
 }
 
 void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd)

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 13:51:26 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:18:30 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**split_virtual_argv_from_real_argv(\
 	char	**virtual_argv;
 
 	if (command_from_argv == NULL)
-		ft_putendl_fd("error : no command", STDERR_FILENO);
+		ft_putendl_fd(ERR_MSG_NO_CMD, STDERR_FILENO);
 	virtual_argv = \
 		split_str_and_check_for_null(&pipex->v_argv, command_from_argv, ' ');
 	return (virtual_argv);
@@ -57,7 +57,7 @@ int	get_index_accessible_path(char **list_absolute_path_of_command)
 			return (i);
 		i++;
 	}
-	return (-1);
+	return (ERR_NUM);
 }
 
 char	**switch_first_argv_to_absolute_path(\
@@ -69,6 +69,6 @@ char	**switch_first_argv_to_absolute_path(\
 	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
 	if (v->virtual_argv[0] == NULL)
-		exit_with_error(&pipex->v_argv, "ft_strdup()");
+		exit_with_error(&pipex->v_argv, ERR_MSG_STRDUP);
 	return (v->virtual_argv);
 }
