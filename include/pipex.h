@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 13:16:16 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:34:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	exit_with_error(t_v_argv *v_argv, char *str);
 void	free_struct(t_v_argv *v_argv);
 //run
 void	run_child_to_file(t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
-void	run_child_to_pipe(t_pipex *pipex, char **argv, int *pipe, int *pipe_n_fd, int num);
+size_t	run_multiple_pipes(t_pipex *pipex, int argc, char **argv);
 
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	duplicate_and_execute(\
