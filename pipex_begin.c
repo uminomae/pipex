@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:22:33 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/05 04:25:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env)
 	init_struct(pipex, argc, argv, env);
 	create_pipe_fd(pipex->pipe_fd, &pipex->v_argv);
 }
+
+
+
 
 static void	validate_number_of_arguments(int argc)
 {
