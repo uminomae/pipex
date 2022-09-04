@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 23:10:32 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 23:12:45 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_pipex
 # define ABS_PATH_CMD		0
 # define FIRST_LINE			0
 # define SAME_STRING		0
+# define NOT_FIND			0
+
 # define FIRST_CMD			2
 # define LAST_COMMAND		3
 # define REQUIRED_NUM		5
