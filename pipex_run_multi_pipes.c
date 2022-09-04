@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:22:03 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:35:26 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	run_child_to_pipe(\
 
 	v_argv = &pipex->v_argv;
 	process_id = create_child_process_by_fork_func(pipex);
-	if (process_id == 0)
+	if (process_id == CHILD_PROCESS)
 	{
 		close_unused_file_descriptor(v_argv, pipe[WRITE]);
 		close_unused_file_descriptor(v_argv, pipe_n_fd[READ]);

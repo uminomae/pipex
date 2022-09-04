@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_run.c                                        :+:      :+:    :+:   */
+/*   pipex_run_child.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 13:53:47 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:35:15 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	run_child_to_file(\
 
 	v_argv = &pipex->v_argv;
 	process_id = create_child_process_by_fork_func(pipex);
-	if (process_id == 0)
+	if (process_id == CHILD_PROCESS)
 	{
 		close_unused_file_descriptor(v_argv, pipe[read_or_write]);
 		open_files_on_purpose(pipex, argv, file_fd, read_or_write);

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:22:50 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:33:06 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id)
 	pid_t	ret;
 	int		child_status;
 
-	ret = waitpid(process_id, &child_status, 0);
+	ret = waitpid(process_id, &child_status, GROUP_OF_CALLER);
 	if (ret == ERR_NUM)
 		exit_with_error(v_argv, ERR_MSG_WAITPID);
 }

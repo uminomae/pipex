@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:21:08 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:37:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	duplicate_and_execute(\
 					&pipex->v_argv, fd_for_read, fd_for_write);
 	get_path_from_env_and_make_list(pipex, &pipex->v_argv);
 	virtual_argv = make_virtual_argv(pipex, &pipex->v_argv, command_from_argv);
-	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
+	ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, pipex->env);
 	if (ret == ERR_NUM)
 		exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
 }

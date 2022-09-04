@@ -6,7 +6,7 @@ DFLAGS		:= -MMD -MP
 #MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
 SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
-				pipex_run.c \
+				pipex_run_child.c \
 				pipex_run_multi_pipes.c \
 				pipex_run_create_wait.c \
 				pipex_run_dup_exe.c \

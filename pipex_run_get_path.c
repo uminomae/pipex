@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:00:28 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:44:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ static char	**trim_unnecessary_characters(\
 	void	*tmp;
 
 	trim_len = ft_strlen(trim_str);
-	new_string_len = ft_strlen(temp_devided_list[0]) - trim_len;
-	tmp = temp_devided_list[0];
-	temp_devided_list[0] = \
-			ft_substr(temp_devided_list[0] + trim_len, 0, new_string_len);
+	new_string_len = ft_strlen(temp_devided_list[FIRST_LINE]) - trim_len;
+	tmp = temp_devided_list[FIRST_LINE];
+	temp_devided_list[FIRST_LINE] = \
+		ft_substr(temp_devided_list[FIRST_LINE] + trim_len, 0, new_string_len);
 	free(tmp);
 	return (temp_devided_list);
 }

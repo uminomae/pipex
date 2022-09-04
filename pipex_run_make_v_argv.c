@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:18:30 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:45:01 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ char	**switch_first_argv_to_absolute_path(\
 {
 	void	*tmp;
 
-	tmp = v->virtual_argv[0];
-	v->virtual_argv[0] = ft_strdup(v->list_absolute_path_of_command[index]);
+	tmp = v->virtual_argv[ABS_PATH_CMD];
+	v->virtual_argv[ABS_PATH_CMD] = \
+				ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
-	if (v->virtual_argv[0] == NULL)
+	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
 		exit_with_error(&pipex->v_argv, ERR_MSG_STRDUP);
 	return (v->virtual_argv);
 }
