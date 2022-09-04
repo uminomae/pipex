@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 09:11:04 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:12:14 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
 //exe util
 char	**split_str_and_also_check_for_null(t_v_argv *v_argv, char *str, char at_that);
-void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size);
+void	*malloc_str_and_also_check_for_null(t_v_argv *v_argv, size_t size);
 char	*join_str_and_also_check_for_null(t_v_argv *v_argv, char *str, char *str_to_add);
 size_t	scale_list_including_null(char **list);
 
