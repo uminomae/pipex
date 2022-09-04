@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 13:34:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:48:55 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ typedef struct s_pipex
 ///* Read, write, execute/search by others */
 //#define S_IROTH         0000004         /* [XSI] R for other */
 
-
 void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv);
-
-
 //begin
 void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 //close end
@@ -80,15 +77,16 @@ void	exit_with_error(t_v_argv *v_argv, char *str);
 //free struct
 void	free_struct(t_v_argv *v_argv);
 //run
-void	run_child_to_file(t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
-size_t	run_multiple_pipes(t_pipex *pipex, int argc, char **argv);
+void	run_child_to_file(\
+				t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
+size_t	run_multiple_pipes(t_pipex *pipex, int argc);
 
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	duplicate_and_execute(\
 	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
 
 void	open_files_on_purpose(\
-				t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
+			t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
 size_t	get_path_line_from_env(char **env, char *str, size_t len);
 char	**split_list_of_directry_from_path_line(\
@@ -103,9 +101,11 @@ int		get_index_accessible_path(char **list_absolute_path_of_command);
 char	**switch_first_argv_to_absolute_path(\
 			t_pipex *pipex, t_v_argv *v, size_t index);
 //util
-char	**split_str_and_check_for_null(t_v_argv *v_argv, char *str, char at_that);
+char	**split_str_and_check_for_null(\
+							t_v_argv *v_argv, char *str, char at_that);
 void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size);
-char	*join_str_and_check_for_null(t_v_argv *v_argv, char *str, char *str_to_add);
+char	*join_str_and_check_for_null(\
+						t_v_argv *v_argv, char *str, char *str_to_add);
 size_t	scale_list_including_null(char **list);
 
 #endif
