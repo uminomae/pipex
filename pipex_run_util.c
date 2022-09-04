@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:17:09 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:21:21 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	**split_str_and_check_for_null(\
 	ret = ft_split(str, at_that);
 	if (ret == NULL)
 		exit_with_error(v_argv, ERR_MSG_SPLIT);
-		//exit_with_error(v_argv, "ft_split()");
 	return (ret);
 }
 
@@ -31,7 +30,6 @@ void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size)
 	ret = malloc(sizeof(char *) * size);
 	if (ret == NULL)
 		exit_with_error(v_argv, ERR_MSG_MALLOC);
-		//exit_with_error(v_argv, "malloc()");
 	return (ret);
 }
 
@@ -43,7 +41,6 @@ char	*join_str_and_check_for_null(\
 	ret = ft_strjoin(str, str_to_add);
 	if (ret == NULL)
 		exit_with_error(v_argv, ERR_MSG_STRJOIN);
-		//exit_with_error(v_argv, "ft_strjoin()");
 	return (ret);
 }
 

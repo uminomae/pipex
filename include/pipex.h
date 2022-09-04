@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:16:45 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:23:12 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_pipex
 # define ERR_MSG_SPLIT		"ft_split()"
 # define ERR_MSG_MALLOC		"malloc()"
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
-
 
 // <fcntl.h>
 ///* open-only flags */

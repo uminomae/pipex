@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:18:15 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:22:50 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ pid_t	create_child_process_by_fork_func(t_pipex *pipex)
 	{
 		close_both_pipe(&pipex->v_argv, pipex->pipe_fd);
 		exit_with_error(&pipex->v_argv, ERR_MSG_FORK);
-		//exit_with_error(&pipex->v_argv, "fork()");
 	}
 	return (ret);
 }
@@ -34,5 +33,4 @@ void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id)
 	ret = waitpid(process_id, &child_status, 0);
 	if (ret == ERR_NUM)
 		exit_with_error(v_argv, ERR_MSG_WAITPID);
-		//exit_with_error(v_argv, "waitpid()");
 }

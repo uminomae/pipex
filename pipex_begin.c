@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:17:54 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:22:33 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	validate_number_of_arguments(int argc)
 	else
 	{
 		ft_putendl_fd(ERR_MSG_VALID, STDERR_FILENO);
-		//ft_putendl_fd("error : 5 arguments are required", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -52,5 +51,4 @@ void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv)
 	ret = pipe(pipe_fd);
 	if (ret == ERR_NUM)
 		exit_with_error(v_argv, ERR_MSG_PIPE);
-		//exit_with_error(v_argv, "pipe()");
 }

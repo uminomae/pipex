@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:05:32 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:22:03 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	run_child_to_pipe(\
 		close_unused_file_descriptor(v_argv, pipe[WRITE]);
 		close_unused_file_descriptor(v_argv, pipe_n_fd[READ]);
 		duplicate_and_execute(\
-					pipex, pipe[READ], pipe_n_fd[WRITE], argv[add_pipes + LAST_COMMAND]);
+			pipex, pipe[READ], pipe_n_fd[WRITE], \
+				argv[add_pipes + LAST_COMMAND]);
 		exit_successfully(v_argv);
 	}
 	close_both_pipe(v_argv, pipe);

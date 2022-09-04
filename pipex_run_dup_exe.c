@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:18:24 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 22:21:08 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	duplicate_and_execute(\
 	ret = execve(virtual_argv[0], virtual_argv, pipex->env);
 	if (ret == ERR_NUM)
 		exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
-		//exit_with_error(&pipex->v_argv, "execve()");
 }
 
 static void	duplicate_to_standard_in_out(\
@@ -50,7 +49,6 @@ static void	duplicate_and_close(t_v_argv *v_argv, int file, int fd)
 	close_unused_file_descriptor(v_argv, file);
 	if (ret == ERR_NUM)
 		exit_with_error(v_argv, ERR_MSG_DUP2);
-		//exit_with_error(v_argv, "dup2()");
 }
 
 //Get the path from the environment variable and make a list
@@ -58,8 +56,8 @@ static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 {
 	size_t		path_line;
 
-	path_line = get_path_line_from_env(pipex->env, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
-	//path_line = get_path_line_from_env(pipex->env, "PATH=", ft_strlen("PATH="));
+	path_line = get_path_line_from_env(\
+					pipex->env, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
 	v->temp_devided_list = \
 					split_list_of_directry_from_path_line(pipex, path_line);
 	v->list_of_directry = \
@@ -80,7 +78,6 @@ static char	**make_virtual_argv(\
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == ERR_NUM)
 		exit_with_error(&pipex->v_argv, ERR_MSG_ACCESS);
-		//exit_with_error(&pipex->v_argv, "access()");
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }
