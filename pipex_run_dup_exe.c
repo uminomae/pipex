@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 00:18:03 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/04 09:32:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
 static char	**make_virtual_argv(\
 				t_pipex *pipex, t_v_argv *v, char *command_from_argv);
 
-//TODO err 
-//virtual_argv[0] = NULL;
 void	duplicate_and_execute(\
 	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv)
 {
