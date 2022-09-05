@@ -52,7 +52,8 @@ $(NAME): $(OBJECTS) $(LIBFT)
 	@echo $(GREEN)"----- $(NAME) $(CC) done-----"$(RESET)
 
 $(OBJDIR)/%.o: %.c
-	@echo $(SKYBLUE) -mkdir -p $(OBJDIR) $(RESET)
+	@echo $(SKYBLUE) "make .o" $(RESET)
+	 -mkdir -p $(OBJDIR) 
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDE) -c $< -o $@
 
 $(LIBFT): FORCE
