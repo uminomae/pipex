@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:45:01 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/05 05:58:34 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	get_index_accessible_path(char **list_absolute_path_of_command)
 	i = 0;
 	while (list_absolute_path_of_command[i] != NULL)
 	{
+		printf("%s", list_absolute_path_of_command[i]);
 		if (access(list_absolute_path_of_command[i], R_OK) == 0)
 			return (i);
 		i++;

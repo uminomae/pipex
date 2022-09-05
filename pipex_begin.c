@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/05 04:25:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:20:49 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,36 @@
 static void	validate_number_of_arguments(int argc);
 static void	init_struct(t_pipex *pipex, int argc, char **argv, char **env);
 
-void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env)
+void	get_flag_here_doc(t_pipex *pipex, int argc, char **argv)
 {
-	validate_number_of_arguments(argc);
-	init_struct(pipex, argc, argv, env);
-	create_pipe_fd(pipex->pipe_fd, &pipex->v_argv);
+	(void)argv;
+	pipex->here_doc_flag = false;
+	printf("begin:0\n");
+	//TODO LIMITER
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
+	{
+		//TODO define
+		printf("begin:1\n");
+		pipex->here_doc_flag = true;
+		if (argc <= 5)
+		{
+			ft_putendl_fd(ERR_MSG_VALID, STDERR_FILENO);
+			exit(EXIT_FAILURE);
+		}
+	}
+	printf("begin:2\n");
+	return ;
 }
 
-
-
+void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env)
+{
+	get_flag_here_doc(pipex, argc, argv);
+	if (pipex->here_doc_flag == false)
+		validate_number_of_arguments(argc);
+	init_struct(pipex, argc, argv, env);
+	create_pipe_fd(pipex->pipe_fd, &pipex->v_argv);
+	printf("begin:3\n");
+}
 
 static void	validate_number_of_arguments(int argc)
 {

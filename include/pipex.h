@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/05 03:53:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/05 05:43:04 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_pipex
 	int				file_fd[2];
 	struct s_v_argv	v_argv;
 	size_t			pipe_n;
+	bool			here_doc_flag;
 }	t_pipex;
 
 # define ERR_NUM			-1
