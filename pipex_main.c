@@ -6,13 +6,12 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:21:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:45:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// TODO t_v_argvでいいのか？ パスの材料とパスと仮想argv
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	pipex;
