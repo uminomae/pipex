@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/05 03:53:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/07 03:01:36 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,22 @@ typedef struct s_v_argv
 	char	**list_absolute_path_of_command;
 }	t_v_argv;
 
+typedef struct s_pipe_node
+{
+	int					pipe_fd[2];
+	struct s_pipe_node	*prev;	
+	struct s_pipe_node	*next;
+}	t_pipe_node;
+
+typedef struct s_pipe_list
+{
+	struct s_pipe_node	*head;
+	struct s_pipe_node	*tail;
+}	t_pipe_list;
+
 // pid : process ID
 // env : same as printenv
-// pipe_fd : arg of pipe() 
+// pipe_list : arg of pipe() 
 // file_fd : for open(), write()
 typedef struct s_pipex
 {
@@ -40,7 +53,8 @@ typedef struct s_pipex
 	int				argc;
 	char			**argv;
 	char			**env;
-	int				pipe_fd[2];
+	//int				pipe_list[2];
+	struct s_pipe_list	pipe_list;
 	int				file_fd[2];
 	struct s_v_argv	v_argv;
 	size_t			pipe_n;
@@ -61,7 +75,7 @@ typedef struct s_pipex
 # define FIRST_CMD			2
 # define LAST_COMMAND		3
 
-# define REQUIRED_NUM		5
+# define NUM_OF_BASE		5
 
 # define SUBTRACT_ONE_BECAUSE_IDX_FROM_0		1
 
@@ -100,7 +114,7 @@ typedef struct s_pipex
 ///* Read, write, execute/search by others */
 //#define S_IROTH         0000004         /* [XSI] R for other */
 
-void	create_pipe_fd(int *pipe_fd, t_v_argv *v_argv);
+void	x_pipe(int *pipe_fd, t_v_argv *v_argv);
 //begin
 void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 //close end
@@ -112,7 +126,9 @@ void	exit_with_error(t_v_argv *v_argv, char *str);
 //free struct
 void	free_struct(t_v_argv *v_argv);
 //run
-void	run_child_to_file(\
+//void	run_child_to_file(\
+//				t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
+pid_t	run_child_to_file(\
 				t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
 size_t	run_multiple_pipes(t_pipex *pipex, int argc);
 
@@ -120,8 +136,8 @@ pid_t	create_child_process_by_fork_func(t_pipex *pipex);
 void	duplicate_and_execute(\
 	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
 
-void	open_files_on_purpose(\
-			t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
+//void	open_files_on_purpose(\
+//			t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
 size_t	get_path_line_from_env(char **env, char *str, size_t len);
 char	**split_list_of_directry_from_path_line(\

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:33:06 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/07 01:45:24 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ pid_t	create_child_process_by_fork_func(t_pipex *pipex)
 	ret = fork();
 	if (ret == ERR_NUM)
 	{
-		close_both_pipe(&pipex->v_argv, pipex->pipe_fd);
+		close_both_pipe(&pipex->v_argv, pipex->pipe_list.head->pipe_fd);
 		exit_with_error(&pipex->v_argv, ERR_MSG_FORK);
 	}
 	return (ret);

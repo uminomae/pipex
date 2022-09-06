@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:35:26 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/07 01:44:41 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ size_t	run_multiple_pipes(t_pipex *pipex, int argc)
 	int		pipe_n[2];
 	size_t	num_of_pipes;
 
-	num_of_pipes = (size_t)argc - REQUIRED_NUM;
+	num_of_pipes = (size_t)argc - NUM_OF_BASE;
 	add_pipes = 0;
 	while (add_pipes < num_of_pipes)
 	{
-		create_pipe_fd(pipe_n, &pipex->v_argv);
-		run_child_to_pipe(pipex, pipex->pipe_fd, pipe_n, add_pipes);
+		//x_pipe(pipe_n, &pipex->v_argv);
+		run_child_to_pipe(pipex, pipex->pipe_list.head->pipe_fd, pipe_n, add_pipes);
 		add_pipes++;
 	}
 	return (add_pipes);
@@ -52,7 +52,7 @@ static void	run_child_to_pipe(\
 		exit_successfully(v_argv);
 	}
 	close_both_pipe(v_argv, pipe);
-	pass_pipe_next(pipex->pipe_fd, pipe_n_fd);
+	pass_pipe_next(pipex->pipe_list.head->pipe_fd, pipe_n_fd);
 	wait_pid_for_child_process(v_argv, process_id);
 }
 
