@@ -6,58 +6,60 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/07 01:44:41 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/07 06:43:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	run_child_to_pipe(\
-				t_pipex *pipex, int *pipe, int *pipe_n_fd, int num);
-static void	pass_pipe_next(int *pipe, int *pipe_n_fd);
+//static void	run_child_to_pipe(\
+//				t_pipex *pipex, int *pipe, int *pipe_n_fd, int num);
+pid_t	run_child_to_pipe(\
+				t_pipex *pipex, int *pipe, int *pipe_n_fd, int add_pipes);
 
-size_t	run_multiple_pipes(t_pipex *pipex, int argc)
+size_t	run_multiple_pipes(t_pipex *pipex, int argc, size_t add_pipe)
 {
-	size_t	add_pipes;
-	int		pipe_n[2];
-	size_t	num_of_pipes;
+	size_t	i;
+	t_pipe_node *node;
 
-	num_of_pipes = (size_t)argc - NUM_OF_BASE;
-	add_pipes = 0;
-	while (add_pipes < num_of_pipes)
+	(void)argc;
+	(void)add_pipe;
+	//if (pipex->pipe_list.head != NULL)
+	node = pipex->pipe_list.head->next;
+	i = 0;
+	while (node != NULL)
 	{
-		//x_pipe(pipe_n, &pipex->v_argv);
-		run_child_to_pipe(pipex, pipex->pipe_list.head->pipe_fd, pipe_n, add_pipes);
-		add_pipes++;
+		node->process_id = run_child_to_pipe(pipex, node->prev->pipe_fd, node->pipe_fd, i + 1);
+		node = node->next;
+		i++;
 	}
-	return (add_pipes);
+	return (i);
 }
 
-static void	run_child_to_pipe(\
-				t_pipex *pipex, int *pipe, int *pipe_n_fd, int add_pipes)
+pid_t	run_child_to_pipe(\
+				t_pipex *pipex, int *prev_pipe, int *pipe, int add_pipes)
 {
 	char *const	*argv = pipex->argv;
-	t_v_argv	*v_argv;
+	//t_v_argv	*v_argv;
 	pid_t		process_id;
 
-	v_argv = &pipex->v_argv;
+	//v_argv = &pipex->v_argv;
 	process_id = create_child_process_by_fork_func(pipex);
+
 	if (process_id == CHILD_PROCESS)
 	{
-		close_unused_file_descriptor(v_argv, pipe[WRITE]);
-		close_unused_file_descriptor(v_argv, pipe_n_fd[READ]);
 		duplicate_and_execute(\
-			pipex, pipe[READ], pipe_n_fd[WRITE], \
+			pipex, prev_pipe[READ], pipe[WRITE], \
 				argv[add_pipes + LAST_COMMAND]);
-		exit_successfully(v_argv);
+		//close_unused_file_descriptor(v_argv, pipe[0]);
+		//close_unused_file_descriptor(v_argv, pipe[1]);
 	}
-	close_both_pipe(v_argv, pipe);
-	pass_pipe_next(pipex->pipe_list.head->pipe_fd, pipe_n_fd);
-	wait_pid_for_child_process(v_argv, process_id);
+	return (process_id);
 }
 
-static void	pass_pipe_next(int *pipe, int *pipe_n_fd)
-{
-	pipe[READ] = pipe_n_fd[READ];
-	pipe[WRITE] = pipe_n_fd[WRITE];
-}
+//static void	duplicate_to_standard_in_out(\
+//			t_v_argv *v_argv, int fd_for_read, int fd_for_write)
+//{
+//	duplicate_and_close(v_argv, fd_for_read, STDIN_FILENO);
+//	duplicate_and_close(v_argv, fd_for_write, STDOUT_FILENO);
+//}
