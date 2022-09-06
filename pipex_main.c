@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/07 06:50:33 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/07 08:13:22 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	add_pipe_to_node(t_pipex *pipex, int pipe_fd[2])
 		pipex->pipe_list.head = node;
 		pipex->pipe_list.tail = node;
 	}
-	else if (pipex->pipe_list.head->next == NULL)
-	{
-		pipex->pipe_list.head->next = node;
-		pipex->pipe_list.head->next->prev = pipex->pipe_list.head;
-		pipex->pipe_list.tail = node;
-	}
+	//else if (pipex->pipe_list.head->next == NULL)
+	//{
+	//	pipex->pipe_list.head->next = node;
+	//	pipex->pipe_list.head->next->prev = pipex->pipe_list.head;
+	//	pipex->pipe_list.tail = node;
+	//}
 	else
 	{
 		pipex->pipe_list.tail->next = node;
@@ -78,7 +78,7 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base)
 		node = pipex->pipe_list.head->next;
 		while (node != NULL)
 		{
-			node->pipe_fd[READ] = node->prev->pipe_fd[WRITE];
+			//node->pipe_fd[READ] = node->prev->pipe_fd[WRITE];
 			//if (node->next != NULL)
 			//	node->pipe_fd[WRITE] = node->next->pipe_fd[READ];
 			node = node->next;
@@ -102,13 +102,13 @@ int	main(int argc, char **argv, char **env)
 	run_multiple_pipes(&pipex, argc, num_pipe - 1);
 	pipex.pipe_list.tail->process_id = run_child_to_file(&pipex, argv, WRITE, num_pipe - 1 + LAST_COMMAND);
 	
-	close_unused_file_descriptor(&pipex.v_argv, pipex.file_fd[READ]);
-	close_unused_file_descriptor(&pipex.v_argv, pipex.file_fd[WRITE]);
+	//close_unused_file_descriptor(&pipex.v_argv, pipex.file_fd[READ]);
+	//close_unused_file_descriptor(&pipex.v_argv, pipex.file_fd[WRITE]);
 	node = pipex.pipe_list.head;
 	while (node != NULL)
 	{
-		close_unused_file_descriptor(&pipex.v_argv, node->pipe_fd[READ]);
-		close_unused_file_descriptor(&pipex.v_argv, node->pipe_fd[WRITE]);
+		//close_unused_file_descriptor(&pipex.v_argv, node->pipe_fd[READ]);
+		//close_unused_file_descriptor(&pipex.v_argv, node->pipe_fd[WRITE]);
 		//close_both_pipe(&pipex.v_argv, node->pipe_fd);
 		node = node->next;
 	}
