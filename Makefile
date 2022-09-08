@@ -7,15 +7,15 @@ DFLAGS		:= -MMD -MP
 SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
 				pipex_pipe.c \
-				pipex_run_child.c \
-				pipex_run_multi_pipes.c \
+				pipex_child_to_file.c \
+				pipex_child_multi_pipes.c \
 				pipex_open.c \
-				pipex_exe.c \
 				pipex_run_get_path.c \
 				pipex_run_make_v_argv.c \
 				pipex_run_util.c \
 				pipex_x_util.c \
-				pipex_x_system_call.c \
+				pipex_x_sys_call.c \
+				pipex_x_sys_call2.c \
 				pipex_free_struct.c \
 				pipex_close.c \
 				pipex_finish.c \

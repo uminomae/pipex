@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:47:18 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:00:21 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char **env)
 
 	x_close(&pipex.v_argv, pipex.file_fd[READ]);
 	x_close(&pipex.v_argv, pipex.file_fd[WRITE]);
-	close_both_pipe(&pipex.v_argv, pipex.pipe_list.head->pipe_fd);
+	//close_both_pipe(&pipex.v_argv, pipex.pipe_list.head->pipe_fd);
 	close_both_pipe(&pipex.v_argv, pipex.pipe_list.tail->pipe_fd);
 	
 	//node = pipex.pipe_list.head;
