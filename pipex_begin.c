@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:46:30 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:12:55 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	validate_number_of_arguments(int argc)
 		return ;
 	else
 	{
-		ft_putendl_fd(ERR_MSG_VALID, STDERR_FILENO);
+		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

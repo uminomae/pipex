@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:47:56 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:12:55 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_pipex
 
 # define STR_SLASH			"/"
 # define WORD_FIND_PATH		"PATH="
-# define ERR_MSG_VALID		"error : 5 arguments are required"
+# define ERR_MSG_ARGC		"error : 5 arguments are required"
 # define ERR_MSG_PIPE		"pipe()"
 # define ERR_MSG_CLOSE		"close()"
 # define ERR_MSG_FORK		"fork()"
