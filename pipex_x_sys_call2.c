@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 17:08:35 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:47:33 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	x_execve(t_pipex *pipex, char **virtual_argv)
 {
 	int	ret;
 	
-	ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, pipex->env);
+	ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, environ);
+	//ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, pipex->env);
 	if (ret == ERR_NUM)
 		exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
 }

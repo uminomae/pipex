@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:07:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:43:25 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
 	size_t		path_line;
 
 	path_line = get_path_line_from_env(\
-					pipex->env, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
+					environ, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
+					//pipex->env, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
 	v->temp_devided_list = \
 					split_list_of_directry_from_path_line(pipex, path_line);
 	v->list_of_directry = \
@@ -54,7 +55,8 @@ static char	**split_list_of_directry_from_path_line(\
 
 	temp_devided_list = \
 		x_split(\
-			&pipex->v_argv, pipex->env[path_index], CHAR_COLON);
+			&pipex->v_argv, environ[path_index], CHAR_COLON);
+			//&pipex->v_argv, pipex->env[path_index], CHAR_COLON);
 	temp_devided_list = \
 		trim_unnecessary_characters(temp_devided_list, WORD_FIND_PATH);
 	return (temp_devided_list);

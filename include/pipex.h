@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 17:12:55 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:46:55 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,15 @@ typedef struct s_pipex
 	pid_t			pid[2];
 	int				argc;
 	char			**argv;
-	char			**env;
+	//char			**env;
 	//int				pipe_list[2];
 	struct s_pipe_list	pipe_list;
 	int				file_fd[2];
 	struct s_v_argv	v_argv;
 	size_t			pipe_n;
 }	t_pipex;
+
+extern char **environ;
 
 # define ERR_NUM			-1
 # define READ 				0
@@ -107,7 +109,8 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	open_files(t_pipex *pipex, char *const *argv, int *file_fd);
 
 //begin
-void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
+void	begin_pipex(t_pipex *pipex, int argc, char **argv);
+//void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 //close end
 void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd);
 void	x_close(t_v_argv *v_argv, int fd);

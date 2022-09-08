@@ -6,24 +6,25 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 17:15:27 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:46:57 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-//void	open_files(t_pipex *pipex, char *const *argv, int *file_fd);
-//size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
+//extern char **environ;
 
 
-int	main(int argc, char **argv, char **env)
+//int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv)
 {
 	t_pipex				pipex;
 	size_t				num_pipe;
 	size_t				add_pipe;
 	t_pipe_node 		*node;
 
-	begin_pipex(&pipex, argc, argv, env);
+	//begin_pipex(&pipex, argc, argv, env);
+	begin_pipex(&pipex, argc, argv);
 
 	open_files(&pipex, argv, pipex.file_fd);
 	num_pipe = make_pipe(&pipex, argc, NUM_OF_BASE);
