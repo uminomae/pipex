@@ -6,15 +6,14 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:37:10 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:40:27 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	open_files(\
-			t_pipex *pipex, char *const *argv, int *file_fd);
-size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
+//void	open_files(t_pipex *pipex, char *const *argv, int *file_fd);
+//size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 
 
 int	main(int argc, char **argv, char **env)

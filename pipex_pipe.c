@@ -6,21 +6,12 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:34:16 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:44:52 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 			
-void	x_pipe(int pipe_fd[2], t_v_argv *v_argv)
-{
-	int	ret;
-
-	ret = pipe(pipe_fd);
-	if (ret == ERR_NUM)
-		exit_with_error(v_argv, ERR_MSG_PIPE);
-}
-
 t_pipe_node	*init_pipe_node(t_v_argv *v_argv)
 {
 	t_pipe_node *node;

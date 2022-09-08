@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_dup.c                                        :+:      :+:    :+:   */
+/*   pipex_x_system_call.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 15:00:18 by hioikawa         ###   ########.fr       */
+/*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
+/*   Updated: 2022/09/08 16:45:26 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-//void	duplicate_to_standard_in_out(\
-//			t_v_argv *v_argv, int fd_for_read, int fd_for_write)
-//{
-//	x_dup2(v_argv, fd_for_read, STDIN_FILENO);
-//	x_dup2(v_argv, fd_for_write, STDOUT_FILENO);
-//}
+void	x_pipe(int pipe_fd[2], t_v_argv *v_argv)
+{
+	int	ret;
+
+	ret = pipe(pipe_fd);
+	if (ret == ERR_NUM)
+		exit_with_error(v_argv, ERR_MSG_PIPE);
+}
 
 void	x_dup2(t_v_argv *v_argv, int file, int fd)
 {

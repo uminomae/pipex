@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:07:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:44:39 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ typedef struct s_pipex
 void	x_pipe(int *pipe_fd, t_v_argv *v_argv);
 void	x_dup2(t_v_argv *v_argv, int file, int fd);
 void	x_execve(t_pipex *pipex, char **virtual_argv);
+size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
+
+void	open_files(t_pipex *pipex, char *const *argv, int *file_fd);
 
 //begin
 void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
