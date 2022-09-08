@@ -9,10 +9,10 @@ SRCS		:= 	pipex_main.c \
 				pipex_pipe.c \
 				pipex_run_child.c \
 				pipex_run_multi_pipes.c \
-				pipex_run_create_wait.c \
+				pipex_create_wait.c \
+				pipex_open.c \
 				pipex_dup.c \
 				pipex_exe.c \
-				pipex_open.c \
 				pipex_run_get_path.c \
 				pipex_run_make_v_argv.c \
 				pipex_run_util.c \

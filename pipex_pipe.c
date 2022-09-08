@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 15:23:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:07:18 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_pipe_node	*init_pipe_node(t_v_argv *v_argv)
 {
 	t_pipe_node *node;
 
-	node = (t_pipe_node *)malloc_and_check_for_null(v_argv, sizeof(t_pipe_node));
+	node = (t_pipe_node *)x_malloc(v_argv, sizeof(t_pipe_node));
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/05 03:53:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:07:38 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**split_str_and_check_for_null(\
+char	**x_split(\
 					t_v_argv *v_argv, char *str, char delimiter)
 {
 	char	**ret;
@@ -23,7 +23,7 @@ char	**split_str_and_check_for_null(\
 	return (ret);
 }
 
-void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size)
+void	*x_malloc(t_v_argv *v_argv, size_t size)
 {
 	void	*ret;
 
@@ -33,7 +33,7 @@ void	*malloc_and_check_for_null(t_v_argv *v_argv, size_t size)
 	return (ret);
 }
 
-char	*join_str_and_check_for_null(\
+char	*x_strjoin(\
 				t_v_argv *v_argv, char *str, char *str_to_add)
 {
 	char	*ret;

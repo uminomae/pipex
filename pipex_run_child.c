@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 15:23:49 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:09:11 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void	duplicate_to_standard_in_out(\
 pid_t	run_child_to_file(\
 				t_pipex *pipex, char **argv, int read_or_write, int argv_idx)
 {
-	int *const			file_fd = pipex->file_fd;
-	t_v_argv			*v_argv;
-	pid_t				process_id;
-	int			ret;
+	int *const	file_fd = pipex->file_fd;
+	t_v_argv	*v_argv;
+	pid_t		process_id;
 	char		**virtual_argv;
 	
 	virtual_argv = NULL;
@@ -41,10 +40,9 @@ pid_t	run_child_to_file(\
 			x_dup2(v_argv, file_fd[WRITE], STDOUT_FILENO);
 			close_both_pipe(v_argv, pipex->pipe_list.tail->pipe_fd);
 		}
-		virtual_argv = get_virtual_argv(pipex, argv[argv_idx]);
-		ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, pipex->env);
-		if (ret == ERR_NUM)
-			exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
+		get_path_from_env_and_make_list(pipex, v_argv);
+		virtual_argv = make_virtual_argv(pipex, v_argv, argv[argv_idx]);
+		x_execve(pipex, virtual_argv);
 	}
 	return (process_id);
 }
