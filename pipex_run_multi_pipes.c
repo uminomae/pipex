@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:08:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:36:54 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe)
 	i = 0;
 	while (node != NULL)
 	{
-		node->process_id = run_child_to_pipe(pipex, node->prev->pipe_fd, node->pipe_fd, num_pipe + i);
+		node->process_id = run_child_to_pipe(\
+				pipex, node->prev->pipe_fd, node->pipe_fd, i);
 		node = node->next;
 		i++;
 	}
@@ -39,7 +40,6 @@ pid_t	run_child_to_pipe(\
 	char *const	*argv = pipex->argv;
 	t_v_argv	*v_argv;
 	pid_t		process_id;
-	char		**virtual_argv;
 
 	v_argv = &pipex->v_argv;
 	process_id = create_child_process_by_fork_func(pipex);
@@ -50,10 +50,10 @@ pid_t	run_child_to_pipe(\
 		close_both_pipe(v_argv, prev_pipe);
 		close_both_pipe(v_argv, pipe);
 		get_path_from_env_and_make_list(pipex,v_argv);
-		virtual_argv = make_virtual_argv(pipex,v_argv, argv[add_pipe + LAST_COMMAND]);
-		x_execve(pipex, virtual_argv);
+		v_argv->virtual_argv = make_virtual_argv(pipex,v_argv, argv[add_pipe + LAST_COMMAND]);
+		x_execve(pipex, v_argv->virtual_argv);
 	}
-	//x_close(v_argv, prev_pipe[WRITE]);
+	x_close(v_argv, prev_pipe[WRITE]);
 	//x_close(v_argv, prev_pipe[READ]);
 	//x_close(v_argv, pipe[READ]);
 	//x_close(v_argv, pipe[WRITE]);

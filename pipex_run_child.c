@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:09:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:16:03 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ pid_t	run_child_to_file(\
 	int *const	file_fd = pipex->file_fd;
 	t_v_argv	*v_argv;
 	pid_t		process_id;
-	char		**virtual_argv;
 	
-	virtual_argv = NULL;
 	v_argv = &pipex->v_argv;
 	process_id = create_child_process_by_fork_func(pipex);
 	if (process_id == CHILD_PROCESS)
@@ -41,8 +39,8 @@ pid_t	run_child_to_file(\
 			close_both_pipe(v_argv, pipex->pipe_list.tail->pipe_fd);
 		}
 		get_path_from_env_and_make_list(pipex, v_argv);
-		virtual_argv = make_virtual_argv(pipex, v_argv, argv[argv_idx]);
-		x_execve(pipex, virtual_argv);
+		v_argv->virtual_argv = make_virtual_argv(pipex, v_argv, argv[argv_idx]);
+		x_execve(pipex, v_argv->virtual_argv);
 	}
 	return (process_id);
 }
