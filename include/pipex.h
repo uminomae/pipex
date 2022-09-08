@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 14:29:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:37:45 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,10 @@ pid_t	run_child_to_file(\
 size_t	run_multiple_pipes(t_pipex *pipex, int argc, size_t add_pipe);
 
 pid_t	create_child_process_by_fork_func(t_pipex *pipex);
-void	duplicate_and_execute(\
+//void	duplicate_and_execute(\
+//	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
+char	**duplicate_and_execute(\
 	t_pipex *pipex, int fd_for_read, int fd_for_write, char *command_from_argv);
-
 //void	open_files_on_purpose(\
 //			t_pipex *pipex, char *const *argv, int *file_fd, int read_or_write);
 void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);

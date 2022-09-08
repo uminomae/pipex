@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 14:30:42 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:42:19 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ pid_t	run_child_to_file(\
 	int *const			file_fd = pipex->file_fd;
 	t_v_argv			*v_argv;
 	pid_t				process_id;
-
+	int			ret;
+	char		**virtual_argv;
+	
+	virtual_argv = NULL;
 	v_argv = &pipex->v_argv;
 	process_id = create_child_process_by_fork_func(pipex);
 	if (process_id == CHILD_PROCESS)
@@ -32,17 +35,24 @@ pid_t	run_child_to_file(\
 			duplicate_to_standard_in_out(\
 					&pipex->v_argv, file_fd[READ], pipex->pipe_list.head->pipe_fd[WRITE]);
 			close_unused_file_descriptor(v_argv, pipex->pipe_list.head->pipe_fd[READ]);
-			duplicate_and_execute(\
+			close_unused_file_descriptor(v_argv, pipex->pipe_list.head->pipe_fd[WRITE]);
+			
+			virtual_argv = duplicate_and_execute(\
 				pipex, file_fd[READ], pipex->pipe_list.head->pipe_fd[WRITE], argv[argv_idx]);
 		}
 		else if (read_or_write == WRITE)
 		{
 			duplicate_to_standard_in_out(\
 					&pipex->v_argv, pipex->pipe_list.tail->pipe_fd[READ], file_fd[WRITE]);
-			close_unused_file_descriptor(v_argv, pipex->pipe_list.tail->pipe_fd[WRITE]);
-			duplicate_and_execute(\
+			//close_unused_file_descriptor(v_argv, pipex->pipe_list.tail->pipe_fd[WRITE]);
+			close_unused_file_descriptor(v_argv, pipex->pipe_list.head->pipe_fd[READ]);
+			close_unused_file_descriptor(v_argv, pipex->pipe_list.head->pipe_fd[WRITE]);
+			virtual_argv = duplicate_and_execute(\
 				pipex, pipex->pipe_list.tail->pipe_fd[READ], file_fd[WRITE], argv[argv_idx]);
 		}
+		ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, pipex->env);
+		if (ret == ERR_NUM)
+			exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
 		//exit_successfully(v_argv);
 	}
 		close_unused_file_descriptor(v_argv, file_fd[read_or_write]);
