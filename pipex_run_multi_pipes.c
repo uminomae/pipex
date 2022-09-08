@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/07 08:10:58 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:30:59 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ pid_t	run_child_to_pipe(\
 //static void	duplicate_to_standard_in_out(\
 //			t_v_argv *v_argv, int fd_for_read, int fd_for_write)
 //{
-//	duplicate_and_close(v_argv, fd_for_read, STDIN_FILENO);
-//	duplicate_and_close(v_argv, fd_for_write, STDOUT_FILENO);
+//	x_dup2(v_argv, fd_for_read, STDIN_FILENO);
+//	x_dup2(v_argv, fd_for_write, STDOUT_FILENO);
 //}

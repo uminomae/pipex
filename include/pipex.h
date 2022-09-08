@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/07 05:07:46 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:29:23 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_pipex
 
 # define NUM_OF_BASE		5
 
-# define SUBTRACT_ONE_BECAUSE_IDX_FROM_0		1
+# define ONE_BECAUSE_IDX_FROM_0		1
 
 # define CHAR_COLON			':'
 

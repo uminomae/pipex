@@ -6,15 +6,15 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/04 22:37:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:34:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	duplicate_to_standard_in_out(\
-			t_v_argv *v_argv, int fd_for_read, int fd_for_write);
-static void	duplicate_and_close(t_v_argv *v_argv, int file, int fd);
+//static void	duplicate_to_standard_in_out(\
+//			t_v_argv *v_argv, int fd_for_read, int fd_for_write);
+static void	x_dup2(t_v_argv *v_argv, int file, int fd);
 static void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
 static char	**make_virtual_argv(\
 				t_pipex *pipex, t_v_argv *v, char *command_from_argv);
@@ -25,8 +25,10 @@ void	duplicate_and_execute(\
 	char		**virtual_argv;
 	int			ret;
 
-	duplicate_to_standard_in_out(\
-					&pipex->v_argv, fd_for_read, fd_for_write);
+	(void)fd_for_read;
+	(void)fd_for_write;
+	//duplicate_to_standard_in_out(\
+	//				&pipex->v_argv, fd_for_read, fd_for_write);
 	get_path_from_env_and_make_list(pipex, &pipex->v_argv);
 	virtual_argv = make_virtual_argv(pipex, &pipex->v_argv, command_from_argv);
 	ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, pipex->env);
@@ -34,14 +36,14 @@ void	duplicate_and_execute(\
 		exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
 }
 
-static void	duplicate_to_standard_in_out(\
+void	duplicate_to_standard_in_out(\
 			t_v_argv *v_argv, int fd_for_read, int fd_for_write)
 {
-	duplicate_and_close(v_argv, fd_for_read, STDIN_FILENO);
-	duplicate_and_close(v_argv, fd_for_write, STDOUT_FILENO);
+	x_dup2(v_argv, fd_for_read, STDIN_FILENO);
+	x_dup2(v_argv, fd_for_write, STDOUT_FILENO);
 }
 
-static void	duplicate_and_close(t_v_argv *v_argv, int file, int fd)
+static void	x_dup2(t_v_argv *v_argv, int file, int fd)
 {
 	int	ret;
 
