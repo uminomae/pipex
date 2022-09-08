@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:55:26 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:15:03 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,5 @@ pid_t	run_child_to_pipe(\
 		x_execve(pipex, v_argv->virtual_argv);
 	}
 	x_close(v_argv, prev_pipe[WRITE]);
-	//x_close(v_argv, prev_pipe[READ]);
-	//x_close(v_argv, pipe[READ]);
-	//x_close(v_argv, pipe[WRITE]);
 	return (process_id);
 }
