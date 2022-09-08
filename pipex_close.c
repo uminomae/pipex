@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-void	close_unused_file_descriptor(t_v_argv *v_argv, int fd)
+void	x_close(t_v_argv *v_argv, int fd)
 {
 	int	ret;
 
@@ -23,6 +23,6 @@ void	close_unused_file_descriptor(t_v_argv *v_argv, int fd)
 
 void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd)
 {
-	close_unused_file_descriptor(v_argv, pipe_fd[READ]);
-	close_unused_file_descriptor(v_argv, pipe_fd[WRITE]);
+	x_close(v_argv, pipe_fd[READ]);
+	x_close(v_argv, pipe_fd[WRITE]);
 }

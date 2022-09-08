@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 14:30:59 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:44:19 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ pid_t	run_child_to_pipe(\
 
 	if (process_id == CHILD_PROCESS)
 	{
-		close_unused_file_descriptor(v_argv, prev_pipe[WRITE]);
-		close_unused_file_descriptor(v_argv, pipe[READ]);
+		x_close(v_argv, prev_pipe[WRITE]);
+		x_close(v_argv, pipe[READ]);
 		duplicate_and_execute(\
 			pipex, prev_pipe[READ], pipe[WRITE], \
 				argv[add_pipes + LAST_COMMAND]);
 			//pipex, prev_pipe[READ], pipe[WRITE], \
 			//	argv[add_pipes + LAST_COMMAND]);
 	}
-	close_unused_file_descriptor(v_argv, prev_pipe[WRITE]);
-	close_unused_file_descriptor(v_argv, prev_pipe[READ]);
-	//close_unused_file_descriptor(v_argv, pipe[READ]);
-	//close_unused_file_descriptor(v_argv, pipe[WRITE]);
+	x_close(v_argv, prev_pipe[WRITE]);
+	x_close(v_argv, prev_pipe[READ]);
+	//x_close(v_argv, pipe[READ]);
+	//x_close(v_argv, pipe[WRITE]);
 	return (process_id);
 }
 

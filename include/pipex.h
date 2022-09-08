@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 14:37:45 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:44:19 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	x_pipe(int *pipe_fd, t_v_argv *v_argv);
 void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env);
 //close end
 void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd);
-void	close_unused_file_descriptor(t_v_argv *v_argv, int fd);
+void	x_close(t_v_argv *v_argv, int fd);
 void	safe_free(char **malloc_ptr);
 void	exit_successfully(t_v_argv *v_argv);
 void	exit_with_error(t_v_argv *v_argv, char *str);

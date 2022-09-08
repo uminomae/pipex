@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 14:42:35 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:44:19 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	x_dup2(t_v_argv *v_argv, int file, int fd)
 	int	ret;
 
 	ret = dup2(file, fd);
-	//close_unused_file_descriptor(v_argv, file);
+	//x_close(v_argv, file);
 	if (ret == ERR_NUM)
 		exit_with_error(v_argv, ERR_MSG_DUP2);
 }

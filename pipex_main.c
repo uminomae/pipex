@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 14:34:46 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:44:19 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	main(int argc, char **argv, char **env)
 	run_multiple_pipes(&pipex, argc, num_pipe - 1);
 	pipex.pipe_list.tail->process_id = run_child_to_file(&pipex, argv, WRITE, num_pipe - 1 + LAST_COMMAND);
 	
-	//close_unused_file_descriptor(&pipex.v_argv, pipex.file_fd[READ]);
-	//close_unused_file_descriptor(&pipex.v_argv, pipex.file_fd[WRITE]);
+	//x_close(&pipex.v_argv, pipex.file_fd[READ]);
+	//x_close(&pipex.v_argv, pipex.file_fd[WRITE]);
 	
 	node = pipex.pipe_list.head;
 	while (node != NULL)
 	{
-		//close_unused_file_descriptor(&pipex.v_argv, node->pipe_fd[READ]);
-		//close_unused_file_descriptor(&pipex.v_argv, node->pipe_fd[WRITE]);
+		//x_close(&pipex.v_argv, node->pipe_fd[READ]);
+		//x_close(&pipex.v_argv, node->pipe_fd[WRITE]);
 		//close_both_pipe(&pipex.v_argv, node->pipe_fd);
 		node = node->next;
 	}
