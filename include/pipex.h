@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:44:39 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:47:56 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ void	free_struct(t_v_argv *v_argv);
 pid_t	run_child_to_file(\
 				t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
 size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
-pid_t	create_child_process_by_fork_func(t_pipex *pipex);
-void	wait_pid_for_child_process(t_v_argv *v_argv, pid_t process_id);
+pid_t	x_fork(t_pipex *pipex);
+void	x_waitpid(t_v_argv *v_argv, pid_t process_id);
 void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_v_argv *v, char *command_from_argv);

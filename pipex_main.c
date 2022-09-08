@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:40:27 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:47:18 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv, char **env)
 	node = pipex.pipe_list.head;
 	while (node != NULL)
 	{
-		wait_pid_for_child_process(&pipex.v_argv, node->process_id);
+		x_waitpid(&pipex.v_argv, node->process_id);
 		node = node->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/07 01:45:24 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:46:30 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv, char **env)
 {
 	validate_number_of_arguments(argc);
 	init_struct(pipex, argc, argv, env);
-	//x_pipe(pipex->pipe_list.head->pipe_fd, &pipex->v_argv);
 }
 
 static void	validate_number_of_arguments(int argc)
@@ -45,12 +44,3 @@ static void	init_struct(t_pipex *pipex, int argc, char **argv, char **env)
 	pipex->v_argv.temp_devided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;
 }
-
-//void	x_pipe(int *pipe_fd, t_v_argv *v_argv)
-//{
-//	int	ret;
-
-//	ret = pipe(pipe_fd);
-//	if (ret == ERR_NUM)
-//		exit_with_error(v_argv, ERR_MSG_PIPE);
-//}

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:36:54 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:47:56 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ pid_t	run_child_to_pipe(\
 	pid_t		process_id;
 
 	v_argv = &pipex->v_argv;
-	process_id = create_child_process_by_fork_func(pipex);
+	process_id = x_fork(pipex);
 	if (process_id == CHILD_PROCESS)
 	{
 		x_dup2(v_argv, prev_pipe[READ], STDIN_FILENO);
