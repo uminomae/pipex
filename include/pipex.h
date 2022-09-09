@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 16:12:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:56:54 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ extern char	**environ;
 # define FIRST_CMD			2
 # define LAST_COMMAND		3
 
-# define NUM_OF_BASE		5
+# define NUM_BASE			5
+# define NUM_HEREDOC_BASE	6
 
 # define ONE_BECAUSE_IDX_FROM_0		1
 
