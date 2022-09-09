@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:42:06 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:28:18 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 
 static void	validate_argc(int argc)
 {
-	if (argc >= NUM_OF_BASE)
+	if (argc >= NUM_BASE)
 		return ;
 	else
 	{
@@ -39,6 +39,6 @@ static void	init_struct(t_pipex *pipex, char **argv)
 	pipex->pipe_list.tail = NULL;
 	pipex->v_argv.list_absolute_path_of_command = NULL;
 	pipex->v_argv.list_of_directory = NULL;
-	pipex->v_argv.temp_devided_list = NULL;
+	pipex->v_argv.temp_divided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;
 }

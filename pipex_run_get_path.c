@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:44:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:28:07 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static size_t	get_path_line_from_env(char **env, char *str, size_t len);
 static char		**split_list_of_directory_from_path_line(\
 										t_pipex *pipex, size_t path_index);
 static char		**trim_unnecessary_characters(\
-							char **temp_devided_list, char *trim_str);
+							char **temp_divided_list, char *trim_str);
 static char		**join_slash_path_of_directory(\
-					t_pipex *pipex, char **temp_devided_list);
+					t_pipex *pipex, char **temp_divided_list);
 
 void	get_path(t_pipex *pipex, t_v_argv *v)
 {
@@ -26,10 +26,10 @@ void	get_path(t_pipex *pipex, t_v_argv *v)
 
 	path_line = get_path_line_from_env(\
 					environ, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
-	v->temp_devided_list = \
+	v->temp_divided_list = \
 					split_list_of_directory_from_path_line(pipex, path_line);
 	v->list_of_directory = \
-					join_slash_path_of_directory(pipex, v->temp_devided_list);
+					join_slash_path_of_directory(pipex, v->temp_divided_list);
 }
 
 static size_t	get_path_line_from_env(char **env, char *str, size_t len)
@@ -49,48 +49,48 @@ static size_t	get_path_line_from_env(char **env, char *str, size_t len)
 static char	**split_list_of_directory_from_path_line(\
 					t_pipex *pipex, size_t path_index)
 {
-	char	**temp_devided_list;
+	char	**temp_divided_list;
 
-	temp_devided_list = \
+	temp_divided_list = \
 		x_split(\
 			&pipex->v_argv, environ[path_index], DELIMITER_PATH);
-	temp_devided_list = \
-		trim_unnecessary_characters(temp_devided_list, WORD_FIND_PATH);
-	return (temp_devided_list);
+	temp_divided_list = \
+		trim_unnecessary_characters(temp_divided_list, WORD_FIND_PATH);
+	return (temp_divided_list);
 }
 
 static char	**trim_unnecessary_characters(\
-							char **temp_devided_list, char *trim_str)
+							char **temp_divided_list, char *trim_str)
 {
 	size_t	trim_len;
 	size_t	new_string_len;
 	void	*tmp;
 
 	trim_len = ft_strlen(trim_str);
-	new_string_len = ft_strlen(temp_devided_list[FIRST_LINE]) - trim_len;
-	tmp = temp_devided_list[FIRST_LINE];
-	temp_devided_list[FIRST_LINE] = \
-		ft_substr(temp_devided_list[FIRST_LINE] + trim_len, 0, new_string_len);
+	new_string_len = ft_strlen(temp_divided_list[FIRST_LINE]) - trim_len;
+	tmp = temp_divided_list[FIRST_LINE];
+	temp_divided_list[FIRST_LINE] = \
+		ft_substr(temp_divided_list[FIRST_LINE] + trim_len, 0, new_string_len);
 	free(tmp);
-	return (temp_devided_list);
+	return (temp_divided_list);
 }
 
 static char	**join_slash_path_of_directory(\
-				t_pipex *pipex, char **temp_devided_list)
+				t_pipex *pipex, char **temp_divided_list)
 {
 	char	**list_of_directory;
 	size_t	i;
 	size_t	list_size;
 
-	list_size = scale_list_including_null(temp_devided_list);
+	list_size = scale_list_including_null(temp_divided_list);
 	list_of_directory = \
 		x_malloc(&pipex->v_argv, sizeof(char *) * list_size);
 	i = 0;
-	while (temp_devided_list[i] != NULL)
+	while (temp_divided_list[i] != NULL)
 	{
 		list_of_directory[i] = \
 			x_strjoin(\
-				&pipex->v_argv, temp_devided_list[i], STR_SLASH);
+				&pipex->v_argv, temp_divided_list[i], STR_SLASH);
 		i++;
 	}
 	list_of_directory[i] = NULL;

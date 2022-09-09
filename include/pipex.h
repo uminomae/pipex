@@ -6,11 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/09 17:23:31 by hioikawa         ###   ########.fr       */
-=======
-/*   Updated: 2022/09/09 17:06:08 by hioikawa         ###   ########.fr       */
->>>>>>> 9c7cb019741ef30e8b726e2454be613fcb2b3f2c
+/*   Updated: 2022/09/09 17:30:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +55,6 @@ typedef struct s_pipex
 	int					file_fd[2];
 	struct s_v_argv		v_argv;
 	size_t				pipe_n;
-	bool				flag_here_doc;
 }	t_pipex;
 
 extern char	**environ;
@@ -80,14 +75,13 @@ extern char	**environ;
 # define LAST_COMMAND		3
 
 # define NUM_BASE			5
-# define NUM_HEREDOC_BASE	6
 
 # define ONE_BECAUSE_IDX_FROM_0		1
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
 # define SIGN_ABS_PATH		'/'
-# define NOT_FOUND		NULL
+# define NOT_FOUND			NULL
 
 # define STR_SLASH			"/"
 # define WORD_FIND_PATH		"PATH="
@@ -105,8 +99,9 @@ extern char	**environ;
 # define ERR_MSG_SPLIT		"ft_split()"
 # define ERR_MSG_MALLOC		"malloc()"
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
+
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
-# define ERR_MSG_CMD_NOT_FOUND	"command not found"
+# define ERR_MSG_CMD_NOT_FOUND		"command not found"
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
