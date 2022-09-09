@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:26:31 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:59:42 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ char	**make_virtual_argv(\
 	v->virtual_argv = \
 			split_virtual_argv_from_real_argv(pipex, command_from_argv);
 	v->list_absolute_path_of_command = \
-				join_file_and_directory_name_to_get_absolute_path(\
-					pipex, v->list_of_directory, v->virtual_argv[0]);
+			join_file_and_directory_name_to_get_absolute_path(\
+				pipex, v->list_of_directory, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == ERR_NUM)
-		exit_with_error(&pipex->v_argv, ERR_MSG_ACCESS);
+		exit_err_cmd_access(v, command_from_argv);
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:53:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:58:31 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,13 @@ extern char	**environ;
 # define ERR_MSG_DUP2		"dup2()"
 # define ERR_MSG_ACCESS		"access()"
 # define ERR_MSG_OPEN		"open()"
-# define ERR_MSG_NO_CMD		"error : no command()"
+# define ERR_MSG_NO_CMD		"error : No command()"
 # define ERR_MSG_STRDUP		"ft_strdup()"
 # define ERR_MSG_SPLIT		"ft_split()"
 # define ERR_MSG_MALLOC		"malloc()"
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
+# define ERR_MSG_CMD_NOT_FOUND	"command not found"
+
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
@@ -113,6 +115,7 @@ size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 void	safe_free(char **malloc_ptr);
 void	exit_successfully(t_v_argv *v_argv);
 void	exit_with_error(t_v_argv *v_argv, char *str);
+void	exit_err_cmd_access(t_v_argv *v_argv, char *command_from_argv);
 //free struct
 void	free_struct(t_v_argv *v_argv);
 //run
