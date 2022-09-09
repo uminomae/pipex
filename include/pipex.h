@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:19:22 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:25:44 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <fcntl.h>
 
 // temp_devided_list : path line of env by split() 
-// list_of_directry : add slash
+// list_of_directory : add slash
 // virtual_argv : argv for execve()
 // list_absolute_path_of_command : fullpath including basename
 typedef struct s_v_argv
 {
 	char	**temp_devided_list;
-	char	**list_of_directry;
+	char	**list_of_directory;
 	char	**virtual_argv;
 	char	**list_absolute_path_of_command;
 }	t_v_argv;
