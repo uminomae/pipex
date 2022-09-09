@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:25:44 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:27:46 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ typedef struct s_pipe_list
 // file_fd : for open(), write()
 typedef struct s_pipex
 {
-	pid_t			pid[2];
 	int				argc;
 	char			**argv;
-	//char			**env;
-	//int				pipe_list[2];
 	struct s_pipe_list	pipe_list;
 	int				file_fd[2];
 	struct s_v_argv	v_argv;
