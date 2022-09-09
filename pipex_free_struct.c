@@ -6,13 +6,17 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/09 17:23:28 by hioikawa         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/09 17:06:08 by hioikawa         ###   ########.fr       */
+>>>>>>> 9c7cb019741ef30e8b726e2454be613fcb2b3f2c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	free_temp_devided_list(t_v_argv *v);
+static void	free_temp_divided_list(t_v_argv *v);
 static void	free_list_of_directory(t_v_argv *v);
 static void	free_virtual_argv(t_v_argv *v);
 static void	free_list_absolute_path_of_command(t_v_argv *v);
@@ -22,7 +26,7 @@ void	free_struct(t_v_argv *v_argv)
 	free_list_absolute_path_of_command(v_argv);
 	free_virtual_argv(v_argv);
 	free_list_of_directory(v_argv);
-	free_temp_devided_list(v_argv);
+	free_temp_divided_list(v_argv);
 }
 
 static void	free_list_absolute_path_of_command(t_v_argv *v)
@@ -42,21 +46,21 @@ static void	free_list_absolute_path_of_command(t_v_argv *v)
 	v->list_absolute_path_of_command = NULL;
 }
 
-static void	free_temp_devided_list(t_v_argv *v)
+static void	free_temp_divided_list(t_v_argv *v)
 {
 	size_t	i;
 
 	i = 0;
-	if (v->temp_devided_list == NULL)
+	if (v->temp_divided_list == NULL)
 		return ;
-	while (v->temp_devided_list[i] != NULL)
+	while (v->temp_divided_list[i] != NULL)
 	{
-		safe_free(&v->temp_devided_list[i]);
+		safe_free(&v->temp_divided_list[i]);
 		i++;
 	}
-	free(v->temp_devided_list[i]);
-	free(v->temp_devided_list);
-	v->temp_devided_list = NULL;
+	free(v->temp_divided_list[i]);
+	free(v->temp_divided_list);
+	v->temp_divided_list = NULL;
 }
 
 static void	free_list_of_directory(t_v_argv *v)

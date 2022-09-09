@@ -6,7 +6,11 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/09 17:23:31 by hioikawa         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/09 17:06:08 by hioikawa         ###   ########.fr       */
+>>>>>>> 9c7cb019741ef30e8b726e2454be613fcb2b3f2c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +22,13 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-// temp_devided_list : path line of env by split() 
+// temp_divided_list : path line of env by split() 
 // list_of_directory : add slash
 // virtual_argv : argv for execve()
 // list_absolute_path_of_command : fullpath including basename
 typedef struct s_v_argv
 {
-	char	**temp_devided_list;
+	char	**temp_divided_list;
 	char	**list_of_directory;
 	char	**virtual_argv;
 	char	**list_absolute_path_of_command;
@@ -55,6 +59,7 @@ typedef struct s_pipex
 	int					file_fd[2];
 	struct s_v_argv		v_argv;
 	size_t				pipe_n;
+	bool				flag_here_doc;
 }	t_pipex;
 
 extern char	**environ;
@@ -74,7 +79,8 @@ extern char	**environ;
 # define FIRST_CMD			2
 # define LAST_COMMAND		3
 
-# define NUM_OF_BASE		5
+# define NUM_BASE			5
+# define NUM_HEREDOC_BASE	6
 
 # define ONE_BECAUSE_IDX_FROM_0		1
 
