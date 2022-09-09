@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 15:58:31 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:12:25 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ extern char	**environ;
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
-# define IS_ABS_PATH		'/'
+# define SIGN_ABS_PATH		'/'
+# define NOT_FOUND		NULL
 
 # define STR_SLASH			"/"
 # define WORD_FIND_PATH		"PATH="
@@ -98,6 +99,7 @@ extern char	**environ;
 # define ERR_MSG_SPLIT		"ft_split()"
 # define ERR_MSG_MALLOC		"malloc()"
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
+# define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
 # define ERR_MSG_CMD_NOT_FOUND	"command not found"
 
 

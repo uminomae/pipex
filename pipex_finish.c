@@ -33,14 +33,19 @@ void	exit_with_error(t_v_argv *v_argv, char *str)
 
 void	exit_err_cmd_access(t_v_argv *v_argv, char *command_from_argv)
 {
-	if (ft_strchr(command_from_argv, IS_ABS_PATH) == NULL)
+	free_struct(v_argv);
+	if (ft_strchr(command_from_argv, SIGN_ABS_PATH) == NULL)
 	{
 		ft_putstr_fd(ERR_MSG_CMD_NOT_FOUND, STDERR_FILENO);
 		ft_putstr_fd(": ", STDERR_FILENO);
 		ft_putendl_fd(command_from_argv, STDERR_FILENO);
-		free_struct(v_argv);
 		exit(EXIT_FAILURE);
 	}
 	else
-		exit_with_error(v_argv, ERR_MSG_ACCESS);
+	{
+		ft_putstr_fd(ERR_MSG_NO_SUCH_FILE_FIR, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putendl_fd(command_from_argv, STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
 }
