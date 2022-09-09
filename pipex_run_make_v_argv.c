@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:25:44 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:26:31 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	**join_file_and_directory_name_to_get_absolute_path(\
 static int	get_index_accessible_path(char **list_absolute_path_of_command);
 static char	**switch_first_argv_to_absolute_path(\
 								t_pipex *pipex, t_v_argv *v, size_t index);
-								
+
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_v_argv *v, char *command_from_argv)
 {

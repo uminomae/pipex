@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:41:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:16:02 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ char	*x_strjoin(\
 		exit_with_error(v_argv, ERR_MSG_STRJOIN);
 	return (ret);
 }
-

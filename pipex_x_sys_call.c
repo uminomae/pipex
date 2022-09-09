@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 17:11:12 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:18:52 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ void	x_dup2(t_v_argv *v_argv, int file, int fd)
 	if (ret == ERR_NUM)
 		exit_with_error(v_argv, ERR_MSG_DUP2);
 }
-
