@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 16:56:54 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:06:08 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-// temp_devided_list : path line of env by split() 
+// temp_divided_list : path line of env by split() 
 // list_of_directory : add slash
 // virtual_argv : argv for execve()
 // list_absolute_path_of_command : fullpath including basename
 typedef struct s_v_argv
 {
-	char	**temp_devided_list;
+	char	**temp_divided_list;
 	char	**list_of_directory;
 	char	**virtual_argv;
 	char	**list_absolute_path_of_command;
@@ -55,6 +55,7 @@ typedef struct s_pipex
 	int					file_fd[2];
 	struct s_v_argv		v_argv;
 	size_t				pipe_n;
+	bool				flag_here_doc;
 }	t_pipex;
 
 extern char	**environ;
