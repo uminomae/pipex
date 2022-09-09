@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 15:38:22 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:23:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_struct(t_v_argv *v_argv)
 	free_list_of_directory(v_argv);
 	free_temp_devided_list(v_argv);
 }
-
 
 static void	free_list_absolute_path_of_command(t_v_argv *v)
 {

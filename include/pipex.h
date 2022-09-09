@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 16:12:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:23:31 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ extern char	**environ;
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
 # define ERR_MSG_CMD_NOT_FOUND	"command not found"
-
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
