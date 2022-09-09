@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:17:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:19:22 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ extern char **environ;
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
+# define IS_ABS_PATH		'/'
 
 # define STR_SLASH			"/"
 # define WORD_FIND_PATH		"PATH="
