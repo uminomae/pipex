@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 17:15:03 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:00:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ pid_t	run_child_to_pipe(\
 	{
 		x_dup2(v_argv, prev_pipe[READ], STDIN_FILENO);
 		x_dup2(v_argv, pipe[WRITE], STDOUT_FILENO);
-		close_both_pipe(v_argv, prev_pipe);
-		close_both_pipe(v_argv, pipe);
+		close_both_fd(v_argv, prev_pipe);
+		close_both_fd(v_argv, pipe);
 		get_path_from_env_and_make_list(pipex,v_argv);
 		v_argv->virtual_argv = make_virtual_argv(pipex,v_argv, argv[add_pipe + LAST_COMMAND]);
 		x_execve(pipex, v_argv->virtual_argv);

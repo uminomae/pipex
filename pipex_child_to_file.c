@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:59:41 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:00:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ pid_t	run_child_to_file(\
 		{
 			x_dup2(v_argv, file_fd[READ], STDIN_FILENO);
 			x_dup2(v_argv, pipex->pipe_list.head->pipe_fd[WRITE], STDOUT_FILENO);
-			close_both_pipe(v_argv, pipex->pipe_list.head->pipe_fd);
+			close_both_fd(v_argv, pipex->pipe_list.head->pipe_fd);
 		}
 		else if (read_or_write == WRITE)
 		{
 			x_dup2(v_argv, pipex->pipe_list.tail->pipe_fd[READ], STDIN_FILENO);
 			x_dup2(v_argv, file_fd[WRITE], STDOUT_FILENO);
-			close_both_pipe(v_argv, pipex->pipe_list.tail->pipe_fd);
+			close_both_fd(v_argv, pipex->pipe_list.tail->pipe_fd);
 		}
 		get_path_from_env_and_make_list(pipex, v_argv);
 		v_argv->virtual_argv = make_virtual_argv(pipex, v_argv, argv[argv_idx]);
