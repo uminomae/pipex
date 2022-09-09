@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:29:40 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:43:08 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	open_files(\
 	size_t	last_arg;
 
 	last_arg = argc - ONE_BECAUSE_IDX_FROM_0;
-	//last_arg = pipex->argc - ONE_BECAUSE_IDX_FROM_0;
 	open_read_file(file_fd, argv[FILE_FOR_READ]);
 	open_write_file(file_fd, argv[last_arg]);
 	if (file_fd[READ] == ERR_NUM | file_fd[WRITE] == ERR_NUM)

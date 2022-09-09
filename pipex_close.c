@@ -12,8 +12,8 @@
 
 #include "pipex.h"
 
-void	close_both_pipe(t_v_argv *v_argv, const int *const pipe_fd)
+void	close_both_pipe(t_v_argv *v_argv, const int *const fd)
 {
-	x_close(v_argv, pipe_fd[READ]);
-	x_close(v_argv, pipe_fd[WRITE]);
+	x_close(v_argv, fd[READ]);
+	x_close(v_argv, fd[WRITE]);
 }
