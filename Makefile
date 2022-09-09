@@ -1,15 +1,14 @@
 NAME		:= pipex
 CC			:= cc 
 RM			:= rm -f
-CFLAGS		:= -Wall -Wextra -Werror -O3
+CFLAGS		:= -Wall -Wextra -Werror -O
 DFLAGS		:= -MMD -MP
-#MFLAGS		:= -Lminilibx-linux -lmlx -lXext -lX11 -lm
 SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
 				pipex_open.c \
 				pipex_pipe.c \
 				pipex_child.c \
-				pipex_child_multi.c \
+				pipex_multi_pipe.c \
 				pipex_close.c \
 				pipex_run_get_path.c \
 				pipex_run_make_v_argv.c \
@@ -89,7 +88,6 @@ bonus:
 debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
 debug: re
 
-#.PHONY: all clean fclean re
 .PHONY: all clean fclean re bonus
 
 RED			=	"\033[31m"
