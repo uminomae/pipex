@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 08:46:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:30:12 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	//begin_pipex(&pipex, argc, argv, env);
 	begin_pipex(&pipex, argc, argv);
 
-	open_files(&pipex, argv, pipex.file_fd);
+	open_files(&pipex, argc, argv, pipex.file_fd);
 	num_pipe = make_pipe(&pipex, argc, NUM_OF_BASE);
 	pipex.pipe_list.head->process_id = \
 		run_child_to_file(&pipex, argv, READ, FIRST_CMD);
