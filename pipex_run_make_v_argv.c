@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 09:19:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:20:13 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static char	**join_file_and_directry_name_to_get_absolute_path(\
 	i = 0;
 	while (list_of_directry[i] != NULL)
 	{
-		//TODO abs
 		abs = ft_strchr(command_name, IS_ABS_PATH);
 		if (abs == NULL)
 			list_absolute_path_of_command[i] = \
