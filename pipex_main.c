@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:12:56 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:54:08 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,15 @@ int	main(int argc, char **argv)
 	close_both_fd(&pipex.v_argv, pipex.pipe_list.tail->pipe_fd);
 	wait_all_child(&pipex);
 	return (0);
+}
+
+void	run_child(t_pipex *pipex, char **argv, size_t num_pipe)
+{
+	size_t	add_pipe;
+
+	pipex->pipe_list.head->process_id = \
+		run_child_to_file(pipex, argv, READ, FIRST_CMD);
+	add_pipe = run_multiple_pipes(pipex, num_pipe);
+	pipex->pipe_list.tail->process_id = \
+		run_child_to_file(pipex, argv, WRITE, add_pipe + LAST_COMMAND);
 }

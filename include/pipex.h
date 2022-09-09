@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:15:44 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:53:17 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	run_child(t_pipex *pipex, char **argv, size_t num_pipe);
 void	close_both_fd(t_v_argv *v_argv, const int *const pipe_fd);
 void	wait_all_child(t_pipex *pipex);
+//
+pid_t	run_child_to_file(\
+				t_pipex *pipex, char **argv, int read_or_write, int argv_idx);
+size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 // finish
 void	safe_free(char **malloc_ptr);
 void	exit_successfully(t_v_argv *v_argv);
@@ -112,7 +116,7 @@ void	exit_with_error(t_v_argv *v_argv, char *str);
 //free struct
 void	free_struct(t_v_argv *v_argv);
 //run
-void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v);
+void	get_path(t_pipex *pipex, t_v_argv *v);
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_v_argv *v, char *command_from_argv);
 size_t	scale_list_including_null(char **list);

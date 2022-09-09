@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:19:41 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/09 10:44:29 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char		**trim_unnecessary_characters(\
 static char		**join_slash_path_of_directory(\
 					t_pipex *pipex, char **temp_devided_list);
 
-void	get_path_from_env_and_make_list(t_pipex *pipex, t_v_argv *v)
+void	get_path(t_pipex *pipex, t_v_argv *v)
 {
 	size_t		path_line;
 
