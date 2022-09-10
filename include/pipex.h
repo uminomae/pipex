@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:38:47 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:41:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_pipe_node
 	int					pipe_fd[2];
 	struct s_pipe_node	*prev;	
 	struct s_pipe_node	*next;
-	pid_t				process_id;
+	//pid_t				process_id;
 }	t_pipe_node;
 
 typedef struct s_pipe_list
@@ -44,6 +44,20 @@ typedef struct s_pipe_list
 	struct s_pipe_node	*head;
 	struct s_pipe_node	*tail;
 }	t_pipe_list;
+
+typedef struct s_pid_node
+{
+	pid_t				process_id;
+	struct s_pid_node	*prev;	
+	struct s_pid_node	*next;
+}	t_pid_node;
+
+typedef struct s_pid_list
+{
+	struct s_pid_node	*head;
+	struct s_pid_node	*tail;
+}	t_pid_list;
+
 
 // pid : process ID
 // pipe_list : node of pipe,process() 
