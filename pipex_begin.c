@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 17:00:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:01:19 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,4 @@ static void	init_struct(t_pipex *pipex, char **argv)
 	pipex->v_argv.list_of_directory = NULL;
 	pipex->v_argv.temp_divided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;
-	//pipex->is_here_doc = false;
 }
