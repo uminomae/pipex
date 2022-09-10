@@ -13,7 +13,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_close.c \
 				pipex_run_get_path.c \
 				pipex_run_make_v_argv.c \
-				pipex_run_util.c \
+				pipex_util.c \
 				pipex_wait.c \
 				pipex_finish.c \
 				pipex_x_util.c \

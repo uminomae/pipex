@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:34:52 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:52:29 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,13 @@ extern char	**environ;
 # define FIRST_LINE			0
 # define SAME_STRING		0
 # define NOT_FIND			0
-
 # define FILE_FOR_READ		1
 # define FIRST_CMD			2
 # define LAST_COMMAND		3
-
-# define NUM_BASE			5
+# define ARGC_NORMAL			5
 
 # define ONE_BECAUSE_IDX_FROM_0		1
+# define CASE_CMD_NOT_FOUND			2
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
@@ -119,7 +118,6 @@ extern char	**environ;
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
-//void	make_pid_struct(t_pipex *pipex, int argc, pid_t process_id);
 void	init_pid_struct(t_pipex *pipex, int argc);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
@@ -133,8 +131,9 @@ size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 // finish
 void	safe_free(char **malloc_ptr);
 //void	exit_successfully(t_pipex *pipex);
-void	exit_with_error(t_pipex *pipex, char *str);
-void	exit_err_cmd_access(t_pipex *pipex, char *command_from_argv);
+void	exit_with_error(t_pipex *pipex, char *str, size_t type);
+//void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
+//void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 //free struct
 void	free_struct(t_pipex *pipex);
 //run

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:26:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:47:03 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	x_close(t_pipex *pipex, int fd)
 
 	ret = close(fd);
 	if (ret == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_CLOSE);
+		exit_with_error(pipex, ERR_MSG_CLOSE, 1);
 }
 
 void	x_execve(t_pipex *pipex, char **virtual_argv)
@@ -27,7 +27,7 @@ void	x_execve(t_pipex *pipex, char **virtual_argv)
 
 	ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, environ);
 	if (ret == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_EXCECVE);
+		exit_with_error(pipex, ERR_MSG_EXCECVE, 1);
 }
 
 void	x_waitpid(t_pipex *pipex, pid_t process_id)
@@ -37,5 +37,5 @@ void	x_waitpid(t_pipex *pipex, pid_t process_id)
 
 	ret = waitpid(process_id, &child_status, GROUP_OF_CALLER);
 	if (ret == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_WAITPID);
+		exit_with_error(pipex, ERR_MSG_WAITPID, 1);
 }

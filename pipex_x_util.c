@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:25:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:47:02 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**x_split(\
 
 	ret = ft_split(str, delimiter);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_SPLIT);
+		exit_with_error(pipex, ERR_MSG_SPLIT, 1);
 	return (ret);
 }
 
@@ -29,7 +29,7 @@ void	*x_malloc(t_pipex *pipex, size_t size)
 
 	ret = malloc(sizeof(char *) * size);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_MALLOC);
+		exit_with_error(pipex, ERR_MSG_MALLOC, 1);
 	return (ret);
 }
 
@@ -40,6 +40,6 @@ char	*x_strjoin(\
 
 	ret = ft_strjoin(str, str_to_add);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_STRJOIN);
+		exit_with_error(pipex, ERR_MSG_STRJOIN, 1);
 	return (ret);
 }

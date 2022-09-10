@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:24:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:47:05 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	**make_virtual_argv(\
 				pipex, v->list_of_directory, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == ERR_NUM)
-		exit_err_cmd_access(pipex, command_from_argv);
+		exit_with_error(pipex, command_from_argv, 2);
+		//put_msg_cmd_not_found(pipex, command_from_argv);
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }
@@ -100,6 +101,6 @@ static char	**switch_first_argv_to_absolute_path(\
 				ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
-		exit_with_error(pipex, ERR_MSG_STRDUP);
+		exit_with_error(pipex, ERR_MSG_STRDUP, 1);
 	return (v->virtual_argv);
 }

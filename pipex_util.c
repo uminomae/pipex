@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_run_util.c                                   :+:      :+:    :+:   */
+/*   pipex_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/08 16:41:17 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:49:40 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,10 @@ size_t	scale_list_including_null(char **list)
 	count++;
 	return (count);
 }
+
+void	safe_free(char **malloc_ptr)
+{
+	free(*malloc_ptr);
+	*malloc_ptr = NULL;
+}
+

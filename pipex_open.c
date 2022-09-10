@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:21:03 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:47:06 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	open_files(\
 	open_read_file(file_fd, argv[FILE_FOR_READ]);
 	open_write_file(file_fd, argv[last_arg]);
 	if (file_fd[READ] == ERR_NUM || file_fd[WRITE] == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_OPEN);
+		exit_with_error(pipex, ERR_MSG_OPEN, 1);
 }
 
 static void	open_read_file(int *file_fd, char *argv)
