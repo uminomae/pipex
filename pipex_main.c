@@ -6,14 +6,12 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:19:51 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:56:45 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-//TODO
-// pipe、pidlist free
 int	main(int argc, char **argv)
 {
 	t_pipex		pipex;
@@ -26,7 +24,6 @@ int	main(int argc, char **argv)
 	close_both_fd(&pipex, pipex.file_fd);
 	close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
 	wait_all_child(&pipex);
-
 	return (0);
 }
 
