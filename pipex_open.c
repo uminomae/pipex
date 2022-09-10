@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:59:39 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:42:59 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 static void	open_read_file(int *fd, char *argv);
 static void	open_write_file(int *fd, char *argv);
+
+void	open_case_here_doc(t_pipex *pipex, int argc, char **argv, int *file_fd)
+{
+	size_t	last_index;
+
+	last_index = argc - 1;
+	open_write_file(file_fd, argv[last_index]);
+	if (file_fd[WRITE] == ERR_NUM)
+		exit_with_error(pipex, ERR_MSG_OPEN, 1);
+}
 
 void	open_files(\
 			t_pipex *pipex, int argc, char *const *argv, int *file_fd)

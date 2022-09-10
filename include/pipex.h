@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 16:32:46 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:55:24 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_pipex
 	bool				is_here_doc;
 	size_t				other_cmd;
 	size_t				normal_argc;
+	size_t				first_cmd;
+	size_t				last_cmd;
 }	t_pipex;
 
 extern char	**environ;
@@ -86,7 +88,7 @@ extern char	**environ;
 # define SAME_STRING		0
 # define NOT_FIND			0
 # define FILE_FOR_READ		1
-# define FIRST_CMD			2
+//# define FIRST_CMD			2
 # define LAST_COMMAND		3
 # define ARGC_NORMAL		5
 # define OTHER_CMD			3
@@ -122,13 +124,13 @@ extern char	**environ;
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
 
 
-
+//
+void	open_case_here_doc(t_pipex *pipex, int argc, char **argv, int *file_fd);
+//
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
-//void	begin_pipex(t_pipex *pipex, int argc, char **argv, size_t type);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
-
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe);
 void	close_both_fd(t_pipex *pipex, const int *const pipe_fd);
