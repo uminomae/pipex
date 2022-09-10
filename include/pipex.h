@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 16:22:14 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:32:46 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_pipex
 	struct s_pid_list	pid_list;
 	int					file_fd[2];
 	struct s_arg		v_argv;
+	bool				is_here_doc;
 	size_t				other_cmd;
 	size_t				normal_argc;
 }	t_pipex;
@@ -129,7 +130,7 @@ void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
-void	run_child(t_pipex *pipex, char **argv, size_t num_pipe);
+void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe);
 void	close_both_fd(t_pipex *pipex, const int *const pipe_fd);
 void	wait_all_child(t_pipex *pipex);
 //
