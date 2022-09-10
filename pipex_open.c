@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 07:16:46 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 08:36:25 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	open_write_file(t_pipex *pipex, char *argv);
 
 static void	run_child_to_file_read2(t_pipex *pipex)
 {
-	//x_dup2(pipex, pipex->file_fd[READ], STDIN_FILENO);
+	x_dup2(pipex, pipex->file_fd[READ], STDIN_FILENO);
 	x_dup2(pipex, \
 		pipex->pipe_list.head->pipe_fd[WRITE], STDOUT_FILENO);
 	close_both_fd(pipex, pipex->pipe_list.head->pipe_fd);
@@ -51,7 +51,28 @@ pid_t	run_child_to_file2(\
 	return (process_id);
 }
 
+void	run_separate_child2(t_pipex *pipex, char **argv, size_t num_pipe)
+{
+	size_t				add_pipe;
+	t_pid_node *const	head = pipex->pid_list.head;
+	t_pid_node *const	tail = pipex->pid_list.tail;
 
+	head->process_id = \
+		run_child_to_file2(pipex, argv, READ,  pipex->first_cmd);
+	add_pipe = run_multiple_pipes(pipex, num_pipe);
+	tail->process_id = \
+		run_child_to_file2(pipex, argv, WRITE, add_pipe + pipex->last_cmd);
+}
+
+int	make_file_here_doc(t_pipex *pipex)
+{
+	int	fd;
+
+	fd = open(".here_doc", O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd == ERR_NUM)
+		exit_with_error(pipex, ERR_MSG_OPEN, 1);
+	return (fd);
+}
 
 //TODO err
 void	open_case_here_doc(t_pipex *pipex, int argc, char **argv)
@@ -59,13 +80,11 @@ void	open_case_here_doc(t_pipex *pipex, int argc, char **argv)
 	size_t	last_index;
 	char	*word;
 	char 	*str;
-	//int 	fd;
+	int 	fd;
 	char *temp;
 	
 	last_index = argc - 1;
-	//pipex->file_fd[READ] = STDIN_FILENO;
-	//fd = dup(pipex->file_fd[READ]);
-	pipex->file_fd[WRITE] = open_write_file(pipex, argv[last_index]);
+	fd = make_file_here_doc(pipex);
 
 	str = "";
    	while (1)
@@ -82,8 +101,10 @@ void	open_case_here_doc(t_pipex *pipex, int argc, char **argv)
    	    //free(temp);
 		free(word);
    	}
-	ft_putstr_fd(str, 0);
-	//ft_putstr_fd(str, fd);
+	ft_putstr_fd(str, fd);
+	x_close(pipex, fd);
+	pipex->file_fd[READ] = open_read_file(pipex, ".here_doc");
+	pipex->file_fd[WRITE] = open_write_file(pipex, argv[last_index]);
 }
 
 void	open_files(t_pipex *pipex, int argc, char *const *argv)
