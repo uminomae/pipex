@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:41:16 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:54:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_pipex
 {
 	char				**argv;
 	struct s_pipe_list	pipe_list;
+	struct s_pid_list	pid_list;
 	int					file_fd[2];
 	struct s_arg		v_argv;
 	size_t				pipe_n;
@@ -117,6 +118,8 @@ extern char	**environ;
 
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
+
+void	make_pid_struct(t_pipex *pipex, int argc, pid_t process_id);
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);

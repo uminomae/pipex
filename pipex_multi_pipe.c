@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:58:08 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe)
 {
 	size_t		i;
 	t_pipe_node	*node;
+	t_pid_node	*node_pid;
 
 	if (num_pipe == 1)
 		return (0);
 	node = pipex->pipe_list.head->next;
+	node_pid = pipex->pid_list.head->next;
 	i = 0;
 	while (node != NULL)
 	{
-		node->process_id = run_child_multi(\
+		node_pid->process_id = run_child_multi(\
 				pipex, node->prev->pipe_fd, node->pipe_fd, i);
 		node = node->next;
 		i++;
