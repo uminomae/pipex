@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:20:36 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:54:54 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,10 @@ static t_pid_node	*init_pid_node(t_pipex *pipex)
 }
 
 static void	add_pid_to_node(t_pipex *pipex)
-//static void	add_pid_to_node(t_pipex *pipex, int process_id)
 {
 	t_pid_node	*node;
 
 	node = init_pid_node(pipex);
-	//node->process_id = process_id;
 	if (pipex->pid_list.head == NULL)
 	{
 		pipex->pid_list.head = node;

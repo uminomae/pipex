@@ -16,7 +16,7 @@ static void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 
 void	exit_with_error(t_pipex *pipex, char *str, size_t type)
 {
-	if (type == CASE_CMD_NOT_FOUND)
+	if (type == TYPE_CMD_NOT_FOUND)
 	{
 		if (ft_strchr(str, SIGN_ABS_PATH) == NULL)
 			put_msg_cmd_not_found(pipex, str);

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:52:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:55:37 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ extern char	**environ;
 # define ARGC_NORMAL			5
 
 # define ONE_BECAUSE_IDX_FROM_0		1
-# define CASE_CMD_NOT_FOUND			2
+# define TYPE_CMD_NOT_FOUND			2
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
