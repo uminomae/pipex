@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:13:54 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:51:36 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_pipe_node
 	int					pipe_fd[2];
 	struct s_pipe_node	*prev;	
 	struct s_pipe_node	*next;
-	//pid_t				process_id;
 }	t_pipe_node;
 
 typedef struct s_pipe_list
@@ -57,10 +56,10 @@ typedef struct s_pid_list
 	struct s_pid_node	*tail;
 }	t_pid_list;
 
-// pid : process ID
-// pipe_list : node of pipe,process() 
+// pipe_list : node of pipe
+// pid_list : node of process ID
 // file_fd : for open(), write()
-// v_argv : for virtual argv, to execve
+// v_argv : make virtual argv, for execve
 typedef struct s_pipex
 {
 	char				**argv;
@@ -85,7 +84,8 @@ extern char	**environ;
 # define FILE_FOR_READ		1
 # define FIRST_CMD			2
 # define LAST_COMMAND		3
-# define ARGC_NORMAL			5
+# define ARGC_NORMAL		5
+# define OTHER_CMD			3
 
 # define TYPE_CMD_NOT_FOUND			2
 
@@ -117,7 +117,7 @@ extern char	**environ;
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
-void	init_pid_struct(t_pipex *pipex, int argc);
+void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	run_child(t_pipex *pipex, char **argv, size_t num_pipe);

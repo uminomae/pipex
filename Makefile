@@ -17,9 +17,10 @@ SRCS		:= 	pipex_main.c \
 				pipex_wait.c \
 				pipex_finish.c \
 				pipex_x_util.c \
-				pipex_x_sys_call.c \
+				pipex_x_sys_call1.c \
 				pipex_x_sys_call2.c \
-				pipex_free_struct.c \
+				pipex_free1.c \
+				pipex_free2.c \
 
 B_SRCS	:= 
 
