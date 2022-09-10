@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:12:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:20:36 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static t_pid_node	*init_pid_node(t_arg *v_argv);
+static t_pid_node	*init_pid_node(t_pipex *pipex);
 static void	add_pid_to_node(t_pipex *pipex);
 
 void	init_pid_struct(t_pipex *pipex, int argc)
@@ -30,11 +30,11 @@ void	init_pid_struct(t_pipex *pipex, int argc)
 	return ;
 }
 
-static t_pid_node	*init_pid_node(t_arg *v_argv)
+static t_pid_node	*init_pid_node(t_pipex *pipex)
 {
 	t_pid_node	*node;
 
-	node = (t_pid_node *)x_malloc(v_argv, sizeof(t_pid_node));
+	node = (t_pid_node *)x_malloc(pipex, sizeof(t_pid_node));
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -45,7 +45,7 @@ static void	add_pid_to_node(t_pipex *pipex)
 {
 	t_pid_node	*node;
 
-	node = init_pid_node(&pipex->v_argv);
+	node = init_pid_node(pipex);
 	//node->process_id = process_id;
 	if (pipex->pid_list.head == NULL)
 	{

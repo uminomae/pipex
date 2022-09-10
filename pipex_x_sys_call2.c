@@ -6,19 +6,19 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:26:29 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	x_close(t_arg *v_argv, int fd)
+void	x_close(t_pipex *pipex, int fd)
 {
 	int	ret;
 
 	ret = close(fd);
 	if (ret == ERR_NUM)
-		exit_with_error(v_argv, ERR_MSG_CLOSE);
+		exit_with_error(pipex, ERR_MSG_CLOSE);
 }
 
 void	x_execve(t_pipex *pipex, char **virtual_argv)
@@ -27,15 +27,15 @@ void	x_execve(t_pipex *pipex, char **virtual_argv)
 
 	ret = execve(virtual_argv[ABS_PATH_CMD], virtual_argv, environ);
 	if (ret == ERR_NUM)
-		exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
+		exit_with_error(pipex, ERR_MSG_EXCECVE);
 }
 
-void	x_waitpid(t_arg *v_argv, pid_t process_id)
+void	x_waitpid(t_pipex *pipex, pid_t process_id)
 {
 	pid_t	ret;
 	int		child_status;
 
 	ret = waitpid(process_id, &child_status, GROUP_OF_CALLER);
 	if (ret == ERR_NUM)
-		exit_with_error(v_argv, ERR_MSG_WAITPID);
+		exit_with_error(pipex, ERR_MSG_WAITPID);
 }

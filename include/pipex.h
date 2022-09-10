@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:05:44 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:17:13 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_arg
 	char	**virtual_argv;
 	char	**list_absolute_path_of_command;
 }	t_arg;
-
 
 typedef struct s_pipe_node
 {
@@ -127,7 +126,7 @@ void	init_pid_struct(t_pipex *pipex, int argc);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	run_child(t_pipex *pipex, char **argv, size_t num_pipe);
-void	close_both_fd(t_arg *v_argv, const int *const pipe_fd);
+void	close_both_fd(t_pipex *pipex, const int *const pipe_fd);
 void	wait_all_child(t_pipex *pipex);
 //
 pid_t	run_child_to_file(\
@@ -135,24 +134,24 @@ pid_t	run_child_to_file(\
 size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 // finish
 void	safe_free(char **malloc_ptr);
-//void	exit_successfully(t_arg *v_argv);
-void	exit_with_error(t_arg *v_argv, char *str);
-void	exit_err_cmd_access(t_arg *v_argv, char *command_from_argv);
+//void	exit_successfully(t_pipex *pipex);
+void	exit_with_error(t_pipex *pipex, char *str);
+void	exit_err_cmd_access(t_pipex *pipex, char *command_from_argv);
 //free struct
-void	free_struct(t_arg *v_argv);
+void	free_struct(t_pipex *pipex);
 //run
 void	get_path(t_pipex *pipex, t_arg *v);
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_arg *v, char *command_from_argv);
 size_t	scale_list_including_null(char **list);
 //x
-char	**x_split(t_arg *v_argv, char *str, char delimiter);
-void	*x_malloc(t_arg *v_argv, size_t size);
-char	*x_strjoin(t_arg *v_argv, char *str, char *str_to_add);
-void	x_pipe(int *pipe_fd, t_arg *v_argv);
+char	**x_split(t_pipex *pipex, char *str, char delimiter);
+void	*x_malloc(t_pipex *pipex, size_t size);
+char	*x_strjoin(t_pipex *pipex, char *str, char *str_to_add);
+void	x_pipe(int *pipe_fd, t_pipex *pipex);
 pid_t	x_fork(t_pipex *pipex);
-void	x_dup2(t_arg *v_argv, int file, int fd);
+void	x_dup2(t_pipex *pipex, int file, int fd);
 void	x_execve(t_pipex *pipex, char **virtual_argv);
-void	x_close(t_arg *v_argv, int fd);
-void	x_waitpid(t_arg *v_argv, pid_t process_id);
+void	x_close(t_pipex *pipex, int fd);
+void	x_waitpid(t_pipex *pipex, pid_t process_id);
 #endif

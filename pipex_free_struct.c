@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:28:00 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	free_list_of_directory(t_arg *v);
 static void	free_virtual_argv(t_arg *v);
 static void	free_list_absolute_path_of_command(t_arg *v);
 
-void	free_struct(t_arg *v_argv)
+void	free_struct(t_pipex *pipex)
 {
-	free_list_absolute_path_of_command(v_argv);
-	free_virtual_argv(v_argv);
-	free_list_of_directory(v_argv);
-	free_temp_divided_list(v_argv);
+	free_list_absolute_path_of_command(&pipex->v_argv);
+	free_virtual_argv(&pipex->v_argv);
+	free_list_of_directory(&pipex->v_argv);
+	free_temp_divided_list(&pipex->v_argv);
 }
 
 static void	free_list_absolute_path_of_command(t_arg *v)

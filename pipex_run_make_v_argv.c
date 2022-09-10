@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:24:53 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**make_virtual_argv(\
 				pipex, v->list_of_directory, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == ERR_NUM)
-		exit_err_cmd_access(v, command_from_argv);
+		exit_err_cmd_access(pipex, command_from_argv);
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }
@@ -45,7 +45,7 @@ static char	**split_virtual_argv_from_real_argv(\
 	if (command_from_argv == NULL)
 		ft_putendl_fd(ERR_MSG_NO_CMD, STDERR_FILENO);
 	virtual_argv = \
-			x_split(&pipex->v_argv, command_from_argv, DELIMITER_CMD);
+			x_split(pipex, command_from_argv, DELIMITER_CMD);
 	return (virtual_argv);
 }
 
@@ -59,7 +59,7 @@ static char	**join_file_and_directory_name_to_get_absolute_path(\
 
 	num = scale_list_including_null(list_of_directory);
 	list_absolute_path_of_command = \
-				x_malloc(&pipex->v_argv, sizeof(char *) * num);
+				x_malloc(pipex, sizeof(char *) * num);
 	i = 0;
 	while (list_of_directory[i] != NULL)
 	{
@@ -67,7 +67,7 @@ static char	**join_file_and_directory_name_to_get_absolute_path(\
 		if (abs_sign == NOT_FOUND)
 			list_absolute_path_of_command[i] = \
 				x_strjoin(\
-					&pipex->v_argv, list_of_directory[i], command_name);
+					pipex, list_of_directory[i], command_name);
 		else
 			list_absolute_path_of_command[i] = ft_strdup(command_name);
 		i++;
@@ -100,6 +100,6 @@ static char	**switch_first_argv_to_absolute_path(\
 				ft_strdup(v->list_absolute_path_of_command[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
-		exit_with_error(&pipex->v_argv, ERR_MSG_STRDUP);
+		exit_with_error(pipex, ERR_MSG_STRDUP);
 	return (v->virtual_argv);
 }

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:08:13 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:16:07 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 	
 	run_child(&pipex, argv, num_pipe);
 	
-	close_both_fd(&pipex.v_argv, pipex.file_fd);
-	close_both_fd(&pipex.v_argv, pipex.pipe_list.tail->pipe_fd);
+	close_both_fd(&pipex, pipex.file_fd);
+	close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
 	wait_all_child(&pipex);
 
 	return (0);

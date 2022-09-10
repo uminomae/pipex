@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:24:14 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	**split_list_of_directory_from_path_line(\
 
 	temp_divided_list = \
 		x_split(\
-			&pipex->v_argv, environ[path_index], DELIMITER_PATH);
+			pipex, environ[path_index], DELIMITER_PATH);
 	temp_divided_list = \
 		trim_unnecessary_characters(temp_divided_list, WORD_FIND_PATH);
 	return (temp_divided_list);
@@ -84,13 +84,13 @@ static char	**join_slash_path_of_directory(\
 
 	list_size = scale_list_including_null(temp_divided_list);
 	list_of_directory = \
-		x_malloc(&pipex->v_argv, sizeof(char *) * list_size);
+		x_malloc(pipex, sizeof(char *) * list_size);
 	i = 0;
 	while (temp_divided_list[i] != NULL)
 	{
 		list_of_directory[i] = \
 			x_strjoin(\
-				&pipex->v_argv, temp_divided_list[i], STR_SLASH);
+				pipex, temp_divided_list[i], STR_SLASH);
 		i++;
 	}
 	list_of_directory[i] = NULL;

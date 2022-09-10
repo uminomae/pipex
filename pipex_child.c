@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:51:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:22:31 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ pid_t	run_child_to_file(\
 
 static void	run_child_to_file_read(t_pipex *pipex)
 {
-	x_dup2(&pipex->v_argv, pipex->file_fd[READ], STDIN_FILENO);
-	x_dup2(&pipex->v_argv, \
+	x_dup2(pipex, pipex->file_fd[READ], STDIN_FILENO);
+	x_dup2(pipex, \
 		pipex->pipe_list.head->pipe_fd[WRITE], STDOUT_FILENO);
-	close_both_fd(&pipex->v_argv, pipex->pipe_list.head->pipe_fd);
+	close_both_fd(pipex, pipex->pipe_list.head->pipe_fd);
 }
 
 static void	run_child_to_file_write(t_pipex *pipex)
 {
-	x_dup2(&pipex->v_argv, \
+	x_dup2(pipex, \
 				pipex->pipe_list.tail->pipe_fd[READ], STDIN_FILENO);
-	x_dup2(&pipex->v_argv, pipex->file_fd[WRITE], STDOUT_FILENO);
-	close_both_fd(&pipex->v_argv, pipex->pipe_list.tail->pipe_fd);
+	x_dup2(pipex, pipex->file_fd[WRITE], STDOUT_FILENO);
+	close_both_fd(pipex, pipex->pipe_list.tail->pipe_fd);
 }

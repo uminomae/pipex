@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:58:08 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:23:12 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ static pid_t	run_child_multi(\
 	process_id = x_fork(pipex);
 	if (process_id == CHILD_PROCESS)
 	{
-		x_dup2(v_argv, prev_pipe[READ], STDIN_FILENO);
-		x_dup2(v_argv, pipe[WRITE], STDOUT_FILENO);
-		close_both_fd(v_argv, prev_pipe);
-		close_both_fd(v_argv, pipe);
+		x_dup2(pipex, prev_pipe[READ], STDIN_FILENO);
+		x_dup2(pipex, pipe[WRITE], STDOUT_FILENO);
+		close_both_fd(pipex, prev_pipe);
+		close_both_fd(pipex, pipe);
 		get_path(pipex, v_argv);
 		v_argv->virtual_argv = make_virtual_argv(\
 				pipex, v_argv, argv[add_pipe + LAST_COMMAND]);
 		x_execve(pipex, v_argv->virtual_argv);
 	}
-	x_close(v_argv, prev_pipe[WRITE]);
+	x_close(pipex, prev_pipe[WRITE]);
 	return (process_id);
 }

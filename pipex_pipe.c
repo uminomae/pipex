@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:12:35 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:21:39 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static t_pipe_node	*init_pipe_node(t_arg *v_argv);
+static t_pipe_node	*init_pipe_node(t_pipex *pipex);
 static void			add_pipe_to_list(t_pipex *pipex, int pipe_fd[2]);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base)
@@ -25,18 +25,18 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base)
 	i = 0;
 	while (i < num_to_make)
 	{
-		x_pipe(add_pipe, &pipex->v_argv);
+		x_pipe(add_pipe, pipex);
 		add_pipe_to_list(pipex, add_pipe);
 		i++;
 	}
 	return (i);
 }
 
-static t_pipe_node	*init_pipe_node(t_arg *v_argv)
+static t_pipe_node	*init_pipe_node(t_pipex *pipex)
 {
 	t_pipe_node	*node;
 
-	node = (t_pipe_node *)x_malloc(v_argv, sizeof(t_pipe_node));
+	node = (t_pipe_node *)x_malloc(pipex, sizeof(t_pipe_node));
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);
@@ -46,7 +46,7 @@ static void	add_pipe_to_list(t_pipex *pipex, int pipe_fd[2])
 {
 	t_pipe_node	*node;
 
-	node = init_pipe_node(&pipex->v_argv);
+	node = init_pipe_node(pipex);
 	node->pipe_fd[0] = pipe_fd[0];
 	node->pipe_fd[1] = pipe_fd[1];
 	if (pipex->pipe_list.head == NULL)
