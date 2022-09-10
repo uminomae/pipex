@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:13:35 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 07:22:03 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,33 @@
 void	free_pid_list(t_pid_list *pid_list)
 {
 	t_pid_node	*node;
+	t_pid_node	*temp;
 
 	node = pid_list->head;
 	if (node == NULL)
 		return ;
 	while (node != NULL)
 	{
-		free(node);
-		node = NULL;
+		temp = node;
 		node = node->next;
+		free(temp);
+		temp = NULL;
 	}
 }
 
 void	free_pipe_list(t_pipe_list *pipe_list)
 {
 	t_pipe_node	*node;
+	t_pipe_node	*temp;
 
 	node = pipe_list->head;
 	if (node == NULL)
 		return ;
 	while (node != NULL)
 	{
-		free(node);
-		node = NULL;
+		temp = node;
 		node = node->next;
+		free(temp);
+		temp = NULL;
 	}
 }
