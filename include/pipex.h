@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 17:04:21 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:18:06 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ extern char	**environ;
 
 //
 void	open_case_here_doc(t_pipex *pipex, int argc, char **argv, int *file_fd);
+char    *get_next_line(int fd);
 //
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);

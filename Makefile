@@ -21,6 +21,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_x_sys_call2.c \
 				pipex_free1.c \
 				pipex_free2.c \
+				get_next_line.c \
 
 B_SRCS	:= 
 
