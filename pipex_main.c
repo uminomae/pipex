@@ -6,12 +6,19 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 17:27:39 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:02:46 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+//TODO
+// pipenodeを一つのストラクトに
+// v-argvをpipexに
+// exitを一つに
+// process idを別の構造体に
+// pipe_nを使っているか確認
+// pipelist free
 int	main(int argc, char **argv)
 {
 	t_pipex		pipex;
@@ -24,6 +31,7 @@ int	main(int argc, char **argv)
 	close_both_fd(&pipex.v_argv, pipex.file_fd);
 	close_both_fd(&pipex.v_argv, pipex.pipe_list.tail->pipe_fd);
 	wait_all_child(&pipex);
+
 	return (0);
 }
 

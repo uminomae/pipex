@@ -6,12 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 17:28:18 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 09:55:09 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
+   #include <stdlib.h>
+   
 static void	validate_argc(int argc);
 static void	init_struct(t_pipex *pipex, char **argv);
 
@@ -28,6 +29,7 @@ static void	validate_argc(int argc)
 	else
 	{
 		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
+	
 		exit(EXIT_FAILURE);
 	}
 }

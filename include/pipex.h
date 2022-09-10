@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 17:30:53 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:35:48 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_v_argv
 	char	**list_absolute_path_of_command;
 }	t_v_argv;
 
+
 typedef struct s_pipe_node
 {
 	int					pipe_fd[2];
@@ -45,9 +46,9 @@ typedef struct s_pipe_list
 }	t_pipe_list;
 
 // pid : process ID
-// env : same as printenv
-// pipe_list : arg of pipe() 
+// pipe_list : node of pipe,process() 
 // file_fd : for open(), write()
+// v_argv : for virtual argv, to execve
 typedef struct s_pipex
 {
 	char				**argv;
@@ -115,7 +116,7 @@ pid_t	run_child_to_file(\
 size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 // finish
 void	safe_free(char **malloc_ptr);
-void	exit_successfully(t_v_argv *v_argv);
+//void	exit_successfully(t_v_argv *v_argv);
 void	exit_with_error(t_v_argv *v_argv, char *str);
 void	exit_err_cmd_access(t_v_argv *v_argv, char *command_from_argv);
 //free struct
