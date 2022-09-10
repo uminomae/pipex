@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:17:13 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:34:52 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_pid_list
 	struct s_pid_node	*tail;
 }	t_pid_list;
 
-
 // pid : process ID
 // pipe_list : node of pipe,process() 
 // file_fd : for open(), write()
@@ -69,7 +68,6 @@ typedef struct s_pipex
 	struct s_pid_list	pid_list;
 	int					file_fd[2];
 	struct s_arg		v_argv;
-	size_t				pipe_n;
 }	t_pipex;
 
 extern char	**environ;

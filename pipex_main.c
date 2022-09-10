@@ -6,14 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:16:07 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:31:12 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 //TODO
-// v-argvをpipexに
 // exitを一つに
 // pipe_nを使っているか確認
 // pipelist free
@@ -23,7 +22,6 @@ int	main(int argc, char **argv)
 	size_t		num_pipe;
 
 	begin_pipex(&pipex, argc, argv);
-	//make_pid_struct(&pipex, argc, NUM_BASE);
 	num_pipe = make_pipe(&pipex, argc, NUM_BASE);
 	open_files(&pipex, argc, argv, pipex.file_fd);
 	
