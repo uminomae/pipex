@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:51:36 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:22:14 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_pipex
 	struct s_pid_list	pid_list;
 	int					file_fd[2];
 	struct s_arg		v_argv;
+	size_t				other_cmd;
+	size_t				normal_argc;
 }	t_pipex;
 
 extern char	**environ;
@@ -76,6 +78,7 @@ extern char	**environ;
 # define WRITE				1
 
 # define GROUP_OF_CALLER	0
+# define NORMAL			0
 # define CHILD_PROCESS		0
 # define ABS_PATH_CMD		0
 # define FIRST_LINE			0
@@ -93,6 +96,9 @@ extern char	**environ;
 # define DELIMITER_CMD		' '
 # define SIGN_ABS_PATH		'/'
 # define NOT_FOUND			NULL
+
+# define HERE_DOC			1
+# define HERE_DOC_STR		"here_doc"
 
 # define STR_SLASH			"/"
 # define WORD_FIND_PATH		"PATH="
@@ -115,7 +121,10 @@ extern char	**environ;
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
 
 
+
+
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
+//void	begin_pipex(t_pipex *pipex, int argc, char **argv, size_t type);
 void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
 
@@ -129,10 +138,7 @@ pid_t	run_child_to_file(\
 size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 // finish
 void	safe_free(char **malloc_ptr);
-//void	exit_successfully(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type);
-//void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
-//void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 //free struct
 void	free_struct(t_pipex *pipex);
 void	free_pipe_list(t_pipe_list *pipe_list);
