@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_util.c                                       :+:      :+:    :+:   */
+/*   pipex_free2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:11:26 by hioikawa         ###   ########.fr       */
+/*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
+/*   Updated: 2022/09/10 15:13:35 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-size_t	scale_list_including_null(char **list)
+void	free_pid_list(t_pid_list *pid_list)
 {
-	size_t	count;
+	t_pid_node	*node;
 
-	count = 0;
-	while (list[count] != NULL)
-		count++;
-	count++;
-	return (count);
+	node = pid_list->head;
+	if (node == NULL)
+		return ;
+	while (node != NULL)
+	{
+		free(node);
+		node = NULL;
+		node = node->next;
+	}
 }
 
-void	safe_free(char **malloc_ptr)
+void	free_pipe_list(t_pipe_list *pipe_list)
 {
-	free(*malloc_ptr);
-	*malloc_ptr = NULL;
-}
+	t_pipe_node	*node;
 
+	node = pipe_list->head;
+	if (node == NULL)
+		return ;
+	while (node != NULL)
+	{
+		free(node);
+		node = NULL;
+		node = node->next;
+	}
+}

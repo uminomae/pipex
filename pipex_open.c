@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:47:06 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:59:39 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	open_write_file(int *fd, char *argv);
 void	open_files(\
 			t_pipex *pipex, int argc, char *const *argv, int *file_fd)
 {
-	size_t	last_arg;
+	size_t	last_index;
 
-	last_arg = argc - ONE_BECAUSE_IDX_FROM_0;
+	last_index = argc - 1;
 	open_read_file(file_fd, argv[FILE_FOR_READ]);
-	open_write_file(file_fd, argv[last_arg]);
+	open_write_file(file_fd, argv[last_index]);
 	if (file_fd[READ] == ERR_NUM || file_fd[WRITE] == ERR_NUM)
 		exit_with_error(pipex, ERR_MSG_OPEN, 1);
 }

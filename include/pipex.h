@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:55:37 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:13:54 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ extern char	**environ;
 # define LAST_COMMAND		3
 # define ARGC_NORMAL			5
 
-# define ONE_BECAUSE_IDX_FROM_0		1
 # define TYPE_CMD_NOT_FOUND			2
 
 # define DELIMITER_PATH		':'
@@ -136,6 +135,8 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type);
 //void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 //free struct
 void	free_struct(t_pipex *pipex);
+void	free_pipe_list(t_pipe_list *pipe_list);
+void	free_pid_list(t_pid_list *pid_list);
 //run
 void	get_path(t_pipex *pipex, t_arg *v);
 char	**make_virtual_argv(\
