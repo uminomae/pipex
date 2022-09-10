@@ -5,6 +5,7 @@ CFLAGS		:= -Wall -Wextra -Werror -O
 DFLAGS		:= -MMD -MP
 SRCS		:= 	pipex_main.c \
 				pipex_begin.c \
+				pipex_pid.c \
 				pipex_open.c \
 				pipex_pipe.c \
 				pipex_child.c \

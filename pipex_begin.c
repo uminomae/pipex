@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 09:55:09 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:07:32 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 {
 	validate_argc(argc);
 	init_struct(pipex, argv);
+	init_pid_struct(pipex, argc);
 }
 
 static void	validate_argc(int argc)
@@ -29,7 +30,6 @@ static void	validate_argc(int argc)
 	else
 	{
 		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
-	
 		exit(EXIT_FAILURE);
 	}
 }

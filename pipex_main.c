@@ -6,14 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 13:54:54 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:08:13 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 //TODO
-// pipenodeを一つのストラクトに
 // v-argvをpipexに
 // exitを一つに
 // pipe_nを使っているか確認
@@ -24,10 +23,10 @@ int	main(int argc, char **argv)
 	size_t		num_pipe;
 
 	begin_pipex(&pipex, argc, argv);
-	open_files(&pipex, argc, argv, pipex.file_fd);
-	make_pid_struct(&pipex, argc, NUM_BASE);
-	
+	//make_pid_struct(&pipex, argc, NUM_BASE);
 	num_pipe = make_pipe(&pipex, argc, NUM_BASE);
+	open_files(&pipex, argc, argv, pipex.file_fd);
+	
 	run_child(&pipex, argv, num_pipe);
 	
 	close_both_fd(&pipex.v_argv, pipex.file_fd);
