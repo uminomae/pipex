@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 17:37:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:54:30 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,18 @@ int	main(int argc, char **argv)
 {
 	t_pipex		pipex;
 	size_t		num_pipe;
-	char 		*put_str;
-	int			fd;
 
-
-    char *s = "abc";
-	
-	put_str = s;
 	begin_pipex(&pipex, argc, argv);
 	num_pipe = make_pipe(&pipex, argc, pipex.normal_argc);
 	if (pipex.is_here_doc == true)
-	{
-		ft_putstr_fd("aaa\n", 1);
-		open_case_here_doc(&pipex, argc, argv, pipex.file_fd);
-		fd = 0;
-    	while (ft_strncmp(put_str, argv[2], ft_strlen(argv[2]) != SAME_STRING))
-    	{
-    	    put_str = get_next_line(fd);
-    	    //pipex.file_fd[WRITE] = get_next_line(fd);
-    	    printf("%s", put_str);
-    	    free(put_str);
-    	}
-	}
+		open_case_here_doc(&pipex, argc, argv);
 	else
-	{
-		//TODO openだけ別。あとは同じに。
-		open_files(&pipex, argc, argv, pipex.file_fd);
-	}
-		run_separate_child(&pipex, argv, num_pipe);
-		close_both_fd(&pipex, pipex.file_fd);
-		close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
-		wait_all_child(&pipex);
-		free_struct(&pipex);
-	//}
+		open_files(&pipex, argc, argv);
+	run_separate_child(&pipex, argv, num_pipe);
+	close_both_fd(&pipex, pipex.file_fd);
+	close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
+	wait_all_child(&pipex);
+	free_struct(&pipex);
 	return (0);
 }
 

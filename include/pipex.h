@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 17:18:06 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:53:34 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,13 @@ extern char	**environ;
 
 
 //
-void	open_case_here_doc(t_pipex *pipex, int argc, char **argv, int *file_fd);
+void	open_case_here_doc(t_pipex *pipex, int argc, char **argv);
 char    *get_next_line(int fd);
 //
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
-void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
+//void	open_files(t_pipex *pipex, int argc, char *const *argv, int *file_fd);
+void	open_files(t_pipex *pipex, int argc, char *const *argv);
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe);
