@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_child_multi.c                                :+:      :+:    :+:   */
+/*   pipex_multi_pipe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:52:23 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static pid_t	run_child_multi(\
 				t_pipex *pipex, int *prev_pipe, int *pipe, int add_pipe)
 {
 	char *const	*argv = pipex->argv;
-	t_v_argv	*v_argv;
+	t_arg	*v_argv;
 	pid_t		process_id;
 
 	v_argv = &pipex->v_argv;

@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-void	close_both_fd(t_v_argv *v_argv, const int *const fd)
+void	close_both_fd(t_arg *v_argv, const int *const fd)
 {
 	x_close(v_argv, fd[READ]);
 	x_close(v_argv, fd[WRITE]);

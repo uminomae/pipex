@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:18:39 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static t_pipe_node	*init_pipe_node(t_v_argv *v_argv);
+static t_pipe_node	*init_pipe_node(t_arg *v_argv);
 static void			add_pipe_to_node(t_pipex *pipex, int pipe_fd[2]);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base)
@@ -32,7 +32,7 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base)
 	return (i);
 }
 
-static t_pipe_node	*init_pipe_node(t_v_argv *v_argv)
+static t_pipe_node	*init_pipe_node(t_arg *v_argv)
 {
 	t_pipe_node	*node;
 

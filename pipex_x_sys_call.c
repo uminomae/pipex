@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:18:52 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	x_pipe(int pipe_fd[2], t_v_argv *v_argv)
+void	x_pipe(int pipe_fd[2], t_arg *v_argv)
 {
 	int	ret;
 
@@ -31,7 +31,7 @@ pid_t	x_fork(t_pipex *pipex)
 	return (ret);
 }
 
-void	x_dup2(t_v_argv *v_argv, int file, int fd)
+void	x_dup2(t_arg *v_argv, int file, int fd)
 {
 	int	ret;
 

@@ -6,13 +6,13 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/09 10:19:05 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:37:23 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	x_close(t_v_argv *v_argv, int fd)
+void	x_close(t_arg *v_argv, int fd)
 {
 	int	ret;
 
@@ -30,7 +30,7 @@ void	x_execve(t_pipex *pipex, char **virtual_argv)
 		exit_with_error(&pipex->v_argv, ERR_MSG_EXCECVE);
 }
 
-void	x_waitpid(t_v_argv *v_argv, pid_t process_id)
+void	x_waitpid(t_arg *v_argv, pid_t process_id)
 {
 	pid_t	ret;
 	int		child_status;

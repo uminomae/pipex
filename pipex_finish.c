@@ -18,13 +18,13 @@ void	safe_free(char **malloc_ptr)
 	*malloc_ptr = NULL;
 }
 
-//void	exit_successfully(t_v_argv *v_argv)
+//void	exit_successfully(t_arg *v_argv)
 //{
 //	free_struct(v_argv);
 //	exit(EXIT_FAILURE);
 //}
 
-void	exit_with_error(t_v_argv *v_argv, char *str)
+void	exit_with_error(t_arg *v_argv, char *str)
 {
 	free_struct(v_argv);
 	perror(str);
@@ -32,7 +32,7 @@ void	exit_with_error(t_v_argv *v_argv, char *str)
 	exit(EXIT_FAILURE);
 }
 
-void	exit_err_cmd_access(t_v_argv *v_argv, char *command_from_argv)
+void	exit_err_cmd_access(t_arg *v_argv, char *command_from_argv)
 {
 	free_struct(v_argv);
 
