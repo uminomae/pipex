@@ -6,11 +6,28 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 14:16:24 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:03:10 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+//void	test_print(t_pipex *pipex)
+//{
+//	t_alloc_node	*node;
+//	size_t			i;
+
+//	i = 0;
+//	if (pipex->alloc_list.head == NULL)
+//		return ;
+//	node = pipex->alloc_list.head;
+//	while (node != NULL)
+//	{
+//		printf("%zu: %p\n",i, node->ptr);
+//		node = node->next;
+//		i++;
+//	}
+//}
 
 int	main(int argc, char **argv)
 {
@@ -24,7 +41,17 @@ int	main(int argc, char **argv)
 	close_both_fd(&pipex, pipex.file_fd);
 	close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
 	wait_all_child(&pipex);
+	//
+	//test_print(&pipex);
+	//
 	free_struct(&pipex);
+	//
+	//test_print(&pipex);
+	//
+	//
+	//pipex.alloc_list.head = malloc(10);
+	system("leaks -q pipex");
+	//
 	return (0);
 }
 

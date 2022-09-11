@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 17:47:32 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:46:57 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@ typedef struct s_pid_list
 	struct s_pid_node	*tail;
 }	t_pid_list;
 
+// for alloc&free
+typedef struct s_alloc_node
+{
+	void				*ptr;
+	struct s_alloc_node	*prev;	
+	struct s_alloc_node	*next;
+}	t_alloc_node;
+
+typedef struct s_alloc_list
+{
+	struct s_alloc_node	*head;
+	struct s_alloc_node	*tail;
+}	t_alloc_list;
+
 // pipe_list : node of pipe
 // pid_list : node of process ID
 // file_fd : for open(), write()
@@ -65,6 +79,7 @@ typedef struct s_pipex
 	char				**argv;
 	struct s_pipe_list	pipe_list;
 	struct s_pid_list	pid_list;
+	struct s_alloc_list	alloc_list;
 	int					file_fd[2];
 	struct s_arg		v_argv;
 	bool				is_here_doc;
@@ -150,6 +165,7 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type);
 void	free_struct(t_pipex *pipex);
 void	free_pipe_list(t_pipe_list *pipe_list);
 void	free_pid_list(t_pid_list *pid_list);
+void	free_alloc_list(t_alloc_list *alloc_list);
 //run
 void	get_path(t_pipex *pipex, t_arg *v);
 char	**make_virtual_argv(\
@@ -158,6 +174,7 @@ size_t	scale_list_including_null(char **list);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
 void	*x_malloc(t_pipex *pipex, size_t size);
+void	*x_malloc_and_add_list(t_pipex *pipex, size_t size);
 char	*x_strjoin(t_pipex *pipex, char *str, char *str_to_add);
 char	*x_strdup(t_pipex *pipex, char *str);
 char	*x_substr(t_pipex *pipex, char *str, int start, size_t len);

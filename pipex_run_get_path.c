@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 17:49:43 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:40:59 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ static char	**split_list_of_directory_from_path_line(\
 {
 	char	**temp_divided_list;
 
-	temp_divided_list = \
-		x_split(\
-			pipex, environ[path_index], DELIMITER_PATH);
+	temp_divided_list = x_split(pipex, environ[path_index], DELIMITER_PATH);
 	temp_divided_list = \
 		trim_unnecessary_characters(pipex, temp_divided_list, WORD_FIND_PATH);
 	return (temp_divided_list);

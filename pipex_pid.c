@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:56:28 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:02:35 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_pid_node	*init_pid_node(t_pipex *pipex)
 	t_pid_node	*node;
 
 	node = (t_pid_node *)x_malloc(pipex, sizeof(t_pid_node));
+	//node = (t_pid_node *)x_malloc_and_add_list(pipex, sizeof(t_pid_node));
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

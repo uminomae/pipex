@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:14:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:04:33 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_struct(t_pipex *pipex)
 	free_temp_divided_list(&pipex->v_argv);
 	free_pid_list(&pipex->pid_list);
 	free_pipe_list(&pipex->pipe_list);
+	//free_alloc_list(&pipex->alloc_list);
 }
 
 static void	free_list_absolute_path_of_command(t_arg *v)
