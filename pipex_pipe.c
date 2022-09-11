@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:46:42 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:52:24 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_normal)
 	i = 0;
 	while (i < num_to_make)
 	{
-		x_pipe(add_pipe, pipex);
+		x_pipe(pipex, add_pipe);
 		add_pipe_to_list(pipex, add_pipe);
 		i++;
 	}

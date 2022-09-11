@@ -6,14 +6,15 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 07:36:22 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:51:49 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 // TODO 引数の順番
-void	x_pipe(int pipe_fd[2], t_pipex *pipex)
+//void	x_pipe(int pipe_fd[2], t_pipex *pipex)
+void	x_pipe(t_pipex *pipex, int pipe_fd[2])
 {
 	int	ret;
 
