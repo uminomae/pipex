@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:52:24 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:56:16 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static t_pipe_node	*init_pipe_node(t_pipex *pipex);
 static void			add_pipe_to_list(t_pipex *pipex, int pipe_fd[2]);
-static void	make_first_pipe_node(t_pipe_list *list, t_pipe_node *node);
-static void	add_last_pipe_node(t_pipe_list *list, t_pipe_node *node);
+static void			make_first_pipe_node(t_pipe_list *list, t_pipe_node *node);
+static void			add_last_pipe_node(t_pipe_list *list, t_pipe_node *node);
 
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_normal)
 {

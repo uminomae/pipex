@@ -6,16 +6,16 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:49:51 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:56:28 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static t_pid_node	*init_pid_node(t_pipex *pipex);
-static void	add_pid_node(t_pipex *pipex);
-static void	make_first_pid_node(t_pid_list *list, t_pid_node *node);
-static void	add_last_pid_node(t_pid_list *list, t_pid_node *node);
+static void			add_pid_node(t_pipex *pipex);
+static void			make_first_pid_node(t_pid_list *list, t_pid_node *node);
+static void			add_last_pid_node(t_pid_list *list, t_pid_node *node);
 
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd)
 {

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:16:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:59:57 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe)
 	t_pid_node *const	tail = pipex->pid_list.tail;
 
 	head->process_id = \
-		run_child_to_file(pipex, argv, READ,  pipex->first_cmd);
+		run_child_to_file(pipex, argv, READ, pipex->first_cmd);
 	add_pipe = run_multiple_pipes(pipex, num_pipe);
 	tail->process_id = \
 		run_child_to_file(pipex, argv, WRITE, add_pipe + pipex->last_cmd);

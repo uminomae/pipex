@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:50:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:59:22 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	make_content_here_doc(t_pipex *pipex, char **argv, int fd);
 void	open_here_doc(t_pipex *pipex, int argc, char **argv)
 {
 	size_t	last_index;
-	int 	fd;
-	
+	int		fd;
+
 	last_index = argc - 1;
 	fd = create_file_here_doc(pipex);
 	make_content_here_doc(pipex, argv, fd);
@@ -38,37 +38,37 @@ static int	create_file_here_doc(t_pipex *pipex)
 	return (fd);
 }
 
-static char *to_empty(char *s)
+static char	*to_empty(char *s)
 {
-    if (s == NULL)
-        return ("");
-    else
-        return (s);
+	if (s == NULL)
+		return ("");
+	else
+		return (s);
 }
 
 static void	make_content_here_doc(t_pipex *pipex, char **argv, int fd)
 {
 	char	*line;
-	char 	*content;
+	char	*content;
 	char	*temp;
 	char	*limiter;
-	
+
 	content = NULL;
 	limiter = x_strjoin(pipex, to_empty(argv[2]), "\n");
-   	while (1)
-   	{
+	while (1)
+	{
 		ft_putstr_fd("pipe heredoc> ", 1);
-   	    line = get_next_line(STDIN_FILENO);
+		line = get_next_line(STDIN_FILENO);
 		if (ft_strncmp(line, limiter, ft_strlen(line)) == SAME_STRING)
 		{
-	   	 	free(line);
-			break;
+			free(line);
+			break ;
 		}
 		temp = content;
 		content = x_strjoin(pipex, to_empty(content), to_empty(line));
-   		free(temp);
+		free(temp);
 		free(line);
-   	}
+	}
 	ft_putstr_fd(content, fd);
 	free(content);
 	free(limiter);

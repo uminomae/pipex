@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:25:04 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:55:57 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	wait_all_child(t_pipex *pipex)
 {
 	t_pid_node	*node;
-	
+
 	node = pipex->pid_list.head;
 	while (node != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 15:11:26 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:56:02 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	safe_free(char **malloc_ptr)
 	free(*malloc_ptr);
 	*malloc_ptr = NULL;
 }
-
