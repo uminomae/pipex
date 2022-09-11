@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 21:54:30 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:16:29 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@ int	main(int argc, char **argv)
 
 	begin_pipex(&pipex, argc, argv);
 	num_pipe = make_pipe(&pipex, argc, pipex.normal_argc);
-	if (pipex.is_here_doc == true)
-		open_case_here_doc(&pipex, argc, argv);
-	else
-		open_files(&pipex, argc, argv);
+	open_files(&pipex, argc, argv);
 	run_separate_child(&pipex, argv, num_pipe);
 	close_both_fd(&pipex, pipex.file_fd);
 	close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
 	wait_all_child(&pipex);
 	free_struct(&pipex);
+	system("leaks -q pipex");
 	return (0);
 }
 
