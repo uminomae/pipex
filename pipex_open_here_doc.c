@@ -6,13 +6,14 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 13:44:57 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:31:25 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static int	create_file_here_doc(t_pipex *pipex, char *file_name);
+static char	*to_empty(char *s);
 static void	make_content_here_doc(t_pipex *pipex, char **argv, int fd);
 
 void	open_here_doc(t_pipex *pipex, int argc, char **argv)

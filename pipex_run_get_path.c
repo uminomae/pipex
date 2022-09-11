@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:24:14 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:49:43 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static size_t	get_path_line_from_env(char **env, char *str, size_t len);
 static char		**split_list_of_directory_from_path_line(\
 										t_pipex *pipex, size_t path_index);
-static char		**trim_unnecessary_characters(\
-							char **temp_divided_list, char *trim_str);
+static char	**trim_unnecessary_characters(\
+				t_pipex *pipex, char **temp_divided_list, char *trim_str);
 static char		**join_slash_path_of_directory(\
 					t_pipex *pipex, char **temp_divided_list);
 
@@ -55,12 +55,12 @@ static char	**split_list_of_directory_from_path_line(\
 		x_split(\
 			pipex, environ[path_index], DELIMITER_PATH);
 	temp_divided_list = \
-		trim_unnecessary_characters(temp_divided_list, WORD_FIND_PATH);
+		trim_unnecessary_characters(pipex, temp_divided_list, WORD_FIND_PATH);
 	return (temp_divided_list);
 }
 
 static char	**trim_unnecessary_characters(\
-							char **temp_divided_list, char *trim_str)
+				t_pipex *pipex, char **temp_divided_list, char *trim_str)
 {
 	size_t	trim_len;
 	size_t	new_string_len;
@@ -69,8 +69,8 @@ static char	**trim_unnecessary_characters(\
 	trim_len = ft_strlen(trim_str);
 	new_string_len = ft_strlen(temp_divided_list[FIRST_LINE]) - trim_len;
 	tmp = temp_divided_list[FIRST_LINE];
-	temp_divided_list[FIRST_LINE] = \
-		ft_substr(temp_divided_list[FIRST_LINE] + trim_len, 0, new_string_len);
+	temp_divided_list[FIRST_LINE] = x_substr(pipex, \
+			temp_divided_list[FIRST_LINE] + trim_len, 0, new_string_len);
 	free(tmp);
 	return (temp_divided_list);
 }
