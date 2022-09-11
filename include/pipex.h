@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:54:38 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 13:50:10 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,22 @@ extern char	**environ;
 # define SAME_STRING		0
 # define NOT_FIND			0
 # define FILE_FOR_READ		1
+# define TYPE_CMD_NOT_FOUND	2
 
-# define TYPE_CMD_NOT_FOUND			2
+# define NOT_FOUND			NULL
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
 # define SIGN_ABS_PATH		'/'
-# define NOT_FOUND			NULL
-
-# define HERE_DOC			1
-# define HERE_DOC_STR		"here_doc"
 
 # define STR_SLASH			"/"
+# define LINE_FEED			"\n"
+# define EMPTY				""
+
+# define HERE_DOC_STR		"here_doc"
+# define HERE_DOC_FILE		".here_doc"
+# define PRONMPT			"pipe heredoc> "
+
 # define WORD_FIND_PATH		"PATH="
 # define ERR_MSG_ARGC		"error : 5 arguments are required"
 # define ERR_MSG_PIPE		"pipe()"
@@ -110,6 +114,7 @@ extern char	**environ;
 # define ERR_MSG_DUP2		"dup2()"
 # define ERR_MSG_ACCESS		"access()"
 # define ERR_MSG_OPEN		"open()"
+# define ERR_MSG_UNLINK		"unlink()"
 # define ERR_MSG_NO_CMD		"error : No command()"
 # define ERR_MSG_STRDUP		"ft_strdup()"
 # define ERR_MSG_SPLIT		"ft_split()"
@@ -119,15 +124,14 @@ extern char	**environ;
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
 
-
 //
 void	open_case_here_doc(t_pipex *pipex, int argc, char **argv);
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 //
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	open_files(t_pipex *pipex, int argc, char **argv);
 void	open_here_doc(t_pipex *pipex, int argc, char **argv);
-int		open_read_file(t_pipex *pipex ,char *argv);
+int		open_read_file(t_pipex *pipex, char *argv);
 int		open_write_file(t_pipex *pipex, char *argv);
 //
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
@@ -161,4 +165,5 @@ void	x_dup2(t_pipex *pipex, int file, int fd);
 void	x_execve(t_pipex *pipex, char **virtual_argv);
 void	x_close(t_pipex *pipex, int fd);
 void	x_waitpid(t_pipex *pipex, pid_t process_id);
+void	x_unlink(t_pipex *pipex, char *file_name);
 #endif

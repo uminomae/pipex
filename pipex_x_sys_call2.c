@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/10 14:47:03 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/11 13:48:41 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ void	x_waitpid(t_pipex *pipex, pid_t process_id)
 	ret = waitpid(process_id, &child_status, GROUP_OF_CALLER);
 	if (ret == ERR_NUM)
 		exit_with_error(pipex, ERR_MSG_WAITPID, 1);
+}
+
+void	x_unlink(t_pipex *pipex, char *file_name)
+{
+	int	ret;
+
+	ret = unlink(file_name);
+	if (ret == ERR_NUM)
+		exit_with_error(pipex, ERR_MSG_UNLINK, 1);
 }
