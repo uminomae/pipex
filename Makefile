@@ -1,5 +1,6 @@
 NAME		:= pipex
-CC			:= cc 
+CC			:= cc
+# CC			:= clang
 RM			:= rm -f
 CFLAGS		:= -Wall -Wextra -Werror -O
 DFLAGS		:= -MMD -MP
@@ -90,7 +91,8 @@ re: fclean all
 bonus: 
 	make WITH_BONUS=1
 
-debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined 
+debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
+# debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined -fsanitize=leak
 debug: re
 
 .PHONY: all clean fclean re bonus
