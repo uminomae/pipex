@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 12:25:19 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:27:52 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int	main(int argc, char **argv)
 //
 //./pipex infile "none" "./cmd_name" outfile1
 //< infile none | ./cmd_name > outfile2
-
+// 
 //leak test: 
 //system("leaks -q pipex");
