@@ -51,8 +51,7 @@ static t_pipe_node	*init_pipe_node(t_pipex *pipex)
 {
 	t_pipe_node	*node;
 
-	node = (t_pipe_node *)x_malloc(pipex, sizeof(t_pipe_node));
-	//node = (t_pipe_node *)x_malloc_and_add_list(pipex, sizeof(t_pipe_node));
+	node = (t_pipe_node *)x_malloc_and_add_list(pipex, sizeof(t_pipe_node));
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

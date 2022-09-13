@@ -91,9 +91,11 @@ re: fclean all
 bonus: 
 	make WITH_BONUS=1
 
-debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
-# debug: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined -fsanitize=leak
-debug: re
+sani: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
+sani: re
+
+valg: CFLAGS +=  -g 
+valg: re
 
 .PHONY: all clean fclean re bonus
 

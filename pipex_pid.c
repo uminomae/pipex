@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_pid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 19:02:35 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:22:42 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static t_pid_node	*init_pid_node(t_pipex *pipex)
 {
 	t_pid_node	*node;
 
-	node = (t_pid_node *)x_malloc(pipex, sizeof(t_pid_node));
-	//node = (t_pid_node *)x_malloc_and_add_list(pipex, sizeof(t_pid_node));
+	node = (t_pid_node *)x_malloc_and_add_list(pipex, sizeof(t_pid_node));
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

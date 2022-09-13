@@ -15,7 +15,7 @@
 static size_t	get_path_line_from_env(char **env, char *str, size_t len);
 static char		**split_list_of_directory_from_path_line(\
 										t_pipex *pipex, size_t path_index);
-static char	**trim_unnecessary_characters(\
+static char		**trim_unnecessary_characters(\
 				t_pipex *pipex, char **temp_divided_list, char *trim_str);
 static char		**join_slash_path_of_directory(\
 					t_pipex *pipex, char **temp_divided_list);
