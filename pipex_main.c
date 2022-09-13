@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 10:53:36 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:25:19 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ int	main(int argc, char **argv)
 // samle test:
 //./pipex infile "ls -l" "wc -l " outfile1
 //< infile ls -l | wc -l > outfile2
+// 
 //./pipex here_doc LIMITER "cat" "grep a" out_heredoc
 //cat << LIMITER | grep a >> out_heredoc
 //
+//./pipex infile "none" "./cmd_name" outfile1
+//< infile none | ./cmd_name > outfile2
+
 //leak test: 
 //system("leaks -q pipex");
