@@ -20,6 +20,8 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type)
 	{
 		if (ft_strchr(str, SIGN_ABS_PATH) == NULL)
 			put_msg_cmd_not_found(pipex, str);
+		else
+			perror(str);
 	}
 	else
 		perror(str);
