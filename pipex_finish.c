@@ -37,3 +37,9 @@ static void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv)
 	ft_putendl_fd(command_from_argv, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
+
+void	put_msg_err_argc(void)
+{
+	ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
+	exit(EXIT_FAILURE);
+}
