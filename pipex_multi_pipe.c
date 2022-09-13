@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_multi_pipe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 13:00:07 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/13 04:46:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe)
 		node_pid->process_id = run_child_multi(\
 				pipex, node->prev->pipe_fd, node->pipe_fd, i);
 		node = node->next;
+		node_pid = node_pid->next;
 		i++;
 	}
 	return (i);
