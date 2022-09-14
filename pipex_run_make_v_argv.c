@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 17:51:10 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:22:46 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ static char	**split_virtual_argv_from_real_argv(\
 	char	**virtual_argv;
 
 	if (command_from_argv == NULL)
-		ft_putendl_fd(ERR_MSG_NO_CMD, STDERR_FILENO);
-	virtual_argv = \
-			x_split(pipex, command_from_argv, DELIMITER_CMD);
+		put_msg_cmd_not_found(pipex, command_from_argv);
+	if (*command_from_argv == '\0')
+		put_msg_cmd_not_found(pipex, "\\0");
+	virtual_argv = x_split(pipex, command_from_argv, DELIMITER_CMD);
 	return (virtual_argv);
 }
 
@@ -58,16 +59,14 @@ static char	**join_file_and_directory_name_to_get_absolute_path(\
 	char	*abs_sign;
 
 	num = scale_list_including_null(list_of_directory);
-	list_absolute_path_of_command = \
-				x_malloc(pipex, sizeof(char *) * num);
+	list_absolute_path_of_command = x_malloc(pipex, sizeof(char *) * num);
 	i = 0;
 	while (list_of_directory[i] != NULL)
 	{
 		abs_sign = ft_strchr(command_name, SIGN_ABS_PATH);
 		if (abs_sign == NOT_FOUND)
 			list_absolute_path_of_command[i] = \
-				x_strjoin(\
-					pipex, list_of_directory[i], command_name);
+				x_strjoin(pipex, list_of_directory[i], command_name);
 		else
 			list_absolute_path_of_command[i] = x_strdup(pipex, command_name);
 		i++;
@@ -85,6 +84,8 @@ static int	get_index_accessible_path(char **list_absolute_path_of_command)
 	{
 		if (access(list_absolute_path_of_command[i], R_OK) == 0)
 			return (i);
+		//if (access(list_absolute_path_of_command[i], F_OK) == 0)
+		//	exit_success();
 		i++;
 	}
 	return (ERR_NUM);

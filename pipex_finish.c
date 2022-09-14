@@ -12,7 +12,13 @@
 
 #include "pipex.h"
 
-static void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
+//static void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
+
+//void	exit_success(t_pipex *pipex)
+//{
+//	free_struct(pipex);
+//	exit(EXIT_SUCCESS);
+//}
 
 void	exit_with_error(t_pipex *pipex, char *str, size_t type)
 {
@@ -29,7 +35,7 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type)
 	exit(EXIT_FAILURE);
 }
 
-static void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv)
+void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv)
 {
 	ft_putstr_fd(ERR_MSG_CMD_NOT_FOUND, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);

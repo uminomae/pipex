@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_begin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 20:14:09 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:57:53 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static bool	is_here_doc(char **argv);
-static void	validate_argc(int argc);
+static void	validate(int argc, char **argv);
 static void	init_struct(t_pipex *pipex, char **argv);
 static void	set_arg_position(t_pipex *pipex, char **argv);
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 {
+	validate(argc, argv);
 	init_struct(pipex, argv);
-	validate_argc(argc);
 	set_arg_position(pipex, argv);
 	init_pid_list(pipex, argc, pipex->other_cmd);
 }
@@ -40,8 +40,10 @@ static void	init_struct(t_pipex *pipex, char **argv)
 	pipex->v_argv.virtual_argv = NULL;
 }
 
-static void	validate_argc(int argc)
+static void	validate(int argc, char **argv)
 {
+	if (argv == NULL || environ == NULL)
+		exit(EXIT_FAILURE);
 	if (argc < 5)
 		put_msg_err_argc();
 	else
@@ -55,7 +57,6 @@ static bool	is_here_doc(char **argv)
 		return (true);
 	return (false);
 }
-
 
 static void	set_arg_position(t_pipex *pipex, char **argv)
 {

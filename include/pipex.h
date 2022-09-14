@@ -6,7 +6,7 @@
 /*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 19:55:29 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:32:36 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	safe_free(char **malloc_ptr);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type);
+void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 void	put_msg_err_argc(void);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);

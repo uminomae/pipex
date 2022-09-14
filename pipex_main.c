@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 12:27:52 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:00:56 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_pipex		pipex;
 	size_t		num_pipe;
 
+	environ = NULL;
 	begin_pipex(&pipex, argc, argv);
 	num_pipe = make_pipe(&pipex, argc, pipex.normal_argc);
 	open_files(&pipex, argc, argv);
@@ -28,7 +29,8 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-//Preparation :make infile
+//preparation :make infile
+// 
 // for ((i=0; i<100; i++)); do
 //    echo "abcdefghijk"
 //  done >infile
@@ -36,7 +38,8 @@ int	main(int argc, char **argv)
 //    echo 'a'
 //  done | tr -d '\n' >infile65537
 //
-// samle test:
+//samle test:
+// 
 //./pipex infile "ls -l" "wc -l " outfile1
 //< infile ls -l | wc -l > outfile2
 // 
@@ -47,4 +50,5 @@ int	main(int argc, char **argv)
 //< infile none | ./cmd_name > outfile2
 // 
 //leak test: 
+// 
 //system("leaks -q pipex");
