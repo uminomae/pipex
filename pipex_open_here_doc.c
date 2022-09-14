@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 13:52:47 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:35:59 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,8 @@ static int	create_file_here_doc(t_pipex *pipex, char *file_name)
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, \
 							S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_OPEN, TYPE_PERROR, NEED_FREE);
+		exit_with_error(pipex, ERR_MSG_OPEN, TYPE_PERROR, true);
 	return (fd);
-}
-
-static char	*to_empty(char *s)
-{
-	if (s == NULL)
-		return (EMPTY);
-	else
-		return (s);
 }
 
 static void	make_content_here_doc(t_pipex *pipex, char **argv, int fd)
@@ -75,4 +67,12 @@ static void	make_content_here_doc(t_pipex *pipex, char **argv, int fd)
 	free(content);
 	free(limiter);
 	x_close(pipex, fd);
+}
+
+static char	*to_empty(char *s)
+{
+	if (s == NULL)
+		return (EMPTY);
+	else
+		return (s);
 }

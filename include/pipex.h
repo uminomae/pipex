@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:16:08 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:36:25 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,20 @@ extern char	**environ;
 # define TYPE_ARGV_NULL		4
 # define TYPE_ARGC			5
 
-# define NEED_FREE			true
-# define NO_FREE			false
-
+// # define true			true
+// # define false			false
 
 # define NOT_FOUND			NULL
 
 # define DELIMITER_PATH		':'
 # define DELIMITER_CMD		' '
 # define SIGN_ABS_PATH		'/'
+# define NULL_CHAR			'\0'
 
 # define STR_SLASH			"/"
 # define LINE_FEED			"\n"
 # define EMPTY				""
+# define CMD_NAME_NULL_CHAR	"\\0"
 
 # define HERE_DOC_STR		"here_doc"
 # define HERE_DOC_FILE		".here_doc"
@@ -150,6 +151,8 @@ extern char	**environ;
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
 # define ERR_MSG_ARGV				"argv is null pointer"
 # define ERR_MSG_ENVIRON			"environ is null pointer"
+# define ERR_MSG_CMD_NULL			"command name is null pointer"
+# define ERR_MSG_CMD_NULL_CHAR		"command name is null char"
 
 // main
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
@@ -179,7 +182,8 @@ void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	exit_success(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free);
-void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
+// void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
+void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_name);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
 void	*x_malloc(t_pipex *pipex, size_t size);

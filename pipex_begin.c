@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:16:14 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:36:25 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 {
 	if (argv == NULL)
-		exit_with_error(pipex, "argv", TYPE_ARGV_NULL, NO_FREE);
+		exit_with_error(pipex, "argv", TYPE_ARGV_NULL, false);
 	if (environ == NULL)
-		exit_with_error(pipex, "environ", TYPE_ENV_NULL, NO_FREE);
+		exit_with_error(pipex, "environ", TYPE_ENV_NULL, false);
 	if (argc < NUM_ARGC_REQUIRED)
-		exit_with_error(pipex, "argc", TYPE_ARGC, NO_FREE);
+		exit_with_error(pipex, "argc", TYPE_ARGC, false);
 	else
 		return ;
 }

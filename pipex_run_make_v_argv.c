@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:03:56 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:35:59 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**make_virtual_argv(\
 				pipex, v->list_of_directory, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == ERR_NUM)
-		exit_with_error(pipex, command_from_argv, TYPE_CMD_NOT_FOUND, NEED_FREE);
+		exit_with_error(pipex, command_from_argv, TYPE_CMD_NOT_FOUND, true);
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }
@@ -43,9 +43,11 @@ static char	**split_virtual_argv_from_real_argv(\
 	char	**virtual_argv;
 
 	if (cmd_name == NULL)
-		exit_put_msg_cmd_not_found(pipex, cmd_name);
-	if (*cmd_name == '\0')
-		exit_put_msg_cmd_not_found(pipex, "\\0");
+		exit_with_error(\
+			pipex, ERR_MSG_CMD_NULL, TYPE_CMD_NOT_FOUND, true);
+	if (*cmd_name == NULL_CHAR)
+		exit_with_error(\
+			pipex, ERR_MSG_CMD_NULL_CHAR, TYPE_CMD_NOT_FOUND, true);
 	virtual_argv = x_split(pipex, cmd_name, DELIMITER_CMD);
 	return (virtual_argv);
 }
@@ -99,6 +101,6 @@ static char	**switch_first_argv_to_absolute_path(\
 				x_strdup(pipex, v->list_absolute_path_of_command[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
-		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_PERROR, NEED_FREE);
+		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_PERROR, true);
 	return (v->virtual_argv);
 }

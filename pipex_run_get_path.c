@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 13:47:20 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:35:59 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ void	get_path(t_pipex *pipex, t_arg *v)
 					join_slash_path_of_directory(pipex, v->temp_divided_list);
 }
 
-static size_t	get_path_line_from_env(t_pipex *pipex, char **env, char *str_path, size_t len)
+static size_t	get_path_line_from_env(\
+		t_pipex *pipex, char **env, char *str_path, size_t len)
 {
 	size_t	i;
 
 	if (env == NULL)
-		exit_with_error(pipex, "environ", TYPE_ENV_NULL, NEED_FREE);
+		exit_with_error(pipex, "environ", TYPE_ENV_NULL, true);
 	i = 0;
 	while (env[i] != NULL)
 	{
@@ -84,14 +85,11 @@ static char	**join_slash_path_of_directory(\
 	size_t	list_size;
 
 	list_size = scale_list_including_null(temp_divided_list);
-	list_of_directory = \
-		x_malloc(pipex, sizeof(char *) * list_size);
+	list_of_directory = x_malloc(pipex, sizeof(char *) * list_size);
 	i = 0;
 	while (temp_divided_list[i] != NULL)
 	{
-		list_of_directory[i] = \
-			x_strjoin(\
-				pipex, temp_divided_list[i], STR_SLASH);
+		list_of_directory[i] = 	x_strjoin(pipex, temp_divided_list[i], STR_SLASH);
 		i++;
 	}
 	list_of_directory[i] = NULL;
