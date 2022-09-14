@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:36:25 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:37:00 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,6 @@ extern char	**environ;
 # define TYPE_ENV_NULL		3
 # define TYPE_ARGV_NULL		4
 # define TYPE_ARGC			5
-
-// # define true			true
-// # define false			false
 
 # define NOT_FOUND			NULL
 

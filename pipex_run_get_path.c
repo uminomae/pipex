@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:35:59 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:37:34 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ static char	**join_slash_path_of_directory(\
 	i = 0;
 	while (temp_divided_list[i] != NULL)
 	{
-		list_of_directory[i] = 	x_strjoin(pipex, temp_divided_list[i], STR_SLASH);
+		list_of_directory[i] = \
+			x_strjoin(pipex, temp_divided_list[i], STR_SLASH);
 		i++;
 	}
 	list_of_directory[i] = NULL;
