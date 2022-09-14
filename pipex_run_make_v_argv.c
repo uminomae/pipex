@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:00:26 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:03:56 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ static int	get_index_accessible_path(char **list_absolute_path_of_command)
 	{
 		if (access(list_absolute_path_of_command[i], X_OK) == 0)
 			return (i);
-		//if (access(list_absolute_path_of_command[i], F_OK) == 0)
-		//	exit_success();
 		i++;
 	}
 	return (ERR_NUM);

@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 13:54:25 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:16:08 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_pipex
 	bool				is_here_doc;
 	size_t				other_cmd;
 	size_t				normal_argc;
-	size_t				first_cmd;
-	size_t				last_cmd;
+	size_t				first_cmd_idx;
+	size_t				last_cmd_idx;
 }	t_pipex;
 
 extern char	**environ;
@@ -172,17 +172,14 @@ void	get_path(t_pipex *pipex, t_arg *v);
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_arg *v, char *command_from_argv);
 size_t	scale_list_including_null(char **list);
-//free struct
+//free 
+void	safe_free(char **malloc_ptr);
 void	free_struct(t_pipex *pipex);
 void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
-void	safe_free(char **malloc_ptr);
-// void	exit_with_error(t_pipex *pipex, char *str, size_t type);
+void	exit_success(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free);
 void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
-void	exit_put_msg_argv(void);
-void	exit_put_msg_envp(void);
-void	exit_put_msg_err_argc(void);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
 void	*x_malloc(t_pipex *pipex, size_t size);

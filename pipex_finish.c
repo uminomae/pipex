@@ -12,11 +12,11 @@
 
 #include "pipex.h"
 
-//void	exit_success(t_pipex *pipex)
-//{
-//	free_struct(pipex);
-//	exit(EXIT_SUCCESS);
-//}
+void	exit_success(t_pipex *pipex)
+{
+	free_struct(pipex);
+	exit(EXIT_SUCCESS);
+}
 
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 {
@@ -48,21 +48,3 @@ void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv)
 	free_struct(pipex);
 	exit(EXIT_FAILURE);
 }
-
-// void	exit_put_msg_argv(void)
-// {
-// 	ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
-// 	exit(EXIT_FAILURE);
-// }
-
-// void	exit_put_msg_envp(void)
-// {
-// 	ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
-// 	exit(EXIT_FAILURE);
-// }
-
-// void	exit_put_msg_err_argc(void)
-// {
-// 	ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
-// 	exit(EXIT_FAILURE);
-// }

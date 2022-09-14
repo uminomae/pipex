@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 13:54:43 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:16:14 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 {
 	if (argv == NULL)
 		exit_with_error(pipex, "argv", TYPE_ARGV_NULL, NO_FREE);
-		// exit_put_msg_argv();	
 	if (environ == NULL)
 		exit_with_error(pipex, "environ", TYPE_ENV_NULL, NO_FREE);
-		// exit_put_msg_envp();
 	if (argc < NUM_ARGC_REQUIRED)
 		exit_with_error(pipex, "argc", TYPE_ARGC, NO_FREE);
-		// exit_put_msg_err_argc();
 	else
 		return ;
 }
@@ -62,16 +59,16 @@ static void	set_arg_position(t_pipex *pipex, char **argv)
 		pipex->is_here_doc = true;
 		pipex->normal_argc = 6;
 		pipex->other_cmd = 4;
-		pipex->first_cmd = 3;
-		pipex->last_cmd = 4;
+		pipex->first_cmd_idx = 3;
+		pipex->last_cmd_idx = 4;
 	}
 	else
 	{
 		pipex->is_here_doc = false;
 		pipex->normal_argc = 5;
 		pipex->other_cmd = 3;
-		pipex->first_cmd = 2;
-		pipex->last_cmd = 3;
+		pipex->first_cmd_idx = 2;
+		pipex->last_cmd_idx = 3;
 	}
 }
 
