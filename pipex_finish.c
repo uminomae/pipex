@@ -18,8 +18,10 @@
 //	exit(EXIT_SUCCESS);
 //}
 
-void	exit_with_error(t_pipex *pipex, char *str, size_t type)
+void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 {
+	if (type == TYPE_PERROR)
+		perror(str);
 	if (type == TYPE_CMD_NOT_FOUND)
 	{
 		if (ft_strchr(str, SIGN_ABS_PATH) == NULL)
@@ -29,9 +31,12 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type)
 	}
 	else if (type == TYPE_ENV_NULL)
 		ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
-	else
-		perror(str);
-	free_struct(pipex);
+	else if (type == TYPE_ARGV_NULL)
+		ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
+	else if (type == TYPE_ARGC)
+		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
+	if (need_free == NEED_FREE)
+		free_struct(pipex);
 	exit(EXIT_FAILURE);
 }
 
@@ -44,20 +49,20 @@ void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv)
 	exit(EXIT_FAILURE);
 }
 
-void	exit_put_msg_argv(void)
-{
-	ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
+// void	exit_put_msg_argv(void)
+// {
+// 	ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
+// 	exit(EXIT_FAILURE);
+// }
 
-void	exit_put_msg_envp(void)
-{
-	ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
+// void	exit_put_msg_envp(void)
+// {
+// 	ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
+// 	exit(EXIT_FAILURE);
+// }
 
-void	exit_put_msg_err_argc(void)
-{
-	ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
-	exit(EXIT_FAILURE);
-}
+// void	exit_put_msg_err_argc(void)
+// {
+// 	ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
+// 	exit(EXIT_FAILURE);
+// }

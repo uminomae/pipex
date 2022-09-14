@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_open.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:57:11 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:58:54 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	open_read_file(t_pipex *pipex, char *argv)
 
 	fd = open(argv, O_RDONLY | O_CLOEXEC);
 	if (fd == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_OPEN, 1);
+		exit_with_error(pipex, ERR_MSG_OPEN, TYPE_PERROR, NEED_FREE);
 	return (fd);
 }
 
@@ -49,6 +49,6 @@ int	open_write_file(t_pipex *pipex, char *argv)
 	fd = open(argv, O_WRONLY | O_CLOEXEC | O_CREAT | O_TRUNC, \
 							S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_OPEN, 1);
+		exit_with_error(pipex, ERR_MSG_OPEN, TYPE_PERROR, NEED_FREE);
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:24:24 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:00:26 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ char	**make_virtual_argv(\
 				pipex, v->list_of_directory, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_absolute_path_of_command);
 	if (index == ERR_NUM)
-		exit_with_error(pipex, command_from_argv, TYPE_CMD_NOT_FOUND);
+		exit_with_error(pipex, command_from_argv, TYPE_CMD_NOT_FOUND, NEED_FREE);
 	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
 	return (v->virtual_argv);
 }
 
 static char	**split_virtual_argv_from_real_argv(\
-									t_pipex *pipex,	char *command_from_argv)
+									t_pipex *pipex,	char *cmd_name)
 {
 	char	**virtual_argv;
 
-	if (command_from_argv == NULL)
-		exit_put_msg_cmd_not_found(pipex, command_from_argv);
-	if (*command_from_argv == '\0')
+	if (cmd_name == NULL)
+		exit_put_msg_cmd_not_found(pipex, cmd_name);
+	if (*cmd_name == '\0')
 		exit_put_msg_cmd_not_found(pipex, "\\0");
-	virtual_argv = x_split(pipex, command_from_argv, DELIMITER_CMD);
+	virtual_argv = x_split(pipex, cmd_name, DELIMITER_CMD);
 	return (virtual_argv);
 }
 
@@ -82,7 +82,7 @@ static int	get_index_accessible_path(char **list_absolute_path_of_command)
 	i = 0;
 	while (list_absolute_path_of_command[i] != NULL)
 	{
-		if (access(list_absolute_path_of_command[i], R_OK) == 0)
+		if (access(list_absolute_path_of_command[i], X_OK) == 0)
 			return (i);
 		//if (access(list_absolute_path_of_command[i], F_OK) == 0)
 		//	exit_success();
@@ -101,6 +101,6 @@ static char	**switch_first_argv_to_absolute_path(\
 				x_strdup(pipex, v->list_absolute_path_of_command[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
-		exit_with_error(pipex, ERR_MSG_STRDUP, 1);
+		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_PERROR, NEED_FREE);
 	return (v->virtual_argv);
 }

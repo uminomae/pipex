@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:33:25 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:47:20 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	get_path_line_from_env(t_pipex *pipex, char **env, char *str_path,
 	size_t	i;
 
 	if (env == NULL)
-		exit_with_error(pipex, "environ", TYPE_ENV_NULL);
+		exit_with_error(pipex, "environ", TYPE_ENV_NULL, NEED_FREE);
 	i = 0;
 	while (env[i] != NULL)
 	{

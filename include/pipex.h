@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:28:14 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:54:25 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,17 @@ extern char	**environ;
 # define SAME_STRING		0
 # define NOT_FIND			0
 # define FILE_FOR_READ		1
+# define NUM_ARGC_REQUIRED	5
+
+# define TYPE_PERROR		1
 # define TYPE_CMD_NOT_FOUND	2
 # define TYPE_ENV_NULL		3
+# define TYPE_ARGV_NULL		4
+# define TYPE_ARGC			5
+
+# define NEED_FREE			true
+# define NO_FREE			false
+
 
 # define NOT_FOUND			NULL
 
@@ -168,7 +177,8 @@ void	free_struct(t_pipex *pipex);
 void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	safe_free(char **malloc_ptr);
-void	exit_with_error(t_pipex *pipex, char *str, size_t type);
+// void	exit_with_error(t_pipex *pipex, char *str, size_t type);
+void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free);
 void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 void	exit_put_msg_argv(void);
 void	exit_put_msg_envp(void);

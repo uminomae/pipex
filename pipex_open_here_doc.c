@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_open_here_doc.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 17:31:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:52:47 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	create_file_here_doc(t_pipex *pipex, char *file_name)
 	fd = open(file_name, O_RDWR | O_CREAT | O_TRUNC, \
 							S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd == ERR_NUM)
-		exit_with_error(pipex, ERR_MSG_OPEN, 1);
+		exit_with_error(pipex, ERR_MSG_OPEN, TYPE_PERROR, NEED_FREE);
 	return (fd);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_x_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 18:50:07 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:57:46 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**x_split(t_pipex *pipex, char *str, char delimiter)
 
 	ret = ft_split(str, delimiter);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_SPLIT, 1);
+		exit_with_error(pipex, ERR_MSG_SPLIT, TYPE_PERROR, NEED_FREE);
 	return (ret);
 }
 
@@ -28,7 +28,7 @@ void	*x_malloc(t_pipex *pipex, size_t size)
 
 	ret = malloc(sizeof(void *) * size);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_MALLOC, 1);
+		exit_with_error(pipex, ERR_MSG_MALLOC, TYPE_PERROR, NEED_FREE);
 	return (ret);
 }
 
@@ -38,7 +38,7 @@ char	*x_strjoin(t_pipex *pipex, char *str, char *str_to_add)
 
 	ret = ft_strjoin(str, str_to_add);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_STRJOIN, 1);
+		exit_with_error(pipex, ERR_MSG_STRJOIN, TYPE_PERROR, NEED_FREE);
 	return (ret);
 }
 
@@ -48,7 +48,7 @@ char	*x_strdup(t_pipex *pipex, char *str)
 
 	ret = ft_strdup(str);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_STRJOIN, 1);
+		exit_with_error(pipex, ERR_MSG_STRJOIN, TYPE_PERROR, NEED_FREE);
 	return (ret);
 }
 
@@ -58,6 +58,6 @@ char	*x_substr(t_pipex *pipex, char *str, int start, size_t len)
 
 	ret = ft_substr(str, start, len);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_STRJOIN, 1);
+		exit_with_error(pipex, ERR_MSG_STRJOIN, TYPE_PERROR, NEED_FREE);
 	return (ret);
 }
