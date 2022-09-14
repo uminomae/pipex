@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:00:56 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:36:39 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	main(int argc, char **argv)
 	t_pipex		pipex;
 	size_t		num_pipe;
 
-	environ = NULL;
+	// environ = NULL;
+	// argv = NULL;
 	begin_pipex(&pipex, argc, argv);
 	num_pipe = make_pipe(&pipex, argc, pipex.normal_argc);
 	open_files(&pipex, argc, argv);

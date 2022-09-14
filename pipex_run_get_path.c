@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_run_get_path.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 18:40:59 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:33:25 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static size_t	get_path_line_from_env(char **env, char *str, size_t len);
+static size_t	get_path_line_from_env(\
+					t_pipex *pipex, char **env, char *str_path, size_t len);
 static char		**split_list_of_directory_from_path_line(\
 										t_pipex *pipex, size_t path_index);
 static char		**trim_unnecessary_characters(\
@@ -25,21 +26,23 @@ void	get_path(t_pipex *pipex, t_arg *v)
 	size_t		path_line;
 
 	path_line = get_path_line_from_env(\
-					environ, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
+				pipex, environ, WORD_FIND_PATH, ft_strlen(WORD_FIND_PATH));
 	v->temp_divided_list = \
 					split_list_of_directory_from_path_line(pipex, path_line);
 	v->list_of_directory = \
 					join_slash_path_of_directory(pipex, v->temp_divided_list);
 }
 
-static size_t	get_path_line_from_env(char **env, char *str, size_t len)
+static size_t	get_path_line_from_env(t_pipex *pipex, char **env, char *str_path, size_t len)
 {
 	size_t	i;
 
+	if (env == NULL)
+		exit_with_error(pipex, "environ", TYPE_ENV_NULL);
 	i = 0;
 	while (env[i] != NULL)
 	{
-		if (ft_strncmp(env[i], str, len) == SAME_STRING)
+		if (ft_strncmp(env[i], str_path, len) == SAME_STRING)
 			return (i);
 		i++;
 	}

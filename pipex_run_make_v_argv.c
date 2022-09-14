@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_run_make_v_argv.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 21:22:46 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:24:24 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static char	**split_virtual_argv_from_real_argv(\
 	char	**virtual_argv;
 
 	if (command_from_argv == NULL)
-		put_msg_cmd_not_found(pipex, command_from_argv);
+		exit_put_msg_cmd_not_found(pipex, command_from_argv);
 	if (*command_from_argv == '\0')
-		put_msg_cmd_not_found(pipex, "\\0");
+		exit_put_msg_cmd_not_found(pipex, "\\0");
 	virtual_argv = x_split(pipex, command_from_argv, DELIMITER_CMD);
 	return (virtual_argv);
 }

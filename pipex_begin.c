@@ -6,15 +6,15 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 11:57:53 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:27:15 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static bool	is_here_doc(char **argv);
 static void	validate(int argc, char **argv);
 static void	init_struct(t_pipex *pipex, char **argv);
+static bool	is_here_doc(char **argv);
 static void	set_arg_position(t_pipex *pipex, char **argv);
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv)
@@ -23,6 +23,18 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 	init_struct(pipex, argv);
 	set_arg_position(pipex, argv);
 	init_pid_list(pipex, argc, pipex->other_cmd);
+}
+
+static void	validate(int argc, char **argv)
+{
+	if (argv == NULL)
+		exit_put_msg_argv();	
+	if (environ == NULL)
+		exit_put_msg_envp();
+	if (argc < 5)
+		exit_put_msg_err_argc();
+	else
+		return ;
 }
 
 static void	init_struct(t_pipex *pipex, char **argv)
@@ -38,24 +50,6 @@ static void	init_struct(t_pipex *pipex, char **argv)
 	pipex->v_argv.list_of_directory = NULL;
 	pipex->v_argv.temp_divided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;
-}
-
-static void	validate(int argc, char **argv)
-{
-	if (argv == NULL || environ == NULL)
-		exit(EXIT_FAILURE);
-	if (argc < 5)
-		put_msg_err_argc();
-	else
-		return ;
-}
-
-static bool	is_here_doc(char **argv)
-{
-	if (ft_strncmp(argv[1], HERE_DOC_STR, ft_strlen(HERE_DOC_STR)) \
-															== SAME_STRING)
-		return (true);
-	return (false);
 }
 
 static void	set_arg_position(t_pipex *pipex, char **argv)
@@ -76,4 +70,12 @@ static void	set_arg_position(t_pipex *pipex, char **argv)
 		pipex->first_cmd = 2;
 		pipex->last_cmd = 3;
 	}
+}
+
+static bool	is_here_doc(char **argv)
+{
+	if (ft_strncmp(argv[1], HERE_DOC_STR, ft_strlen(HERE_DOC_STR)) \
+															== SAME_STRING)
+		return (true);
+	return (false);
 }

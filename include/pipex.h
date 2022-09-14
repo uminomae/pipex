@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 20:32:36 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:28:14 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ extern char	**environ;
 # define NOT_FIND			0
 # define FILE_FOR_READ		1
 # define TYPE_CMD_NOT_FOUND	2
+# define TYPE_ENV_NULL		3
 
 # define NOT_FOUND			NULL
 
@@ -138,6 +139,8 @@ extern char	**environ;
 
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
+# define ERR_MSG_ARGV				"argv is null pointer"
+# define ERR_MSG_ENVIRON			"environ is null pointer"
 
 // main
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
@@ -166,8 +169,10 @@ void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	safe_free(char **malloc_ptr);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type);
-void	put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
-void	put_msg_err_argc(void);
+void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
+void	exit_put_msg_argv(void);
+void	exit_put_msg_envp(void);
+void	exit_put_msg_err_argc(void);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
 void	*x_malloc(t_pipex *pipex, size_t size);
