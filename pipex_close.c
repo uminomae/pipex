@@ -12,8 +12,9 @@
 
 #include "pipex.h"
 
+//TODO 逆
 void	close_both_fd(t_pipex *pipex, const int *const fd)
 {
-	x_close(pipex, fd[READ]);
 	x_close(pipex, fd[WRITE]);
+	x_close(pipex, fd[READ]);
 }

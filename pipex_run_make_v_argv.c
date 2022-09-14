@@ -6,27 +6,24 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:06:29 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	**split_cmd_name_and_option(\
-									t_pipex *pipex,	char *cmd_name);
+static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name);
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name);
 static int	get_index_accessible_path(char **list_abs_path_cmd);
 static char	**switch_first_argv(t_pipex *pipex, t_arg *v, size_t index);
 
-char	**make_virtual_argv(\
-				t_pipex *pipex, t_arg *v, char *cmd_name)
+char	**make_virtual_argv(t_pipex *pipex, t_arg *v, char *cmd_name)
 {
 	int		index;
 
 	v->virtual_argv = split_cmd_name_and_option(pipex, cmd_name);
-	v->list_abs_path_cmd = \
-			join_to_get_absolute_path(\
+	v->list_abs_path_cmd = join_to_get_absolute_path(\
 				pipex, v->list_of_directory, v->virtual_argv[0]);
 	index = get_index_accessible_path(v->list_abs_path_cmd);
 	if (index == ERR_NUM)
@@ -47,6 +44,7 @@ static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 	return (virtual_argv);
 }
 
+// TODO　相対パスのif分岐
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name)
 {
@@ -62,8 +60,7 @@ static char	**join_to_get_absolute_path(\
 	{
 		abs_sign = ft_strchr(cmd_name, SIGN_ABS_PATH);
 		if (abs_sign == NOT_FOUND)
-			list_abs_path[i] = \
-				x_strjoin(pipex, list_of_directory[i], cmd_name);
+			list_abs_path[i] = x_strjoin(pipex, list_of_directory[i], cmd_name);
 		else
 			list_abs_path[i] = x_strdup(pipex, cmd_name);
 		i++;
@@ -91,8 +88,7 @@ static char	**switch_first_argv(t_pipex *pipex, t_arg *v, size_t index)
 	void	*tmp;
 
 	tmp = v->virtual_argv[ABS_PATH_CMD];
-	v->virtual_argv[ABS_PATH_CMD] = \
-				x_strdup(pipex, v->list_abs_path_cmd[index]);
+	v->virtual_argv[ABS_PATH_CMD] =	x_strdup(pipex, v->list_abs_path_cmd[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
 		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_PERROR, true);

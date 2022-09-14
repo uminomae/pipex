@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:41:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_alloc_list
 // v_argv : make virtual argv, for execve
 typedef struct s_pipex
 {
+	int					argc;
 	char				**argv;
 	struct s_pipe_list	pipe_list;
 	struct s_pid_list	pid_list;

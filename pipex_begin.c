@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_begin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:26:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 static void	validate_variables(t_pipex *pipex, int argc, char **argv);
-static void	init_struct(t_pipex *pipex, char **argv);
+static void	init_struct(t_pipex *pipex, int argc, char **argv);
 static bool	is_here_doc(char **argv);
 static void	set_arg_position(t_pipex *pipex, char **argv);
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 {
 	validate_variables(pipex, argc, argv);
-	init_struct(pipex, argv);
+	init_struct(pipex, argc, argv);
 	set_arg_position(pipex, argv);
 	init_pid_list(pipex, argc, pipex->other_cmd);
 }
@@ -37,8 +37,9 @@ static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 		return ;
 }
 
-static void	init_struct(t_pipex *pipex, char **argv)
+static void	init_struct(t_pipex *pipex, int argc, char **argv)
 {
+	pipex->argc = argc;
 	pipex->argv = argv;
 	pipex->pipe_list.head = NULL;
 	pipex->pipe_list.tail = NULL;

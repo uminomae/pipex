@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 16:47:55 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 12:41:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+// TODO みぎから
+//TODO argc使用してるか
 int	main(int argc, char **argv)
 {
 	t_pipex		pipex;
