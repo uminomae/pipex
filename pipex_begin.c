@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:36:25 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_struct(t_pipex *pipex, char **argv)
 	pipex->pid_list.tail = NULL;
 	pipex->alloc_list.head = NULL;
 	pipex->alloc_list.tail = NULL;
-	pipex->v_argv.list_absolute_path_of_command = NULL;
+	pipex->v_argv.list_abs_path_cmd = NULL;
 	pipex->v_argv.list_of_directory = NULL;
 	pipex->v_argv.temp_divided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;

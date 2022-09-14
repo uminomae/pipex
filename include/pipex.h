@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:37:00 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 // temp_divided_list : path line of env by split() 
 // list_of_directory : add slash
 // virtual_argv : argv for execve()
-// list_absolute_path_of_command : fullpath including basename
+// list_abs_path_cmd : fullpath including basename
 typedef struct s_arg
 {
 	char	**temp_divided_list;
 	char	**list_of_directory;
 	char	**virtual_argv;
-	char	**list_absolute_path_of_command;
+	char	**list_abs_path_cmd;
 }	t_arg;
 
 typedef struct s_pipe_node

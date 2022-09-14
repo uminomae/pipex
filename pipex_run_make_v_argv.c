@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 16:55:23 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ static char	**split_cmd_name_and_option(\
 									t_pipex *pipex,	char *cmd_name);
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name);
-static int	get_index_accessible_path(char **list_absolute_path_of_command);
-static char	**switch_first_argv_to_absolute_path(\
-								t_pipex *pipex, t_arg *v, size_t index);
+static int	get_index_accessible_path(char **list_abs_path_cmd);
+static char	**switch_first_argv(t_pipex *pipex, t_arg *v, size_t index);
 
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_arg *v, char *cmd_name)
@@ -26,18 +25,17 @@ char	**make_virtual_argv(\
 	int		index;
 
 	v->virtual_argv = split_cmd_name_and_option(pipex, cmd_name);
-	v->list_absolute_path_of_command = \
+	v->list_abs_path_cmd = \
 			join_to_get_absolute_path(\
 				pipex, v->list_of_directory, v->virtual_argv[0]);
-	index = get_index_accessible_path(v->list_absolute_path_of_command);
+	index = get_index_accessible_path(v->list_abs_path_cmd);
 	if (index == ERR_NUM)
 		exit_with_error(pipex, cmd_name, TYPE_CMD_NOT_FOUND, true);
-	v->virtual_argv = switch_first_argv_to_absolute_path(pipex, v, index);
+	v->virtual_argv = switch_first_argv(pipex, v, index);
 	return (v->virtual_argv);
 }
 
-static char	**split_cmd_name_and_option(\
-									t_pipex *pipex,	char *cmd_name)
+static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 {
 	char	**virtual_argv;
 
@@ -52,50 +50,49 @@ static char	**split_cmd_name_and_option(\
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name)
 {
-	char	**list_absolute_path_of_command;
+	char	**list_abs_path;
 	size_t	i;
 	size_t	num;
 	char	*abs_sign;
 
 	num = scale_list_including_null(list_of_directory);
-	list_absolute_path_of_command = x_malloc(pipex, sizeof(char *) * num);
+	list_abs_path = x_malloc(pipex, sizeof(char *) * num);
 	i = 0;
 	while (list_of_directory[i] != NULL)
 	{
 		abs_sign = ft_strchr(cmd_name, SIGN_ABS_PATH);
 		if (abs_sign == NOT_FOUND)
-			list_absolute_path_of_command[i] = \
+			list_abs_path[i] = \
 				x_strjoin(pipex, list_of_directory[i], cmd_name);
 		else
-			list_absolute_path_of_command[i] = x_strdup(pipex, cmd_name);
+			list_abs_path[i] = x_strdup(pipex, cmd_name);
 		i++;
 	}
-	list_absolute_path_of_command[i] = NULL;
-	return (list_absolute_path_of_command);
+	list_abs_path[i] = NULL;
+	return (list_abs_path);
 }
 
-static int	get_index_accessible_path(char **list_absolute_path_of_command)
+static int	get_index_accessible_path(char **list_abs_path)
 {
 	int	i;
 
 	i = 0;
-	while (list_absolute_path_of_command[i] != NULL)
+	while (list_abs_path[i] != NULL)
 	{
-		if (access(list_absolute_path_of_command[i], X_OK) == 0)
+		if (access(list_abs_path[i], X_OK) == 0)
 			return (i);
 		i++;
 	}
 	return (ERR_NUM);
 }
 
-static char	**switch_first_argv_to_absolute_path(\
-								t_pipex *pipex, t_arg *v, size_t index)
+static char	**switch_first_argv(t_pipex *pipex, t_arg *v, size_t index)
 {
 	void	*tmp;
 
 	tmp = v->virtual_argv[ABS_PATH_CMD];
 	v->virtual_argv[ABS_PATH_CMD] = \
-				x_strdup(pipex, v->list_absolute_path_of_command[index]);
+				x_strdup(pipex, v->list_abs_path_cmd[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
 		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_PERROR, true);

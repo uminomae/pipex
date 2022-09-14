@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:23 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/13 10:23:35 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:01:51 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 static void	free_temp_divided_list(t_arg *v);
 static void	free_list_of_directory(t_arg *v);
 static void	free_virtual_argv(t_arg *v);
-static void	free_list_absolute_path_of_command(t_arg *v);
+static void	free_list_abs_path_cmd(t_arg *v);
 
 void	free_struct(t_pipex *pipex)
 {
-	free_list_absolute_path_of_command(&pipex->v_argv);
+	free_list_abs_path_cmd(&pipex->v_argv);
 	free_virtual_argv(&pipex->v_argv);
 	free_list_of_directory(&pipex->v_argv);
 	free_temp_divided_list(&pipex->v_argv);
 	free_alloc_list(&pipex->alloc_list);
 }
 
-static void	free_list_absolute_path_of_command(t_arg *v)
+static void	free_list_abs_path_cmd(t_arg *v)
 {
 	size_t	i;
 
 	i = 0;
-	if (v->list_absolute_path_of_command == NULL)
+	if (v->list_abs_path_cmd == NULL)
 		return ;
-	while (v->list_absolute_path_of_command[i] != NULL)
+	while (v->list_abs_path_cmd[i] != NULL)
 	{
-		safe_free(&v->list_absolute_path_of_command[i]);
+		safe_free(&v->list_abs_path_cmd[i]);
 		i++;
 	}
-	free(v->list_absolute_path_of_command[i]);
-	free(v->list_absolute_path_of_command);
-	v->list_absolute_path_of_command = NULL;
+	free(v->list_abs_path_cmd[i]);
+	free(v->list_abs_path_cmd);
+	v->list_abs_path_cmd = NULL;
 }
 
 static void	free_temp_divided_list(t_arg *v)
