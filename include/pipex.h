@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:44:34 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:56:49 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ extern char	**environ;
 # define TYPE_ENV_NULL		3
 # define TYPE_ARGV_NULL		4
 # define TYPE_ARGC			5
+# define TYPE_FT			6
 
 # define NOT_FOUND			NULL
 
@@ -151,6 +152,7 @@ extern char	**environ;
 # define ERR_MSG_ENVIRON			"environ is null pointer"
 # define ERR_MSG_CMD_NULL			"command name is null pointer"
 # define ERR_MSG_CMD_NULL_CHAR		"command name is null char"
+# define ERR_MSG_FT					"error"
 
 // main
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
@@ -180,7 +182,7 @@ void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	exit_success(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free);
-void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_name);
+void	exit_put_msg_cmd_not_found(char *str);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
 void	*x_malloc(t_pipex *pipex, size_t size);

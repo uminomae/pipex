@@ -25,7 +25,7 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 	if (type == TYPE_CMD_NOT_FOUND)
 	{
 		if (ft_strchr(str, SIGN_ABS_PATH) == NULL)
-			exit_put_msg_cmd_not_found(pipex, str);
+			exit_put_msg_cmd_not_found(str);
 		else
 			perror(str);
 	}
@@ -35,16 +35,16 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 		ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
 	else if (type == TYPE_ARGC)
 		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
+	else if (type == TYPE_FT)
+		ft_putendl_fd(ERR_MSG_FT, STDERR_FILENO);
 	if (need_free == true)
 		free_struct(pipex);
 	exit(EXIT_FAILURE);
 }
 
-void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_name)
+void	exit_put_msg_cmd_not_found(char *str)
 {
 	ft_putstr_fd(ERR_MSG_CMD_NOT_FOUND, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putendl_fd(command_name, STDERR_FILENO);
-	free_struct(pipex);
-	exit(EXIT_FAILURE);
+	ft_putendl_fd(str, STDERR_FILENO);
 }
