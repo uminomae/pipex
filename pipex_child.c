@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:42:12 by user42           ###   ########.fr       */
+/*   Updated: 2022/09/14 13:52:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ static pid_t	run_child_to_file(\
 
 void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe)
 {
-	size_t				add_pipe;
+	// size_t				add_pipe;
 	t_pid_node *const	head = pipex->pid_list.head;
 	t_pid_node *const	tail = pipex->pid_list.tail;
 	int					last_cmd_idx;
 
-	// last_cmd_idx = num_pipe + pipex->last_cmd_idx - 1;
-	// tail->process_id = run_child_to_file(pipex, argv, WRITE, last_cmd_idx);
-	// add_pipe = run_multiple_pipes(pipex, num_pipe);
+	last_cmd_idx = num_pipe + pipex->last_cmd_idx - 1;
+	tail->process_id = run_child_to_file(pipex, argv, WRITE, last_cmd_idx);
+	run_multiple_pipes(pipex, num_pipe);
 	head->process_id = \
 		run_child_to_file(pipex, argv, READ, pipex->first_cmd_idx);
-	add_pipe = run_multiple_pipes(pipex, num_pipe);
-	last_cmd_idx = add_pipe + pipex->last_cmd_idx;
-	tail->process_id = run_child_to_file(pipex, argv, WRITE, last_cmd_idx);
+	// add_pipe = run_multiple_pipes(pipex, num_pipe);
+	// last_cmd_idx = add_pipe + pipex->last_cmd_idx;
+	// tail->process_id = run_child_to_file(pipex, argv, WRITE, last_cmd_idx);
 }
 
 static pid_t	run_child_to_file(\
