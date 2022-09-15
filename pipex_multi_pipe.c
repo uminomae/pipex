@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 11:09:36 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:18:09 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static pid_t	run_child_multi(\
 		close_both_fd(pipex, prev_pipe);
 		close_both_fd(pipex, pipe);
 		get_path(pipex, v_argv);
-		v_argv->virtual_argv = make_virtual_argv(
+		v_argv->virtual_argv = make_virtual_argv(\
 			pipex, v_argv, argv[add_pipe + pipex->last_cmd_idx]);
 		x_execve(pipex, v_argv->virtual_argv);
 	}

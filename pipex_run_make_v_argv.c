@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 17:06:29 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:20:23 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ static char	**switch_first_argv(t_pipex *pipex, t_arg *v, size_t index)
 	void	*tmp;
 
 	tmp = v->virtual_argv[ABS_PATH_CMD];
-	v->virtual_argv[ABS_PATH_CMD] =	x_strdup(pipex, v->list_abs_path_cmd[index]);
+	v->virtual_argv[ABS_PATH_CMD] = \
+		x_strdup(pipex, v->list_abs_path_cmd[index]);
 	free(tmp);
 	if (v->virtual_argv[ABS_PATH_CMD] == NULL)
 		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_PERROR, true);

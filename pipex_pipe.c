@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 11:10:34 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:18:10 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_normal)
 static void	add_pipe_to_list(t_pipex *pipex)
 {
 	t_pipe_node	*node;
-	int		add_pipe[2];
+	int			add_pipe[2];
 
 	node = init_pipe_node(pipex);
 	x_pipe(pipex, add_pipe);
