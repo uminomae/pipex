@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 18:36:25 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:36:27 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	run_separate_child2(t_pipex *pipex);
+static void	dup_file_fd_std_in_out(t_pipex *pipex)
+{
+	x_dup2(pipex, pipex->file_fd[READ], STDIN_FILENO);
+	x_dup2(pipex, pipex->file_fd[WRITE], STDOUT_FILENO);
+	close_both_fd(pipex, pipex->file_fd);
+}
 
-// TODO みぎから
-//TODO argc使用してるか
 int	main(int argc, char **argv)
 {
 	t_pipex		pipex;
-	//size_t		num_pipe;
 
 	begin_pipex(&pipex, argc, argv);
-	//num_pipe = make_pipe(&pipex, argc, pipex.normal_argc);
 	open_files(&pipex, argc, argv);
-	//run_separate_child(&pipex, argv, num_pipe);
-	run_separate_child2(&pipex);
-	close_both_fd(&pipex, pipex.file_fd);
-	close_both_fd(&pipex, pipex.pipe_list.tail->pipe_fd);
+	dup_file_fd_std_in_out(&pipex);
+	run_child_recursive(&pipex, 0);
 	wait_all_child(&pipex);
 	exit_success(&pipex);
 }

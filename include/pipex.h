@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 18:28:18 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:18:11 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,8 @@ extern char	**environ;
 
 // main
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
-void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe);
+// void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe);
+void	run_child_recursive(t_pipex *pipex, size_t i);
 void	close_both_fd(t_pipex *pipex, const int *const pipe_fd);
 void	wait_all_child(t_pipex *pipex);
 //open 

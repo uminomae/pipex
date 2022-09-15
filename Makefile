@@ -12,7 +12,6 @@ SRCS		:= 	pipex_main.c \
 				pipex_open_here_doc.c \
 				pipex_pipe.c \
 				pipex_child.c \
-				pipex_multi_pipe.c \
 				pipex_close.c \
 				pipex_run_get_path.c \
 				pipex_run_make_v_argv.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_open.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:31 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 18:47:42 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:30:12 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ void	open_files(t_pipex *pipex, int argc, char **argv)
 		open_here_doc(pipex, argc, argv);
 	else
 		open_normal_case(pipex, argc, argv);
-	
-	x_dup2(pipex, pipex->file_fd[READ], STDIN_FILENO);
-	x_dup2(pipex, pipex->file_fd[WRITE], STDOUT_FILENO);
-	x_close(pipex, pipex->file_fd[WRITE]);
-	x_close(pipex, pipex->file_fd[READ]);
 }
 
 static void	open_normal_case(t_pipex *pipex, int argc, char **argv)
