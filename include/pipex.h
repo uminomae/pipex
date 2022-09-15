@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:41:06 by user42           ###   ########.fr       */
+/*   Updated: 2022/09/15 18:28:18 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,8 @@ char	*x_substr(t_pipex *pipex, char *str, int start, size_t len);
 // sys
 void	x_pipe(t_pipex *pipex, int pipe_fd[2]);
 pid_t	x_fork(t_pipex *pipex);
-void	x_dup2(t_pipex *pipex, int file, int fd);
+void	x_dup2(t_pipex *pipex, int fd1, int fd2);
+//void	x_dup2(t_pipex *pipex, int file, int fd);
 void	x_execve(t_pipex *pipex, char **virtual_argv);
 void	x_close(t_pipex *pipex, int fd);
 void	x_waitpid(t_pipex *pipex, pid_t process_id);

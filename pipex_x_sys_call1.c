@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_x_sys_call1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 14:35:59 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:28:01 by hioikawa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ pid_t	x_fork(t_pipex *pipex)
 	return (ret);
 }
 
-void	x_dup2(t_pipex *pipex, int file, int fd)
+void	x_dup2(t_pipex *pipex, int fd1, int fd2)
 {
 	int	ret;
 
-	ret = dup2(file, fd);
+	ret = dup2(fd1, fd2);
 	if (ret == ERR_NUM)
 		exit_with_error(pipex, ERR_MSG_DUP2, TYPE_PERROR, true);
 }
