@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hioikawa <hioikawa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/11 12:56:02 by hioikawa         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:47:00 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ void	safe_free(char **malloc_ptr)
 {
 	free(*malloc_ptr);
 	*malloc_ptr = NULL;
+}
+
+void	close_both_fd(t_pipex *pipex, const int *const fd)
+{
+	x_close(pipex, fd[WRITE]);
+	x_close(pipex, fd[READ]);
 }
