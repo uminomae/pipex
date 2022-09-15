@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:46:08 by user42           ###   ########.fr       */
+/*   Updated: 2022/09/15 11:10:34 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static t_pipe_node	*init_pipe_node(t_pipex *pipex);
 static void			add_pipe_to_list(t_pipex *pipex);
-// static void			add_pipe_to_list(t_pipex *pipex, int pipe_fd[2]);
 static void			make_first_pipe_node(t_pipe_list *list, t_pipe_node *node);
 static void			add_last_pipe_node(t_pipe_list *list, t_pipe_node *node);
 
@@ -22,13 +21,11 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_normal)
 {
 	size_t	i;
 	size_t	num_to_make;
-	// int		add_pipe[2];
 
 	num_to_make = (size_t)argc - argc_normal + 1;
 	i = 0;
 	while (i < num_to_make)
 	{
-		// x_pipe(pipex, add_pipe);
 		add_pipe_to_list(pipex);
 		i++;
 	}
@@ -36,7 +33,6 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_normal)
 }
 
 static void	add_pipe_to_list(t_pipex *pipex)
-// static void	add_pipe_to_list(t_pipex *pipex, int pipe_fd[2])
 {
 	t_pipe_node	*node;
 	int		add_pipe[2];
@@ -70,7 +66,6 @@ static void	make_first_pipe_node(t_pipe_list *list, t_pipe_node *node)
 static void	add_last_pipe_node(t_pipe_list *list, t_pipe_node *node)
 {
 	list->tail->next = node;
-	// node->prev = list->tail;
 	list->tail->next->prev = list->tail;
 	list->tail = node;
 }
