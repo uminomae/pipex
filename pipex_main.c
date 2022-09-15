@@ -6,26 +6,18 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:36:27 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:43:11 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static void	dup_file_fd_std_in_out(t_pipex *pipex)
-{
-	x_dup2(pipex, pipex->file_fd[READ], STDIN_FILENO);
-	x_dup2(pipex, pipex->file_fd[WRITE], STDOUT_FILENO);
-	close_both_fd(pipex, pipex->file_fd);
-}
 
 int	main(int argc, char **argv)
 {
 	t_pipex		pipex;
 
 	begin_pipex(&pipex, argc, argv);
-	open_files(&pipex, argc, argv);
-	dup_file_fd_std_in_out(&pipex);
+	open_files_and_dup(&pipex, argc, argv);
 	run_child_recursive(&pipex, 0);
 	wait_all_child(&pipex);
 	exit_success(&pipex);

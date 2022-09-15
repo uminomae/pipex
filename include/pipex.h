@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:18:11 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:44:34 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,14 +154,13 @@ extern char	**environ;
 
 // main
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
-// void	run_separate_child(t_pipex *pipex, char **argv, size_t num_pipe);
 void	run_child_recursive(t_pipex *pipex, size_t i);
 void	close_both_fd(t_pipex *pipex, const int *const pipe_fd);
 void	wait_all_child(t_pipex *pipex);
 //open 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
-void	open_files(t_pipex *pipex, int argc, char **argv);
+void	open_files_and_dup(t_pipex *pipex, int argc, char **argv);
 void	open_here_doc(t_pipex *pipex, int argc, char **argv);
 int		open_read_file(t_pipex *pipex, char *argv);
 int		open_write_file(t_pipex *pipex, char *argv);
@@ -181,7 +180,6 @@ void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	exit_success(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free);
-// void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_from_argv);
 void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_name);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
@@ -194,7 +192,6 @@ char	*x_substr(t_pipex *pipex, char *str, int start, size_t len);
 void	x_pipe(t_pipex *pipex, int pipe_fd[2]);
 pid_t	x_fork(t_pipex *pipex);
 void	x_dup2(t_pipex *pipex, int fd1, int fd2);
-//void	x_dup2(t_pipex *pipex, int file, int fd);
 void	x_execve(t_pipex *pipex, char **virtual_argv);
 void	x_close(t_pipex *pipex, int fd);
 void	x_waitpid(t_pipex *pipex, pid_t process_id);
