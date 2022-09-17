@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:44:34 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:48:59 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ extern char	**environ;
 # define TYPE_ENV_NULL		3
 # define TYPE_ARGV_NULL		4
 # define TYPE_ARGC			5
+# define TYPE_FT			6
 
 # define NOT_FOUND			NULL
 
@@ -144,6 +145,7 @@ extern char	**environ;
 # define ERR_MSG_SPLIT		"ft_split()"
 # define ERR_MSG_MALLOC		"malloc()"
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
+# define ERR_MSG_FT			"error"
 
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"
 # define ERR_MSG_CMD_NOT_FOUND		"command not found"
@@ -180,7 +182,7 @@ void	free_alloc_list(t_alloc_list *alloc_list);
 // finish
 void	exit_success(t_pipex *pipex);
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free);
-void	exit_put_msg_cmd_not_found(t_pipex *pipex, char *command_name);
+void	exit_put_msg_cmd_not_found(char *command_name);
 //x
 char	**x_split(t_pipex *pipex, char *str, char delimiter);
 void	*x_malloc(t_pipex *pipex, size_t size);

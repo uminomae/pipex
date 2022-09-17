@@ -6,13 +6,13 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/16 08:17:44 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:46:25 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name);
+static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name);
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name);
 static int	get_index_accessible_path(char **list_abs_path_cmd);
@@ -32,7 +32,7 @@ char	**make_virtual_argv(t_pipex *pipex, t_arg *v, char *cmd_name)
 	return (v->virtual_argv);
 }
 
-char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
+static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 {
 	char	**virtual_argv;
 
