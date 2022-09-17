@@ -6,13 +6,13 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 21:26:46 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/16 08:17:44 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name);
+// static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name);
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name);
 static int	get_index_accessible_path(char **list_abs_path_cmd);
@@ -32,7 +32,7 @@ char	**make_virtual_argv(t_pipex *pipex, t_arg *v, char *cmd_name)
 	return (v->virtual_argv);
 }
 
-static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
+char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 {
 	char	**virtual_argv;
 
@@ -44,6 +44,7 @@ static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 	return (virtual_argv);
 }
 
+// TODO 相対パスと.始まり、/始まりでテスト
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name)
 {
@@ -60,7 +61,7 @@ static char	**join_to_get_absolute_path(\
 		directory_sign = ft_strchr(cmd_name, SIGN_ABS_PATH);
 		if (ft_strncmp(cmd_name, STR_SLASH, 1) == 0)
 			list_abs_path[i] = x_strdup(pipex, cmd_name);
-		else if (directory_sign != NOT_FOUND)
+		if (directory_sign != NOT_FOUND)
 			list_abs_path[i] = x_strdup(pipex, cmd_name);
 		else if (directory_sign == NOT_FOUND)
 			list_abs_path[i] = x_strjoin(pipex, list_of_directory[i], cmd_name);

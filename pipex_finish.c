@@ -26,6 +26,8 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 	{
 		if (ft_strchr(str, SIGN_ABS_PATH) == NULL)
 			exit_put_msg_cmd_not_found(str);
+		if (ft_strncmp(str, "", 1))
+			exit_put_msg_cmd_not_found(str);
 		else
 			perror(str);
 	}

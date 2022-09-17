@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:56:49 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/09/16 08:30:37 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,19 @@ typedef struct s_alloc_list
 	struct s_alloc_node	*tail;
 }	t_alloc_list;
 
+typedef struct s_cmd_node
+{
+	char				*cmd;
+	struct s_cmd_node	*prev;	
+	struct s_cmd_node	*next;
+}	t_cmd_node;
+
+typedef struct s_cmd_list
+{
+	struct s_cmd_node	*head;
+	struct s_cmd_node	*tail;
+}	t_cmd_list;
+
 // pipe_list : node of pipe
 // pid_list : node of process ID
 // file_fd : for open(), write()
@@ -78,6 +91,7 @@ typedef struct s_pipex
 {
 	int					argc;
 	char				**argv;
+	struct s_cmd_list	cmd_list;
 	struct s_pipe_list	pipe_list;
 	struct s_pid_list	pid_list;
 	struct s_alloc_list	alloc_list;
@@ -159,9 +173,11 @@ size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);
 void	run_child_recursive(t_pipex *pipex, size_t i);
 void	close_both_fd(t_pipex *pipex, const int *const pipe_fd);
 void	wait_all_child(t_pipex *pipex);
-//open 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv);
+//
 void	init_pid_list(t_pipex *pipex, int argc, size_t other_cmd);
+void	init_cmd_list(t_pipex *pipex, int argc, size_t other_cmd);
+//open 
 void	open_files_and_dup(t_pipex *pipex, int argc, char **argv);
 void	open_here_doc(t_pipex *pipex, int argc, char **argv);
 int		open_read_file(t_pipex *pipex, char *argv);
@@ -174,7 +190,9 @@ size_t	run_multiple_pipes(t_pipex *pipex, size_t num_pipe);
 void	get_path(t_pipex *pipex, t_arg *v);
 char	**make_virtual_argv(\
 				t_pipex *pipex, t_arg *v, char *command_from_argv);
+// util
 size_t	scale_list_including_null(char **list);
+char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name);
 //free 
 void	safe_free(char **malloc_ptr);
 void	free_struct(t_pipex *pipex);

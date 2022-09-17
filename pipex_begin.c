@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_begin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:26:20 by user42           ###   ########.fr       */
+/*   Updated: 2022/09/16 23:22:14 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,50 @@ static void	init_struct(t_pipex *pipex, int argc, char **argv);
 static bool	is_here_doc(char **argv);
 static void	set_arg_position(t_pipex *pipex, char **argv);
 
+
+//TODO free
+// TODO init
+void	get_cmd_name(t_pipex *pipex, size_t times)
+{
+	size_t	i;
+	// size_t	times;
+	char	**argv_n;
+	t_cmd_node	*node;
+
+	node = pipex->cmd_list.head;
+	// times = pipex->argc - pipex->other_cmd;
+	i = 0;
+	while (i < times)
+	{
+		argv_n = split_cmd_name_and_option(\
+			pipex, pipex->argv[pipex->first_cmd_idx + i]);
+		if (argv_n == NULL)
+			exit_with_error(pipex, node->cmd, TYPE_CMD_NOT_FOUND, false);			
+		if (ft_strlen(argv_n[0]) == 0)
+			exit_with_error(pipex, node->cmd, TYPE_CMD_NOT_FOUND, false);
+		node->cmd = x_strdup(pipex, argv_n[0]);
+		free(argv_n);
+		node = node->next;
+	}
+}
+
+void	validate_cmd(t_pipex *pipex)
+{
+	size_t	times;
+
+	
+	times = pipex->argc - pipex->other_cmd;
+	get_cmd_name(pipex, times);
+}
+
 void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 {
 	validate_variables(pipex, argc, argv);
 	init_struct(pipex, argc, argv);
 	set_arg_position(pipex, argv);
 	init_pid_list(pipex, argc, pipex->other_cmd);
+	init_cmd_list(pipex, argc, pipex->other_cmd);
+	// validate_cmd(pipex);
 }
 
 static void	validate_variables(t_pipex *pipex, int argc, char **argv)
