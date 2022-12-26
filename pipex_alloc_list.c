@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "pipex.h"
+//
+//
 
 static t_alloc_node	*init_alloc_node(void);
 static void			make_first_alloc_node(\
