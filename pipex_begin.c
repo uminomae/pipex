@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_begin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 12:26:20 by user42           ###   ########.fr       */
+/*   Updated: 2022/12/29 13:14:01 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,3 @@ static void	set_arg_position(t_pipex *pipex, char **argv)
 		pipex->last_cmd_idx = 3;
 	}
 }
-
-
