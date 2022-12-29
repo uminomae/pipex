@@ -14,7 +14,6 @@
 
 static void	validate_variables(t_pipex *pipex, int argc, char **argv);
 static void	init_struct(t_pipex *pipex, int argc, char **argv);
-static bool	is_here_doc(char **argv);
 static void	set_arg_position(t_pipex *pipex, char **argv);
 
 void	begin_pipex(t_pipex *pipex, int argc, char **argv)
@@ -53,6 +52,14 @@ static void	init_struct(t_pipex *pipex, int argc, char **argv)
 	pipex->v_argv.virtual_argv = NULL;
 }
 
+static bool	is_here_doc(char **argv)
+{
+	if (ft_strncmp(argv[1], HERE_DOC_STR, ft_strlen(HERE_DOC_STR)) \
+															== SAME_STRING)
+		return (true);
+	return (false);
+}
+
 static void	set_arg_position(t_pipex *pipex, char **argv)
 {
 	if (is_here_doc(argv) == true)
@@ -73,10 +80,4 @@ static void	set_arg_position(t_pipex *pipex, char **argv)
 	}
 }
 
-static bool	is_here_doc(char **argv)
-{
-	if (ft_strncmp(argv[1], HERE_DOC_STR, ft_strlen(HERE_DOC_STR)) \
-															== SAME_STRING)
-		return (true);
-	return (false);
-}
+

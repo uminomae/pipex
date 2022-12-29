@@ -10,7 +10,6 @@ SRCS		:= 	pipex_main.c \
 				pipex_alloc_list.c \
 				pipex_open.c \
 				pipex_open_here_doc.c \
-				pipex_pipe.c \
 				pipex_child.c \
 				pipex_run_get_path.c \
 				pipex_run_make_v_argv.c \

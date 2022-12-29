@@ -6,13 +6,11 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/14 17:05:06 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/29 11:59:50 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-//
-//
 
 static t_alloc_node	*init_alloc_node(void);
 static void			make_first_alloc_node(\

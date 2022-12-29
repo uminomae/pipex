@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/17 17:46:25 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/29 02:57:59 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 
 	if (cmd_name == NULL)
 		exit_with_error(pipex, ERR_MSG_CMD_NULL, TYPE_CMD_NOT_FOUND, true);
-	if (*cmd_name == NULL_CHAR)
+	else if (*cmd_name == NULL_CHAR)
 		exit_with_error(pipex, ERR_MSG_CMD_NULL_CHAR, TYPE_CMD_NOT_FOUND, true);
 	virtual_argv = x_split(pipex, cmd_name, DELIMITER_CMD);
 	return (virtual_argv);
@@ -61,7 +61,7 @@ static char	**join_to_get_absolute_path(\
 		directory_sign = ft_strchr(cmd_name, SIGN_ABS_PATH);
 		if (ft_strncmp(cmd_name, STR_SLASH, 1) == 0)
 			list_abs_path[i] = x_strdup(pipex, cmd_name);
-		if (directory_sign != NOT_FOUND)
+		else if (directory_sign != NOT_FOUND)
 			list_abs_path[i] = x_strdup(pipex, cmd_name);
 		else if (directory_sign == NOT_FOUND)
 			list_abs_path[i] = x_strjoin(pipex, list_of_directory[i], cmd_name);

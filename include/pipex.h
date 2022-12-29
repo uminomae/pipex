@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/17 17:48:59 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/29 11:59:47 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ extern char	**environ;
 # define ERR_MSG_SPLIT		"ft_split()"
 # define ERR_MSG_MALLOC		"malloc()"
 # define ERR_MSG_STRJOIN	"ft_strjoin()"
+# define ERR_MSG_SUBSTR		"ft_substr()"
 # define ERR_MSG_FT			"error"
 
 # define ERR_MSG_NO_SUCH_FILE_FIR	"no such file or directory"

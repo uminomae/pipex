@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:53:10 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:02:02 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*x_strdup(t_pipex *pipex, char *str)
 
 	ret = ft_strdup(str);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_STRJOIN, TYPE_FT, true);
+		exit_with_error(pipex, ERR_MSG_STRDUP, TYPE_FT, true);
 	return (ret);
 }
 
@@ -58,6 +58,6 @@ char	*x_substr(t_pipex *pipex, char *str, int start, size_t len)
 
 	ret = ft_substr(str, start, len);
 	if (ret == NULL)
-		exit_with_error(pipex, ERR_MSG_STRJOIN, TYPE_FT, true);
+		exit_with_error(pipex, ERR_MSG_SUBSTR, TYPE_FT, true);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:27 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:43:11 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/29 01:58:11 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,9 @@ int	main(int argc, char **argv)
 //leak test: 
 // 
 //system("leaks -q pipex");
+// valgrind --leak-check=full ./pipex Makefile "grep NAME" "wc -l" res
+
+// ./pipex Makefile "/ban/cat" "grep NAME" res のケースで、
+// pipex_run_make_v_argv.c63行目のx_strdupがLeakしました。
+// また、./pipex Makefile "" "grep NAME" resなどしたとき、
+// command not found: command name is null charが2回表示されていました。

@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/09/15 20:49:18 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/29 02:22:49 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ void	x_unlink(t_pipex *pipex, char *file_name)
 	ret = unlink(file_name);
 	if (ret == ERR_NUM)
 		exit_with_error(pipex, ERR_MSG_UNLINK, TYPE_PERROR, true);
+}
+
+void	x_access(t_pipex *pipex, char *file_name)
+{
+	int	ret;
+
+	ret = access(file_name, X_OK);
+	if (ret == ERR_NUM)
+		exit_with_error(pipex, ERR_MSG_ACCESS, TYPE_PERROR, true);
 }
