@@ -19,8 +19,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_x_libft.c \
 				pipex_x_sys_call1.c \
 				pipex_x_sys_call2.c \
-				pipex_free1.c \
-				pipex_free2.c \
+				pipex_free.c \
 				get_next_line.c \
 
 B_SRCS	:= 
@@ -91,8 +90,8 @@ bonus:
 sani: CFLAGS +=  -g  -fsanitize=address -fsanitize=undefined
 sani: re
 
-valg: CFLAGS +=  -g 
-valg: re
+# valg: CFLAGS +=  -g 
+# valg: re
 
 .PHONY: all clean fclean re bonus
 
