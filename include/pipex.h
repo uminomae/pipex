@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/30 12:38:04 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:01:03 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,26 @@ extern char	**environ;
 # define NOT_FIND			0
 # define FILE_FOR_READ		1
 # define NUM_ARGC_REQUIRED	5
+# define NUM_ARGC_REQUIRED_HEREDOC	6
 
-// →enumに
-# define TYPE_PERROR		1
-# define TYPE_CMD_NOT_FOUND	2
-# define TYPE_ENV_NULL		3
-# define TYPE_ARGV_NULL		4
-# define TYPE_ARGC			5
-# define TYPE_FT			6
+enum err_type {
+	TYPE_PERROR,
+	TYPE_CMD_NOT_FOUND,
+	TYPE_ENV_NULL,
+	TYPE_ARGV_NULL,
+	TYPE_ARGC,	
+	TYPE_ARGC_HEREDOC,
+	TYPE_LIMITER_NULL,
+	TYPE_FT,	
+};
+
+// # define TYPE_PERROR		1
+// # define TYPE_CMD_NOT_FOUND	2
+// # define TYPE_ENV_NULL		3
+// # define TYPE_ARGV_NULL		4
+// # define TYPE_ARGC			5
+// # define TYPE_ARGC_HEREDOC	6
+// # define TYPE_FT			7
 
 # define NOT_FOUND			NULL
 
@@ -132,6 +144,7 @@ extern char	**environ;
 
 # define WORD_FIND_PATH		"PATH="
 # define ERR_MSG_ARGC		"error : 5 arguments are required"
+# define ERR_MSG_ARGC_HEREDOC	"error : 6 arguments are required"
 # define ERR_MSG_PIPE		"pipe()"
 # define ERR_MSG_CLOSE		"close()"
 # define ERR_MSG_FORK		"fork()"
@@ -155,6 +168,7 @@ extern char	**environ;
 # define ERR_MSG_ENVIRON			"environ is null pointer"
 # define ERR_MSG_CMD_NULL			"command name is null pointer"
 # define ERR_MSG_CMD_NULL_CHAR		"command name is null char"
+# define ERR_MSG_LIMITER_NULL_CHAR		"LIMITER is null char"
 
 // main
 size_t	make_pipe(t_pipex *pipex, int argc, size_t argc_of_base);

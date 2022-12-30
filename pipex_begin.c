@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/30 19:02:47 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:05:14 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	begin_pipex(t_pipex *pipex, int argc, char **argv)
 	init_pid_list(pipex, argc, pipex->other_cmd);
 }
 
+static bool	is_here_doc(char **argv)
+{
+	if (ft_strncmp(argv[1], HERE_DOC_STR, ft_strlen(HERE_DOC_STR)) \
+															== SAME_STRING)
+		return (true);
+	return (false);
+}
+
 static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 {
 	if (argv == NULL)
@@ -32,6 +40,13 @@ static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 		exit_with_error(pipex, "environ", TYPE_ENV_NULL, false);
 	if (argc < NUM_ARGC_REQUIRED)
 		exit_with_error(pipex, "argc", TYPE_ARGC, false);
+	if (is_here_doc(argv) == true)
+	{
+		if (argc < NUM_ARGC_REQUIRED_HEREDOC)
+			exit_with_error(pipex, "argc", TYPE_ARGC_HEREDOC, false);
+		if (ft_strncmp(argv[2], EMPTY, 1)== SAME_STRING)
+			exit_with_error(pipex, "argc", TYPE_LIMITER_NULL, false);
+	}
 	else
 		return ;
 }
@@ -50,14 +65,6 @@ static void	init_struct(t_pipex *pipex, int argc, char **argv)
 	pipex->v_argv.list_of_directory = NULL;
 	pipex->v_argv.temp_divided_list = NULL;
 	pipex->v_argv.virtual_argv = NULL;
-}
-
-static bool	is_here_doc(char **argv)
-{
-	if (ft_strncmp(argv[1], HERE_DOC_STR, ft_strlen(HERE_DOC_STR)) \
-															== SAME_STRING)
-		return (true);
-	return (false);
 }
 
 static void	set_arg_position(t_pipex *pipex, char **argv)

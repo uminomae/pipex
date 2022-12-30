@@ -18,11 +18,29 @@ void	exit_success(t_pipex *pipex)
 	exit(EXIT_SUCCESS);
 }
 
+static void put_error_msg(size_t type)
+{
+	if (type == TYPE_ENV_NULL)
+		ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
+	else if (type == TYPE_ARGV_NULL)
+		ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
+	else if (type == TYPE_ARGC)
+		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
+	else if (type == TYPE_ARGC_HEREDOC)
+		ft_putendl_fd(ERR_MSG_ARGC_HEREDOC, STDERR_FILENO);
+	else if (type == TYPE_LIMITER_NULL)
+		ft_putendl_fd(ERR_MSG_LIMITER_NULL_CHAR, STDERR_FILENO);
+	else if (type == TYPE_FT)
+		ft_putendl_fd(ERR_MSG_FT, STDERR_FILENO);
+	else
+		ft_putendl_fd(ERR_MSG_FT, STDERR_FILENO);
+}
+
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 {
 	if (type == TYPE_PERROR)
 		perror(str);
-	if (type == TYPE_CMD_NOT_FOUND)
+	else if (type == TYPE_CMD_NOT_FOUND)
 	{
 		if (ft_strchr(str, SIGN_ABS_PATH) == NULL)
 			exit_put_msg_cmd_not_found(str);
@@ -31,14 +49,8 @@ void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)
 		else
 			perror(str);
 	}
-	else if (type == TYPE_ENV_NULL)
-		ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
-	else if (type == TYPE_ARGV_NULL)
-		ft_putendl_fd(ERR_MSG_ARGV, STDERR_FILENO);
-	else if (type == TYPE_ARGC)
-		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
-	else if (type == TYPE_FT)
-		ft_putendl_fd(ERR_MSG_FT, STDERR_FILENO);
+	else
+		put_error_msg(type);
 	if (need_free == true)
 		free_struct(pipex);
 	exit(EXIT_FAILURE);
