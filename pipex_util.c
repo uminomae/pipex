@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/30 19:05:44 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:38:10 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ size_t	scale_list_including_null(char **list)
 	count++;
 	return (count);
 }
+
 void	safe_free(char **malloc_ptr)
 {
 	free(*malloc_ptr);

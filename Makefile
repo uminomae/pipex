@@ -16,7 +16,7 @@ SRCS		:= 	pipex_main.c \
 				pipex_util.c \
 				pipex_wait.c \
 				pipex_finish.c \
-				pipex_x_util.c \
+				pipex_x_libft.c \
 				pipex_x_sys_call1.c \
 				pipex_x_sys_call2.c \
 				pipex_free1.c \

@@ -18,7 +18,7 @@ void	exit_success(t_pipex *pipex)
 	exit(EXIT_SUCCESS);
 }
 
-static void put_error_msg(size_t type)
+static void	put_error_msg(size_t type)
 {
 	if (type == TYPE_ENV_NULL)
 		ft_putendl_fd(ERR_MSG_ENVIRON, STDERR_FILENO);
@@ -28,12 +28,10 @@ static void put_error_msg(size_t type)
 		ft_putendl_fd(ERR_MSG_ARGC, STDERR_FILENO);
 	else if (type == TYPE_ARGC_HEREDOC)
 		ft_putendl_fd(ERR_MSG_ARGC_HEREDOC, STDERR_FILENO);
-	else if (type == TYPE_LIMITER_NULL)
-		ft_putendl_fd(ERR_MSG_LIMITER_NULL_CHAR, STDERR_FILENO);
 	else if (type == TYPE_FT)
 		ft_putendl_fd(ERR_MSG_FT, STDERR_FILENO);
 	else
-		ft_putendl_fd(ERR_MSG_FT, STDERR_FILENO);
+		ft_putendl_fd(ERR_MSG_OTHER, STDERR_FILENO);
 }
 
 void	exit_with_error(t_pipex *pipex, char *str, size_t type, bool need_free)

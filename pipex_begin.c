@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/30 22:05:14 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 22:29:11 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 	{
 		if (argc < NUM_ARGC_REQUIRED_HEREDOC)
 			exit_with_error(pipex, "argc", TYPE_ARGC_HEREDOC, false);
-		if (ft_strncmp(argv[2], EMPTY, 1)== SAME_STRING)
-			exit_with_error(pipex, "argc", TYPE_LIMITER_NULL, false);
 	}
 	else
 		return ;
