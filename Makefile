@@ -2,7 +2,7 @@ NAME		:= pipex
 CC			:= cc
 # CC			:= clang
 RM			:= rm -f
-CFLAGS		:= -Wall -Wextra -Werror -O
+CFLAGS		:= -Wall -Wextra -Werror  -fsanitize=leak -O
 DFLAGS		:= -MMD -MP
 SRCS		:= 	pipex_main.c \
 				pipex_begin.c \

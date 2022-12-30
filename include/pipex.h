@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/29 11:59:47 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:38:04 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ extern char	**environ;
 # define FILE_FOR_READ		1
 # define NUM_ARGC_REQUIRED	5
 
+// →enumに
 # define TYPE_PERROR		1
 # define TYPE_CMD_NOT_FOUND	2
 # define TYPE_ENV_NULL		3

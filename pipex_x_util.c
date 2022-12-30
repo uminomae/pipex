@@ -6,12 +6,14 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:07 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/29 12:02:02 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:52:44 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
+//関数ポインタをつかったら
+//unionを調べる。valist使えたら。
+//pipex_like_libft.c
 char	**x_split(t_pipex *pipex, char *str, char delimiter)
 {
 	char	**ret;

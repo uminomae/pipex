@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:51:13 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/29 02:57:59 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/30 19:05:33 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static char	**split_cmd_name_and_option(t_pipex *pipex,	char *cmd_name)
 	return (virtual_argv);
 }
 
-// TODO 相対パスと.始まり、/始まりでテスト
 static char	**join_to_get_absolute_path(\
 				t_pipex *pipex, char **list_of_directory, char *cmd_name)
 {
