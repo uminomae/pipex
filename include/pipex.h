@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:04:46 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/30 22:39:44 by uminomae         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:33:48 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ enum e_err_type {
 	TYPE_ARGV_NULL,
 	TYPE_ARGC,	
 	TYPE_ARGC_HEREDOC,
+	TYPE_OTHER,
 	TYPE_FT,	
 };
 
@@ -116,6 +117,7 @@ extern char	**environ;
 # define FILE_FOR_READ		1
 # define NUM_ARGC_REQUIRED	5
 # define NUM_ARGC_REQUIRED_HEREDOC	6
+# define NUM_RECURSION_UPPER	100
 
 # define NOT_FOUND			NULL
 

@@ -6,7 +6,7 @@
 /*   By: uminomae <uminomae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 00:49:55 by hioikawa          #+#    #+#             */
-/*   Updated: 2022/12/30 22:29:11 by uminomae         ###   ########.fr       */
+/*   Updated: 2022/12/31 01:38:36 by uminomae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	validate_variables(t_pipex *pipex, int argc, char **argv)
 		exit_with_error(pipex, "environ", TYPE_ENV_NULL, false);
 	if (argc < NUM_ARGC_REQUIRED)
 		exit_with_error(pipex, "argc", TYPE_ARGC, false);
+	if (argc > NUM_RECURSION_UPPER)
+		exit_with_error(pipex,  "argc", TYPE_OTHER, false);
 	if (is_here_doc(argv) == true)
 	{
 		if (argc < NUM_ARGC_REQUIRED_HEREDOC)
